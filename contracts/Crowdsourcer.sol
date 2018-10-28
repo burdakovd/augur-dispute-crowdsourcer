@@ -66,11 +66,11 @@ contract Crowdsourcer is ICrowdsourcer {
     require(rep.balanceOf(msg.sender) >= amount, "Not enough funds");
     require(rep.allowance(msg.sender, this) >= amount, "Now enough allowance");
 
-    // record contribution in accounting (will perform validations)
-    m_accounting.contribute(msg.sender, amount, feeNumerator);
-
     // actually transfer tokens and revert tx if any problem
     assert(rep.transferFrom(msg.sender, m_disputer, amount));
+
+    // record contribution in accounting (will perform validations)
+    m_accounting.contribute(msg.sender, amount, feeNumerator);
   }
 
   function withdrawContribution() external beforeDisputeOnly {

@@ -29,6 +29,10 @@ contract("MockDisputer", accounts => {
   const Eve = accounts[3];
   const John = accounts[4];
 
+  const MAX_UINT256 =
+    "115792089237316195423570985008687907853269984665640564039457584007913129639935";
+  const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
+
   const create_test_disputer = async (
     addressToSendABunchOfREPTo,
     amountOfREP,
@@ -60,9 +64,7 @@ contract("MockDisputer", accounts => {
     // check all state we can see from public methods after construction
     await expect(disputer.getOwner()).resolves.toEqual(Eve);
     await expect(disputer.hasDisputed()).resolves.toEqual(false);
-    await expect(disputer.feeReceiver()).resolves.toEqual(
-      "0x0000000000000000000000000000000000000000"
-    );
+    await expect(disputer.feeReceiver()).resolves.toEqual(ZERO_ADDRESS);
     const rep = await disputer.getREP().then(address => IERC20.at(address));
     const disputeToken = await disputer
       .getDisputeTokenAddress()
@@ -78,9 +80,7 @@ contract("MockDisputer", accounts => {
 
     await expect(
       rep.allowance(disputer.address, Eve).then(s => s.toFixed())
-    ).resolves.toBe(
-      "115792089237316195423570985008687907853269984665640564039457584007913129639935"
-    );
+    ).resolves.toBe(MAX_UINT256);
   });
 
   it("can perform dispute token ERC20 approval", async () => {
@@ -97,9 +97,7 @@ contract("MockDisputer", accounts => {
 
     await expect(
       disputeToken.allowance(disputer.address, Eve).then(s => s.toFixed())
-    ).resolves.toBe(
-      "115792089237316195423570985008687907853269984665640564039457584007913129639935"
-    );
+    ).resolves.toBe(MAX_UINT256);
   });
 
   it("can do actual dispute, and has good state after", async () => {
@@ -133,13 +131,13 @@ contract("MockDisputer", accounts => {
     await expect(disputer.feeReceiver()).resolves.toEqual(Alice);
   });
 
-  it("cannot do dispute with 0x address", async () => {
+  it("cannot do dispute with zero address", async () => {
     const disputer = await create_test_disputer(Bob, 110, 30);
     const rep = await disputer.getREP().then(address => IERC20.at(address));
     await rep.transfer(disputer.address, 80, { from: Bob });
-    await expect(
-      disputer.dispute("0x0000000000000000000000000000000000000000")
-    ).rejects.toThrow("VM Exception while processing transaction: revert");
+    await expect(disputer.dispute(ZERO_ADDRESS)).rejects.toThrow(
+      "VM Exception while processing transaction: revert"
+    );
   });
 
   it("cannot do dispute twice", async () => {
