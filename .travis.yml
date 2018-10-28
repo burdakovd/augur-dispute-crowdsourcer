@@ -1,10 +1,10 @@
 language: node_js
 
-before_script:
-  - yarn truffle compile
-  - yarn install
+node_js:
+  - "8.9"
 
 script:
+  - yarn truffle compile
   - yarn test
 
 after_script:
