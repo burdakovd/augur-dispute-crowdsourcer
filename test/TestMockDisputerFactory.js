@@ -1,32 +1,37 @@
 import expect from "expect";
 import invariant from "invariant";
 
-const IAccounting = artifacts.require("IAccounting");
-const AccountingFactory = artifacts.require("AccountingFactory");
+const IDisputer = artifacts.require("IDisputer");
+const MockDisputerFactory = artifacts.require("MockDisputerFactory");
 
 function onlyx(a) {
   invariant(a.length === 1, `Must have one element, got ${a.length}`);
   return a[0];
 }
 
-// TODO: once we deploy, we may use deployed AccountingFactory rather than
-// instantiate it here
-contract("AccountingFactory", accounts => {
+contract("MockDisputerFactory", accounts => {
   const Manager = accounts[0];
   const Alice = accounts[1];
+  const Bob = accounts[2];
 
   it("can deploy", async () => {
-    await AccountingFactory.new();
+    await MockDisputerFactory.new(Bob, 0, 0);
+  });
+
+  it("can deploy and prepare", async () => {
+    const factory = await MockDisputerFactory.new(Bob, 0, 0);
+    await factory.prepareMocks();
   });
 
   it("will allow anyone to create instances and forward ownership", async () => {
-    const factory = await AccountingFactory.new();
+    const factory = await MockDisputerFactory.new(Bob, 0, 0);
+    await factory.prepareMocks();
 
     const event1 = await factory
       .create(Manager)
       .then(receipt => onlyx(receipt.logs).args);
     expect(event1._owner).toBe(Manager);
-    await expect(IAccounting.at(event1._address).getOwner()).resolves.toEqual(
+    await expect(IDisputer.at(event1._address).getOwner()).resolves.toEqual(
       Manager
     );
 
@@ -34,7 +39,7 @@ contract("AccountingFactory", accounts => {
       .create(Alice)
       .then(receipt => onlyx(receipt.logs).args);
     expect(event2._owner).toBe(Alice);
-    await expect(IAccounting.at(event2._address).getOwner()).resolves.toEqual(
+    await expect(IDisputer.at(event2._address).getOwner()).resolves.toEqual(
       Alice
     );
   });

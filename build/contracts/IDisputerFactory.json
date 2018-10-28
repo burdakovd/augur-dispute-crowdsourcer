@@ -1,5 +1,5 @@
 {
-  "contractName": "IAccountingFactory",
+  "contractName": "IDisputerFactory",
   "abi": [
     {
       "constant": false,
@@ -25,20 +25,20 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.24;\n\nimport \"./IAccounting.sol\";\n\ninterface IAccountingFactory {\n  function create(address owner) external returns (IAccounting);\n}\n",
-  "sourcePath": "/src/contracts/IAccountingFactory.sol",
+  "source": "pragma solidity ^0.4.24;\n\nimport \"./IDisputer.sol\";\n\ninterface IDisputerFactory {\n  function create(address owner) external returns (IDisputer);\n}\n",
+  "sourcePath": "/src/contracts/IDisputerFactory.sol",
   "ast": {
-    "absolutePath": "/src/contracts/IAccountingFactory.sol",
+    "absolutePath": "/src/contracts/IDisputerFactory.sol",
     "exportedSymbols": {
-      "IAccountingFactory": [
-        1350
+      "IDisputerFactory": [
+        1469
       ]
     },
-    "id": 1351,
+    "id": 1470,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1341,
+        "id": 1460,
         "literals": [
           "solidity",
           "^",
@@ -46,16 +46,16 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:6"
+        "src": "0:24:10"
       },
       {
-        "absolutePath": "/src/contracts/IAccounting.sol",
-        "file": "./IAccounting.sol",
-        "id": 1342,
+        "absolutePath": "/src/contracts/IDisputer.sol",
+        "file": "./IDisputer.sol",
+        "id": 1461,
         "nodeType": "ImportDirective",
-        "scope": 1351,
-        "sourceUnit": 1340,
-        "src": "26:27:6",
+        "scope": 1470,
+        "sourceUnit": 1459,
+        "src": "26:25:10",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -65,17 +65,17 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1350,
+        "id": 1469,
         "linearizedBaseContracts": [
-          1350
+          1469
         ],
-        "name": "IAccountingFactory",
+        "name": "IDisputerFactory",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
             "documentation": null,
-            "id": 1349,
+            "id": 1468,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -83,16 +83,16 @@
             "name": "create",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1345,
+              "id": 1464,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1344,
+                  "id": 1463,
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1349,
-                  "src": "104:13:6",
+                  "scope": 1468,
+                  "src": "100:13:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -100,10 +100,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1343,
+                    "id": 1462,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "104:7:6",
+                    "src": "100:7:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -113,69 +113,69 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "103:15:6"
+              "src": "99:15:10"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1348,
+              "id": 1467,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1347,
+                  "id": 1466,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1349,
-                  "src": "137:11:6",
+                  "scope": 1468,
+                  "src": "133:9:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IAccounting_$1339",
-                    "typeString": "contract IAccounting"
+                    "typeIdentifier": "t_contract$_IDisputer_$1458",
+                    "typeString": "contract IDisputer"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1346,
-                    "name": "IAccounting",
+                    "id": 1465,
+                    "name": "IDisputer",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1339,
-                    "src": "137:11:6",
+                    "referencedDeclaration": 1458,
+                    "src": "133:9:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAccounting_$1339",
-                      "typeString": "contract IAccounting"
+                      "typeIdentifier": "t_contract$_IDisputer_$1458",
+                      "typeString": "contract IDisputer"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "136:13:6"
+              "src": "132:11:10"
             },
-            "scope": 1350,
-            "src": "88:62:6",
+            "scope": 1469,
+            "src": "84:60:10",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1351,
-        "src": "55:97:6"
+        "scope": 1470,
+        "src": "53:93:10"
       }
     ],
-    "src": "0:153:6"
+    "src": "0:147:10"
   },
   "legacyAST": {
-    "absolutePath": "/src/contracts/IAccountingFactory.sol",
+    "absolutePath": "/src/contracts/IDisputerFactory.sol",
     "exportedSymbols": {
-      "IAccountingFactory": [
-        1350
+      "IDisputerFactory": [
+        1469
       ]
     },
-    "id": 1351,
+    "id": 1470,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1341,
+        "id": 1460,
         "literals": [
           "solidity",
           "^",
@@ -183,16 +183,16 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:6"
+        "src": "0:24:10"
       },
       {
-        "absolutePath": "/src/contracts/IAccounting.sol",
-        "file": "./IAccounting.sol",
-        "id": 1342,
+        "absolutePath": "/src/contracts/IDisputer.sol",
+        "file": "./IDisputer.sol",
+        "id": 1461,
         "nodeType": "ImportDirective",
-        "scope": 1351,
-        "sourceUnit": 1340,
-        "src": "26:27:6",
+        "scope": 1470,
+        "sourceUnit": 1459,
+        "src": "26:25:10",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -202,17 +202,17 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1350,
+        "id": 1469,
         "linearizedBaseContracts": [
-          1350
+          1469
         ],
-        "name": "IAccountingFactory",
+        "name": "IDisputerFactory",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
             "documentation": null,
-            "id": 1349,
+            "id": 1468,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -220,16 +220,16 @@
             "name": "create",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1345,
+              "id": 1464,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1344,
+                  "id": 1463,
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1349,
-                  "src": "104:13:6",
+                  "scope": 1468,
+                  "src": "100:13:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -237,10 +237,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1343,
+                    "id": 1462,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "104:7:6",
+                    "src": "100:7:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -250,56 +250,56 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "103:15:6"
+              "src": "99:15:10"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1348,
+              "id": 1467,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1347,
+                  "id": 1466,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1349,
-                  "src": "137:11:6",
+                  "scope": 1468,
+                  "src": "133:9:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IAccounting_$1339",
-                    "typeString": "contract IAccounting"
+                    "typeIdentifier": "t_contract$_IDisputer_$1458",
+                    "typeString": "contract IDisputer"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1346,
-                    "name": "IAccounting",
+                    "id": 1465,
+                    "name": "IDisputer",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1339,
-                    "src": "137:11:6",
+                    "referencedDeclaration": 1458,
+                    "src": "133:9:10",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IAccounting_$1339",
-                      "typeString": "contract IAccounting"
+                      "typeIdentifier": "t_contract$_IDisputer_$1458",
+                      "typeString": "contract IDisputer"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 }
               ],
-              "src": "136:13:6"
+              "src": "132:11:10"
             },
-            "scope": 1350,
-            "src": "88:62:6",
+            "scope": 1469,
+            "src": "84:60:10",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1351,
-        "src": "55:97:6"
+        "scope": 1470,
+        "src": "53:93:10"
       }
     ],
-    "src": "0:153:6"
+    "src": "0:147:10"
   },
   "compiler": {
     "name": "solc",
@@ -307,5 +307,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-28T19:02:16.959Z"
+  "updatedAt": "2018-10-28T19:02:16.960Z"
 }

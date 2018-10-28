@@ -11,11 +11,15 @@ import "./IAccounting.sol";
 contract Accounting is IAccounting {
   uint128 constant public FEE_DENOMINATOR = 1000;
   address public m_owner;
+
   uint128[FEE_DENOMINATOR] public m_contributionPerFeeNumerator;
   mapping(address => uint128) public m_feeNumeratorPerContributor;
   mapping(address => uint128) public m_contributionPerContributor;
+
+  // populated at finalization
   bool public m_isFinalized = false;
-  uint128 public m_AmountDisputed;
+  uint128 m_boundaryFeeNumerator;
+  uint128 m_fundsUsedFromBoundaryBucket;
 
   constructor(address owner) public {
     m_owner = owner;
@@ -40,7 +44,11 @@ contract Accounting is IAccounting {
     return m_owner;
   }
 
-  function contribute(address contributor, uint128 amount, uint128 feeNumerator) external ownerOnly beforeFinalizationOnly {
+  function contribute(
+    address contributor,
+    uint128 amount,
+    uint128 feeNumerator
+  ) external ownerOnly beforeFinalizationOnly {
     require(
       amount > 0,
       "Gotta have something to contribute"
@@ -60,10 +68,15 @@ contract Accounting is IAccounting {
 
     m_contributionPerContributor[contributor] = amount;
     m_feeNumeratorPerContributor[contributor] = feeNumerator;
-    m_contributionPerFeeNumerator[feeNumerator] = safeAdd(m_contributionPerFeeNumerator[feeNumerator], amount);
+    m_contributionPerFeeNumerator[feeNumerator] = safeAdd(
+      m_contributionPerFeeNumerator[feeNumerator],
+      amount
+    );
   }
 
-  function withdrawContribution(address contributor) external ownerOnly beforeFinalizationOnly returns (uint128) {
+  function withdrawContribution(
+    address contributor
+  ) external ownerOnly beforeFinalizationOnly returns (uint128) {
     uint128 amount = m_contributionPerContributor[contributor];
 
     if (amount == 0) {
@@ -73,7 +86,10 @@ contract Accounting is IAccounting {
     m_contributionPerContributor[contributor] = 0;
 
     uint128 feeNumerator = m_feeNumeratorPerContributor[contributor];
-    m_contributionPerFeeNumerator[feeNumerator] = safeSub(m_contributionPerFeeNumerator[feeNumerator], amount);
+    m_contributionPerFeeNumerator[feeNumerator] = safeSub(
+      m_contributionPerFeeNumerator[feeNumerator],
+      amount
+    );
     return amount;
   }
 
@@ -84,7 +100,10 @@ contract Accounting is IAccounting {
    */
   function finalize(uint128 amountDisputed) external ownerOnly beforeFinalizationOnly {
     m_isFinalized = true;
-    m_AmountDisputed = amountDisputed;
+    (
+      m_boundaryFeeNumerator,
+      m_fundsUsedFromBoundaryBucket
+    ) = findBoundaryBucketForAmountDisputed(amountDisputed);
   }
 
   function isFinalized() external view returns (bool) {
@@ -101,7 +120,9 @@ contract Accounting is IAccounting {
    *
    * The returned index will always be a valid feeNumerator.
    */
-  function findBoundaryBucketForAmountDisputed(uint128 amountDisputed) internal view returns (uint128 feeNumerator, uint128 fundsUsedFromBoundaryBucket) {
+  function findBoundaryBucketForAmountDisputed(
+    uint128 amountDisputed
+  ) internal view returns (uint128 feeNumerator, uint128 fundsUsedFromBoundaryBucket) {
     uint128 fundsInBucketsWithHigherFee = 0;
     uint128 tentativeBoundaryBucket = FEE_DENOMINATOR - 1;
 
@@ -179,12 +200,9 @@ contract Accounting is IAccounting {
    *
    * In case of partial fill, we round down, leaving some dust in the contract.
    */
-  function calculateProceeds(address contributor) external afterFinalizationOnly view returns (uint128 rep, uint128 disputeTokens) {
-    uint128 boundaryFeeNumerator;
-    uint128 fundsUsedFromBoundaryBucket;
-
-    (boundaryFeeNumerator, fundsUsedFromBoundaryBucket) = findBoundaryBucketForAmountDisputed(m_AmountDisputed);
-
+  function calculateProceeds(
+    address contributor
+    ) external afterFinalizationOnly view returns (uint128 rep, uint128 disputeTokens) {
     uint128 contributorFeeNumerator = m_feeNumeratorPerContributor[contributor];
     uint128 originalContributionOfContributor = m_contributionPerContributor[contributor];
 
@@ -192,20 +210,24 @@ contract Accounting is IAccounting {
       return (0, 0);
     }
 
-    if (contributorFeeNumerator < boundaryFeeNumerator) {
+    if (contributorFeeNumerator < m_boundaryFeeNumerator) {
       // this contributor didn't make it into dispute round, just refund REP
       rep = originalContributionOfContributor;
       disputeTokens = 0;
-    } else if (contributorFeeNumerator > boundaryFeeNumerator) {
+    } else if (contributorFeeNumerator > m_boundaryFeeNumerator) {
       // this contributor fully got into dispute round, award dispute tokens
       // while subtracting fee
       rep = 0;
-      disputeTokens = safeMulDivExact(originalContributionOfContributor, safeSub(FEE_DENOMINATOR, contributorFeeNumerator), FEE_DENOMINATOR);
+      disputeTokens = safeMulDivExact(
+        originalContributionOfContributor,
+        safeSub(FEE_DENOMINATOR, contributorFeeNumerator),
+        FEE_DENOMINATOR
+      );
     } else {
-      assert(contributorFeeNumerator == boundaryFeeNumerator);
+      assert(contributorFeeNumerator == m_boundaryFeeNumerator);
       // most complex case, contributor partially got into dispute rounds
       uint128 totalBucketSize = m_contributionPerFeeNumerator[contributorFeeNumerator];
-      uint128 filledBucketSize = fundsUsedFromBoundaryBucket;
+      uint128 filledBucketSize = m_fundsUsedFromBoundaryBucket;
       assert(totalBucketSize > 0);
       assert(filledBucketSize <= totalBucketSize);
 
@@ -235,18 +257,13 @@ contract Accounting is IAccounting {
    * In case of partial fill, we round down, leaving some dust in the contract.
    */
   function calculateFees() external afterFinalizationOnly view returns (uint128) {
-    uint128 boundaryFeeNumerator;
-    uint128 fundsUsedFromBoundaryBucket;
-
-    (boundaryFeeNumerator, fundsUsedFromBoundaryBucket) = findBoundaryBucketForAmountDisputed(m_AmountDisputed);
-
     uint128 totalFees = safeMulDiv(
-      fundsUsedFromBoundaryBucket,
-      boundaryFeeNumerator,
+      m_fundsUsedFromBoundaryBucket,
+      m_boundaryFeeNumerator,
       FEE_DENOMINATOR
     );
 
-    uint128 feeNumerator = boundaryFeeNumerator + 1;
+    uint128 feeNumerator = m_boundaryFeeNumerator + 1;
 
     while (feeNumerator < FEE_DENOMINATOR) {
       totalFees += safeMulDiv(

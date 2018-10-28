@@ -1,0 +1,226 @@
+{
+  "contractName": "ICrowdsourcerParent",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getContractFeeReceiver",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.24;\n\n/**\n * Parent of a crowdsourcer that is passed into it on construction. Used\n * to determine destination for fees.\n */\ninterface ICrowdsourcerParent {\n  function getContractFeeReceiver() external view returns (address);\n}\n",
+  "sourcePath": "/src/contracts/ICrowdsourcerParent.sol",
+  "ast": {
+    "absolutePath": "/src/contracts/ICrowdsourcerParent.sol",
+    "exportedSymbols": {
+      "ICrowdsourcerParent": [
+        1421
+      ]
+    },
+    "id": 1422,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1415,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:8"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "Parent of a crowdsourcer that is passed into it on construction. Used\nto determine destination for fees.",
+        "fullyImplemented": false,
+        "id": 1421,
+        "linearizedBaseContracts": [
+          1421
+        ],
+        "name": "ICrowdsourcerParent",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1420,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getContractFeeReceiver",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1416,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "210:2:8"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1419,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1418,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1420,
+                  "src": "236:7:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1417,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "236:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "235:9:8"
+            },
+            "scope": 1421,
+            "src": "179:66:8",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1422,
+        "src": "145:102:8"
+      }
+    ],
+    "src": "0:248:8"
+  },
+  "legacyAST": {
+    "absolutePath": "/src/contracts/ICrowdsourcerParent.sol",
+    "exportedSymbols": {
+      "ICrowdsourcerParent": [
+        1421
+      ]
+    },
+    "id": 1422,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1415,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:8"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": "Parent of a crowdsourcer that is passed into it on construction. Used\nto determine destination for fees.",
+        "fullyImplemented": false,
+        "id": 1421,
+        "linearizedBaseContracts": [
+          1421
+        ],
+        "name": "ICrowdsourcerParent",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1420,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getContractFeeReceiver",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1416,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "210:2:8"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1419,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1418,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1420,
+                  "src": "236:7:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1417,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "236:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "235:9:8"
+            },
+            "scope": 1421,
+            "src": "179:66:8",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1422,
+        "src": "145:102:8"
+      }
+    ],
+    "src": "0:248:8"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-10-28T19:02:16.959Z"
+}
