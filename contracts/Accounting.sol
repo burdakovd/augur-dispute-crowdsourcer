@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 
-import "contracts/IAccounting.sol";
+import "./IAccounting.sol";
 
 /**
  * Keeps track of all contributions, and calculates how much each contributor
@@ -34,6 +34,10 @@ contract Accounting is IAccounting {
   modifier afterFinalizationOnly() {
     require (m_isFinalized, "Method only allowed after finalization");
     _;
+  }
+
+  function getOwner() external view returns (address) {
+    return m_owner;
   }
 
   function contribute(address contributor, uint128 amount, uint128 feeNumerator) external ownerOnly beforeFinalizationOnly {

@@ -1,0 +1,311 @@
+{
+  "contractName": "IAccountingFactory",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "create",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.24;\n\nimport \"./IAccounting.sol\";\n\ninterface IAccountingFactory {\n  function create(address owner) external returns (IAccounting);\n}\n",
+  "sourcePath": "/src/contracts/IAccountingFactory.sol",
+  "ast": {
+    "absolutePath": "/src/contracts/IAccountingFactory.sol",
+    "exportedSymbols": {
+      "IAccountingFactory": [
+        752
+      ]
+    },
+    "id": 753,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 743,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "absolutePath": "/src/contracts/IAccounting.sol",
+        "file": "./IAccounting.sol",
+        "id": 744,
+        "nodeType": "ImportDirective",
+        "scope": 753,
+        "sourceUnit": 742,
+        "src": "26:27:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 752,
+        "linearizedBaseContracts": [
+          752
+        ],
+        "name": "IAccountingFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 751,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "create",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 747,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 746,
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 751,
+                  "src": "104:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 745,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "104:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "103:15:3"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 750,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 749,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 751,
+                  "src": "137:11:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAccounting_$741",
+                    "typeString": "contract IAccounting"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 748,
+                    "name": "IAccounting",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 741,
+                    "src": "137:11:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAccounting_$741",
+                      "typeString": "contract IAccounting"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "136:13:3"
+            },
+            "scope": 752,
+            "src": "88:62:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 753,
+        "src": "55:97:3"
+      }
+    ],
+    "src": "0:153:3"
+  },
+  "legacyAST": {
+    "absolutePath": "/src/contracts/IAccountingFactory.sol",
+    "exportedSymbols": {
+      "IAccountingFactory": [
+        752
+      ]
+    },
+    "id": 753,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 743,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "absolutePath": "/src/contracts/IAccounting.sol",
+        "file": "./IAccounting.sol",
+        "id": 744,
+        "nodeType": "ImportDirective",
+        "scope": 753,
+        "sourceUnit": 742,
+        "src": "26:27:3",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 752,
+        "linearizedBaseContracts": [
+          752
+        ],
+        "name": "IAccountingFactory",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 751,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "create",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 747,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 746,
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 751,
+                  "src": "104:13:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 745,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "104:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "103:15:3"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 750,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 749,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 751,
+                  "src": "137:11:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IAccounting_$741",
+                    "typeString": "contract IAccounting"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 748,
+                    "name": "IAccounting",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 741,
+                    "src": "137:11:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IAccounting_$741",
+                      "typeString": "contract IAccounting"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "136:13:3"
+            },
+            "scope": 752,
+            "src": "88:62:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 753,
+        "src": "55:97:3"
+      }
+    ],
+    "src": "0:153:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-10-28T13:31:48.089Z"
+}
