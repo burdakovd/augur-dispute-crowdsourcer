@@ -1,0 +1,12 @@
+language: node_js
+
+before_script:
+  - yarn truffle compile
+  - yarn install
+
+script:
+  - yarn test
+
+after_script:
+  - git status
+  - git status && git diff
