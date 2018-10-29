@@ -76,21 +76,35 @@ contract Crowdsourcer is ICrowdsourcer {
     require(rep.balanceOf(msg.sender) >= amount, "Not enough funds");
     require(rep.allowance(msg.sender, this) >= amount, "Now enough allowance");
 
-    // actually transfer tokens and revert tx if any problem
-    assert(rep.transferFrom(msg.sender, m_disputer, amount));
-
     // record contribution in accounting (will perform validations)
-    m_accounting.contribute(msg.sender, amount, feeNumerator);
+    uint128 depositedLessFees;
+    uint128 depositedFees;
+    (depositedLessFees, depositedFees) = m_accounting.contribute(
+      msg.sender,
+      amount,
+      feeNumerator
+    );
+
+    assert(depositedLessFees + depositedFees == amount);
+
+    // actually transfer tokens and revert tx if any problem
+    assert(rep.transferFrom(msg.sender, m_disputer, depositedLessFees));
+    assert(rep.transferFrom(msg.sender, this, depositedFees));
   }
 
   function withdrawContribution() external beforeDisputeOnly {
     IERC20 rep = getREP();
 
     // record withdrawal in accounting (will perform validations)
-    uint128 withdrawn = m_accounting.withdrawContribution(msg.sender);
+    uint128 withdrawnLessFees;
+    uint128 withdrawnFees;
+    (withdrawnLessFees, withdrawnFees) = m_accounting.withdrawContribution(
+      msg.sender
+    );
 
     // actually transfer tokens and revert tx if any problem
-    assert(rep.transferFrom(m_disputer, msg.sender, withdrawn));
+    assert(rep.transferFrom(m_disputer, msg.sender, withdrawnLessFees));
+    assert(rep.transfer(msg.sender, withdrawnFees));
   }
 
   function hasDisputed() public view returns (bool) {
@@ -169,13 +183,9 @@ contract Crowdsourcer is ICrowdsourcer {
     address contractFeesRecipient = m_parent.getContractFeeReceiver();
     address executorFeesRecipient = m_disputer.feeReceiver();
 
-    IERC20 disputeTokenAddress = getDisputeToken();
+    IERC20 rep = getREP();
 
-    assert(
-      disputeTokenAddress.transfer(contractFeesRecipient, feesForContractAuthor)
-    );
-    assert(
-      disputeTokenAddress.transfer(executorFeesRecipient, feesForExecutor)
-    );
+    assert(rep.transfer(contractFeesRecipient, feesForContractAuthor));
+    assert(rep.transfer(executorFeesRecipient, feesForExecutor));
   }
 }

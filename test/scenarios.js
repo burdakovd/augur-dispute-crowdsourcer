@@ -1,5 +1,6 @@
 import web3 from "web3";
 
+// TODO: add rogue funds explicitly
 function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
   return {
     test0_0: {
@@ -28,7 +29,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       contributions: {
         [Alice]: { amount: 1000, fee: 30 }
       },
-      disputed: 1000,
+      disputed: 970,
       expectations: {
         [Alice]: { proceeds: 970, refund: 0 },
         fee: 30
@@ -38,7 +39,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       contributions: {
         [Alice]: { amount: 1000, fee: 30 }
       },
-      disputed: 1000,
+      disputed: 970,
       expectations: {
         [Alice]: { proceeds: 970, refund: 0 },
         [Bob]: { proceeds: 0, refund: 0 },
@@ -51,8 +52,8 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       },
       disputed: 875,
       expectations: {
-        [Bob]: { proceeds: 848, refund: 125 },
-        fee: 26
+        [Bob]: { proceeds: 875, refund: 97 },
+        fee: 27
       }
     },
     test0_1_single_contributor_partial_dispute_extreme_0: {
@@ -61,7 +62,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       },
       disputed: 875,
       expectations: {
-        [Bob]: { proceeds: 874, refund: 125 },
+        [Bob]: { proceeds: 875, refund: 124 },
         fee: 0
       }
     },
@@ -77,16 +78,16 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
     },
     test0_1_single_contributor_partial_dispute_extreme_2: {
       contributions: {
-        [Bob]: { amount: 1000, fee: 999 }
+        [Bob]: { amount: 100000, fee: 999 }
       },
-      disputed: 875,
+      disputed: 9,
       expectations: {
-        [Bob]: { proceeds: 0, refund: 125 },
-        fee: 874
+        [Bob]: { proceeds: 9, refund: 91000 },
+        fee: 8991
       }
     },
     test0_2_single_contributor_full_dispute_with_rogue_tokens: {
-      // someone sent extra 50 tokens into contract in attempt to break it
+      // someone sent extra 80 tokens into contract in attempt to break it
       contributions: {
         [Alice]: { amount: 1000, fee: 30 }
       },
@@ -107,7 +108,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       },
       disputed: 150,
       expectations: {
-        [Alice]: { proceeds: 143, refund: 2850 },
+        [Alice]: { proceeds: 150, refund: 2843 },
         [Bob]: { proceeds: 0, refund: 1000 },
         fee: 6
       }
@@ -124,10 +125,10 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       expectations: {
         [Alice]: { proceeds: 2871, refund: 0 },
         [Bob]: { proceeds: 958, refund: 0 },
-        [Eve]: { proceeds: 29768, refund: 3990 },
-        [John]: { proceeds: 12758, refund: 1710 },
+        [Eve]: { proceeds: 31129, refund: 2573 },
+        [John]: { proceeds: 13341, refund: 1103 },
         [Elena]: { proceeds: 0, refund: 80000 },
-        fee: 1942
+        fee: 2023
       }
     },
     test2_many_contributors_full_same_bucket: {
@@ -138,7 +139,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
         [John]: { amount: 15000, fee: 40 },
         [Elena]: { amount: 80000, fee: 20 }
       },
-      disputed: 134000,
+      disputed: 130229,
       expectations: {
         [Alice]: { proceeds: 2871, refund: 0 },
         [Bob]: { proceeds: 958, refund: 0 },
@@ -185,20 +186,17 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       }
     },
     test4_big_numbers_but_actually_small: {
-      // Just test that BN are working
+      // Just test that strings are working
       contributions: {
-        [Alice]: { amount: web3.utils.toBN(1000).toString(), fee: 43 }
+        [Alice]: { amount: "1000", fee: 43 }
       },
-      disputed: web3.utils
-        .toBN(1000)
-        .sub(web3.utils.toBN(1))
-        .toString(),
+      disputed: "955",
       expectations: {
         [Alice]: {
-          proceeds: web3.utils.toBN(956).toString(),
-          refund: 1
+          proceeds: "955",
+          refund: 2
         },
-        fee: web3.utils.toBN(42).toString()
+        fee: "42"
       }
     },
     test5_big_numbers: {
@@ -213,17 +211,13 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
           fee: 43
         }
       },
-      disputed: web3.utils
-        .toBN(1000000)
-        .mul(web3.utils.toBN(10).pow(web3.utils.toBN(18)))
-        .sub(web3.utils.toBN(1))
-        .toString(),
+      disputed: "954000000000000000000842",
       expectations: {
         [Alice]: {
-          proceeds: web3.utils.toBN("956999999999999999999999").toString(),
-          refund: 1
+          proceeds: "954000000000000000000842",
+          refund: "3134796238244514105703"
         },
-        fee: web3.utils.toBN("42999999999999999999999").toString()
+        fee: "42865203761755485893454"
       }
     }
   };

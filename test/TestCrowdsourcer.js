@@ -115,8 +115,11 @@ contract("Crowdsourcer", accounts => {
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
     ).resolves.toEqual(7000);
     await expect(
+      rep.balanceOf(instance.address).then(b => b.toNumber())
+    ).resolves.toEqual(126);
+    await expect(
       rep.balanceOf(disputer).then(b => b.toNumber())
-    ).resolves.toEqual(3000);
+    ).resolves.toEqual(2874);
 
     await expect(
       Accounting.at(accounting)
@@ -486,16 +489,16 @@ contract("Crowdsourcer", accounts => {
 
         // finally check fees
         await expect(
-          disputeToken.balanceOf(GeorgeContractAuthor).then(n => n.toNumber())
+          rep.balanceOf(GeorgeContractAuthor).then(n => n.toNumber())
         ).resolves.toEqual(0);
         await expect(
-          disputeToken.balanceOf(IvanExecutor).then(n => n.toNumber())
+          rep.balanceOf(IvanExecutor).then(n => n.toNumber())
         ).resolves.toEqual(0);
 
         await crowdsourcer.withdrawFees();
 
         await expect(
-          disputeToken.balanceOf(GeorgeContractAuthor).then(n => n.toFixed())
+          rep.balanceOf(GeorgeContractAuthor).then(n => n.toFixed())
         ).resolves.toEqual(
           web3.utils
             .toBN(definition.expectations.fee.toString())
@@ -503,7 +506,7 @@ contract("Crowdsourcer", accounts => {
             .toString()
         );
         await expect(
-          disputeToken.balanceOf(IvanExecutor).then(n => n.toFixed())
+          rep.balanceOf(IvanExecutor).then(n => n.toFixed())
         ).resolves.toEqual(
           (x => x.sub(x.divn(web3.utils.toBN("10"))))(
             web3.utils.toBN(definition.expectations.fee.toString())
