@@ -5,15 +5,6 @@ import "./IDisputer.sol";
 import "./Disputer.sol";
 
 contract DisputerFactory is IDisputerFactory {
-  event DisputerCreated (
-    address _owner,
-    IDisputer _address,
-    address market,
-    uint256 feeWindowId,
-    uint256[] payoutNumerators,
-    bool invalid
-  );
-
   function create(
     address owner,
     address market,

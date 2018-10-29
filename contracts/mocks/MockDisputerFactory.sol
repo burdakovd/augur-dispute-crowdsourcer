@@ -6,15 +6,6 @@ import "./MockDisputer.sol";
 import "./MockERC20.sol";
 
 contract MockDisputerFactory is IDisputerFactory {
-  event DisputerCreated (
-    address _owner,
-    IDisputer _address,
-    address market,
-    uint256 feeWindowId,
-    uint256[] payoutNumerators,
-    bool invalid
-  );
-
   address m_accountToGiveSomeREPTo;
   uint256 m_amountOfREPToGive;
   uint256 m_amountOfREPToDisputeWith;

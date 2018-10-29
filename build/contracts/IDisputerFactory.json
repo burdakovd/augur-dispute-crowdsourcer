@@ -2,6 +2,43 @@
   "contractName": "IDisputerFactory",
   "abi": [
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "_address",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "market",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "feeWindowId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "payoutNumerators",
+          "type": "uint256[]"
+        },
+        {
+          "indexed": false,
+          "name": "invalid",
+          "type": "bool"
+        }
+      ],
+      "name": "DisputerCreated",
+      "type": "event"
+    },
+    {
       "constant": false,
       "inputs": [
         {
@@ -41,20 +78,20 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.24;\n\nimport \"./IDisputer.sol\";\n\ninterface IDisputerFactory {\n  function create(\n    address owner,\n    address market,\n    uint256 feeWindowId,\n    uint256[] payoutNumerators,\n    bool invalid\n  ) external returns (IDisputer);\n}\n",
+  "source": "pragma solidity ^0.4.24;\n\nimport \"./IDisputer.sol\";\n\ninterface IDisputerFactory {\n  event DisputerCreated (\n    address _owner,\n    IDisputer _address,\n    address market,\n    uint256 feeWindowId,\n    uint256[] payoutNumerators,\n    bool invalid\n  );\n\n  function create(\n    address owner,\n    address market,\n    uint256 feeWindowId,\n    uint256[] payoutNumerators,\n    bool invalid\n  ) external returns (IDisputer);\n}\n",
   "sourcePath": "/src/contracts/IDisputerFactory.sol",
   "ast": {
     "absolutePath": "/src/contracts/IDisputerFactory.sol",
     "exportedSymbols": {
       "IDisputerFactory": [
-        952
+        356
       ]
     },
-    "id": 953,
+    "id": 357,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 934,
+        "id": 323,
         "literals": [
           "solidity",
           "^",
@@ -62,16 +99,16 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:10"
+        "src": "0:24:5"
       },
       {
         "absolutePath": "/src/contracts/IDisputer.sol",
         "file": "./IDisputer.sol",
-        "id": 935,
+        "id": 324,
         "nodeType": "ImportDirective",
-        "scope": 953,
-        "sourceUnit": 933,
-        "src": "26:25:10",
+        "scope": 357,
+        "sourceUnit": 322,
+        "src": "26:25:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -81,34 +118,31 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 952,
+        "id": 356,
         "linearizedBaseContracts": [
-          952
+          356
         ],
         "name": "IDisputerFactory",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "body": null,
+            "anonymous": false,
             "documentation": null,
-            "id": 951,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "create",
-            "nodeType": "FunctionDefinition",
+            "id": 339,
+            "name": "DisputerCreated",
+            "nodeType": "EventDefinition",
             "parameters": {
-              "id": 947,
+              "id": 338,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 937,
-                  "name": "owner",
+                  "id": 326,
+                  "indexed": false,
+                  "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "105:13:10",
+                  "scope": 339,
+                  "src": "112:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -116,10 +150,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 936,
+                    "id": 325,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "105:7:10",
+                    "src": "112:7:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -130,11 +164,41 @@
                 },
                 {
                   "constant": false,
-                  "id": 939,
+                  "id": 328,
+                  "indexed": false,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 339,
+                  "src": "132:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IDisputer_$321",
+                    "typeString": "contract IDisputer"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 327,
+                    "name": "IDisputer",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 321,
+                    "src": "132:9:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IDisputer_$321",
+                      "typeString": "contract IDisputer"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 330,
+                  "indexed": false,
                   "name": "market",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "124:14:10",
+                  "scope": 339,
+                  "src": "156:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -142,10 +206,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 938,
+                    "id": 329,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "124:7:10",
+                    "src": "156:7:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -156,11 +220,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 941,
+                  "id": 332,
+                  "indexed": false,
                   "name": "feeWindowId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "144:19:10",
+                  "scope": 339,
+                  "src": "176:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -168,10 +233,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 940,
+                    "id": 331,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "144:7:10",
+                    "src": "176:7:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -182,32 +247,33 @@
                 },
                 {
                   "constant": false,
-                  "id": 944,
+                  "id": 335,
+                  "indexed": false,
                   "name": "payoutNumerators",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "169:26:10",
+                  "scope": 339,
+                  "src": "201:26:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
                     "typeString": "uint256[]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 942,
+                      "id": 333,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "169:7:10",
+                      "src": "201:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 943,
+                    "id": 334,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "169:9:10",
+                    "src": "201:9:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -218,11 +284,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 946,
+                  "id": 337,
+                  "indexed": false,
                   "name": "invalid",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "201:12:10",
+                  "scope": 339,
+                  "src": "233:12:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -230,10 +297,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 945,
+                    "id": 336,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "201:4:10",
+                    "src": "233:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -243,35 +310,194 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "99:118:10"
+              "src": "106:143:5"
             },
-            "payable": false,
-            "returnParameters": {
-              "id": 950,
+            "src": "84:166:5"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 355,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "create",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 351,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 949,
-                  "name": "",
+                  "id": 341,
+                  "name": "owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "236:9:10",
+                  "scope": 355,
+                  "src": "275:13:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IDisputer_$932",
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 340,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "275:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 343,
+                  "name": "market",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "294:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 342,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "294:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 345,
+                  "name": "feeWindowId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "314:19:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 344,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "314:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 348,
+                  "name": "payoutNumerators",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "339:26:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 346,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "339:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 347,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "339:9:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 350,
+                  "name": "invalid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "371:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 349,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "371:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "269:118:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 354,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 353,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "406:9:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IDisputer_$321",
                     "typeString": "contract IDisputer"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 948,
+                    "id": 352,
                     "name": "IDisputer",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 932,
-                    "src": "236:9:10",
+                    "referencedDeclaration": 321,
+                    "src": "406:9:5",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDisputer_$932",
+                      "typeIdentifier": "t_contract$_IDisputer_$321",
                       "typeString": "contract IDisputer"
                     }
                   },
@@ -279,33 +505,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "235:11:10"
+              "src": "405:11:5"
             },
-            "scope": 952,
-            "src": "84:163:10",
+            "scope": 356,
+            "src": "254:163:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 953,
-        "src": "53:196:10"
+        "scope": 357,
+        "src": "53:366:5"
       }
     ],
-    "src": "0:250:10"
+    "src": "0:420:5"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/IDisputerFactory.sol",
     "exportedSymbols": {
       "IDisputerFactory": [
-        952
+        356
       ]
     },
-    "id": 953,
+    "id": 357,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 934,
+        "id": 323,
         "literals": [
           "solidity",
           "^",
@@ -313,16 +539,16 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:10"
+        "src": "0:24:5"
       },
       {
         "absolutePath": "/src/contracts/IDisputer.sol",
         "file": "./IDisputer.sol",
-        "id": 935,
+        "id": 324,
         "nodeType": "ImportDirective",
-        "scope": 953,
-        "sourceUnit": 933,
-        "src": "26:25:10",
+        "scope": 357,
+        "sourceUnit": 322,
+        "src": "26:25:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -332,34 +558,31 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 952,
+        "id": 356,
         "linearizedBaseContracts": [
-          952
+          356
         ],
         "name": "IDisputerFactory",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
-            "body": null,
+            "anonymous": false,
             "documentation": null,
-            "id": 951,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "create",
-            "nodeType": "FunctionDefinition",
+            "id": 339,
+            "name": "DisputerCreated",
+            "nodeType": "EventDefinition",
             "parameters": {
-              "id": 947,
+              "id": 338,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 937,
-                  "name": "owner",
+                  "id": 326,
+                  "indexed": false,
+                  "name": "_owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "105:13:10",
+                  "scope": 339,
+                  "src": "112:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -367,10 +590,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 936,
+                    "id": 325,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "105:7:10",
+                    "src": "112:7:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -381,11 +604,41 @@
                 },
                 {
                   "constant": false,
-                  "id": 939,
+                  "id": 328,
+                  "indexed": false,
+                  "name": "_address",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 339,
+                  "src": "132:18:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IDisputer_$321",
+                    "typeString": "contract IDisputer"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 327,
+                    "name": "IDisputer",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 321,
+                    "src": "132:9:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IDisputer_$321",
+                      "typeString": "contract IDisputer"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 330,
+                  "indexed": false,
                   "name": "market",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "124:14:10",
+                  "scope": 339,
+                  "src": "156:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -393,10 +646,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 938,
+                    "id": 329,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "124:7:10",
+                    "src": "156:7:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -407,11 +660,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 941,
+                  "id": 332,
+                  "indexed": false,
                   "name": "feeWindowId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "144:19:10",
+                  "scope": 339,
+                  "src": "176:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -419,10 +673,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 940,
+                    "id": 331,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "144:7:10",
+                    "src": "176:7:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -433,32 +687,33 @@
                 },
                 {
                   "constant": false,
-                  "id": 944,
+                  "id": 335,
+                  "indexed": false,
                   "name": "payoutNumerators",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "169:26:10",
+                  "scope": 339,
+                  "src": "201:26:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
                     "typeString": "uint256[]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 942,
+                      "id": 333,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "169:7:10",
+                      "src": "201:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 943,
+                    "id": 334,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "169:9:10",
+                    "src": "201:9:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -469,11 +724,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 946,
+                  "id": 337,
+                  "indexed": false,
                   "name": "invalid",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "201:12:10",
+                  "scope": 339,
+                  "src": "233:12:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -481,10 +737,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 945,
+                    "id": 336,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "201:4:10",
+                    "src": "233:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -494,35 +750,194 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "99:118:10"
+              "src": "106:143:5"
             },
-            "payable": false,
-            "returnParameters": {
-              "id": 950,
+            "src": "84:166:5"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 355,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "create",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 351,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 949,
-                  "name": "",
+                  "id": 341,
+                  "name": "owner",
                   "nodeType": "VariableDeclaration",
-                  "scope": 951,
-                  "src": "236:9:10",
+                  "scope": 355,
+                  "src": "275:13:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IDisputer_$932",
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 340,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "275:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 343,
+                  "name": "market",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "294:14:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 342,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "294:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 345,
+                  "name": "feeWindowId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "314:19:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 344,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "314:7:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 348,
+                  "name": "payoutNumerators",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "339:26:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_calldata_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 346,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "339:7:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 347,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "339:9:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 350,
+                  "name": "invalid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "371:12:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 349,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "371:4:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "269:118:5"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 354,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 353,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 355,
+                  "src": "406:9:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IDisputer_$321",
                     "typeString": "contract IDisputer"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 948,
+                    "id": 352,
                     "name": "IDisputer",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 932,
-                    "src": "236:9:10",
+                    "referencedDeclaration": 321,
+                    "src": "406:9:5",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IDisputer_$932",
+                      "typeIdentifier": "t_contract$_IDisputer_$321",
                       "typeString": "contract IDisputer"
                     }
                   },
@@ -530,20 +945,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "235:11:10"
+              "src": "405:11:5"
             },
-            "scope": 952,
-            "src": "84:163:10",
+            "scope": 356,
+            "src": "254:163:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 953,
-        "src": "53:196:10"
+        "scope": 357,
+        "src": "53:366:5"
       }
     ],
-    "src": "0:250:10"
+    "src": "0:420:5"
   },
   "compiler": {
     "name": "solc",
@@ -551,5 +966,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-29T02:49:47.004Z"
+  "updatedAt": "2018-10-29T02:52:57.206Z"
 }
