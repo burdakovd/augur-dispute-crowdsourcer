@@ -66,13 +66,7 @@ contract("MockDisputer", accounts => {
     await expect(disputer.hasDisputed()).resolves.toEqual(false);
     await expect(disputer.feeReceiver()).resolves.toEqual(ZERO_ADDRESS);
     const rep = await disputer.getREP().then(address => IERC20.at(address));
-    const disputeToken = await disputer
-      .getDisputeTokenAddress()
-      .then(address => IERC20.at(address));
     await expect(rep.totalSupply().then(s => s.toNumber())).resolves.toBe(110);
-    await expect(
-      disputeToken.totalSupply().then(s => s.toNumber())
-    ).resolves.toBe(0);
 
     await expect(rep.balanceOf(Bob).then(s => s.toNumber())).resolves.toBe(110);
 
@@ -84,7 +78,10 @@ contract("MockDisputer", accounts => {
   });
 
   it("can perform dispute token ERC20 approval", async () => {
-    const disputer = await create_test_disputer(Bob, 110, 30);
+    const disputer = await create_test_disputer(Bob, 110, 0);
+
+    await disputer.dispute(Alice);
+
     const disputeToken = await disputer
       .getDisputeTokenAddress()
       .then(address => IERC20.at(address));
@@ -103,9 +100,6 @@ contract("MockDisputer", accounts => {
   it("can do actual dispute, and has good state after", async () => {
     const disputer = await create_test_disputer(Bob, 110, 30);
     const rep = await disputer.getREP().then(address => IERC20.at(address));
-    const disputeToken = await disputer
-      .getDisputeTokenAddress()
-      .then(address => IERC20.at(address));
 
     await expect(disputer.hasDisputed()).resolves.toEqual(false);
 
@@ -114,11 +108,12 @@ contract("MockDisputer", accounts => {
     await expect(
       rep.balanceOf(disputer.address).then(s => s.toNumber())
     ).resolves.toBe(80);
-    await expect(
-      disputeToken.balanceOf(disputer.address).then(s => s.toNumber())
-    ).resolves.toBe(0);
 
     await disputer.dispute(Alice);
+
+    const disputeToken = await disputer
+      .getDisputeTokenAddress()
+      .then(address => IERC20.at(address));
 
     await expect(
       rep.balanceOf(disputer.address).then(s => s.toNumber())

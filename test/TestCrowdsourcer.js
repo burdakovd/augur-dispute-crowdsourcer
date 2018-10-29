@@ -70,10 +70,9 @@ contract("Crowdsourcer", accounts => {
       Promise.all([
         instance.getDisputer(),
         instance.getAccounting(),
-        instance.getREP(),
-        instance.getDisputeToken()
+        instance.getREP()
       ]).then(addresses => ImmSet(addresses).size)
-    ).resolves.toEqual(4);
+    ).resolves.toEqual(3);
 
     await expect(instance.hasDisputed()).resolves.toEqual(false);
     await expect(instance.isFinalized()).resolves.toEqual(false);
@@ -413,9 +412,6 @@ contract("Crowdsourcer", accounts => {
         const rep = await crowdsourcer
           .getREP()
           .then(address => IERC20.at(address));
-        const disputeToken = await crowdsourcer
-          .getDisputeToken()
-          .then(address => IERC20.at(address));
         const disputer = await crowdsourcer
           .getDisputer()
           .then(address => IDisputer.at(address));
@@ -449,6 +445,10 @@ contract("Crowdsourcer", accounts => {
         // finalize state
         await disputer.dispute(IvanExecutor);
         await crowdsourcer.finalize();
+
+        const disputeToken = await crowdsourcer
+          .getDisputeToken()
+          .then(address => IERC20.at(address));
 
         // check all proceeds/refunds sequentially (to avoid mess in test logs)
         await ImmMap(definition.expectations)

@@ -21,10 +21,6 @@ contract MockDisputer is BaseDisputer {
     uint256 amountOfREPToDisputeWith
   ) public {
     m_rep = rep;
-    // TODO: to make it behave more like real disputer, do not allow seeing
-    // dispute token until dispute happens
-    m_disputeToken = new MockERC20();
-
     m_amountOfREPToDisputeWith = amountOfREPToDisputeWith;
 
     baseInit(owner);
@@ -36,6 +32,8 @@ contract MockDisputer is BaseDisputer {
     uint256 amountToDestroy = amountToCreate > balance ? balance : amountToCreate;
 
     // simulate dispute
+    assert(address(m_disputeToken) == 0);
+    m_disputeToken = new MockERC20();
     m_rep.burn(amountToDestroy);
     assert(m_disputeToken.mint(this, amountToCreate));
   }
@@ -45,8 +43,7 @@ contract MockDisputer is BaseDisputer {
   }
 
   function getDisputeTokenAddress() public view returns (IERC20) {
-    // TODO: to make it behave more like real disputer, do not allow seeing
-    // dispute token until dispute happens
+    assert(address(m_disputeToken) != 0);
     return m_disputeToken;
   }
 }
