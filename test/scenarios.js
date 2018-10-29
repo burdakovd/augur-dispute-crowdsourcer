@@ -187,15 +187,18 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
     test4_big_numbers_but_actually_small: {
       // Just test that BN are working
       contributions: {
-        [Alice]: { amount: web3.utils.toBN(1000), fee: 43 }
+        [Alice]: { amount: web3.utils.toBN(1000).toString(), fee: 43 }
       },
-      disputed: web3.utils.toBN(1000).sub(web3.utils.toBN(1)),
+      disputed: web3.utils
+        .toBN(1000)
+        .sub(web3.utils.toBN(1))
+        .toString(),
       expectations: {
         [Alice]: {
-          proceeds: web3.utils.toBN(956),
+          proceeds: web3.utils.toBN(956).toString(),
           refund: 1
         },
-        fee: web3.utils.toBN(42)
+        fee: web3.utils.toBN(42).toString()
       }
     },
     test5_big_numbers: {
@@ -205,20 +208,22 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
         [Alice]: {
           amount: web3.utils
             .toBN(1000000)
-            .mul(web3.utils.toBN(10).pow(web3.utils.toBN(18))),
+            .mul(web3.utils.toBN(10).pow(web3.utils.toBN(18)))
+            .toString(),
           fee: 43
         }
       },
       disputed: web3.utils
         .toBN(1000000)
         .mul(web3.utils.toBN(10).pow(web3.utils.toBN(18)))
-        .sub(web3.utils.toBN(1)),
+        .sub(web3.utils.toBN(1))
+        .toString(),
       expectations: {
         [Alice]: {
-          proceeds: web3.utils.toBN("956999999999999999999999"),
+          proceeds: web3.utils.toBN("956999999999999999999999").toString(),
           refund: 1
         },
-        fee: web3.utils.toBN("42999999999999999999999")
+        fee: web3.utils.toBN("42999999999999999999999").toString()
       }
     }
   };

@@ -140,8 +140,8 @@ contract Crowdsourcer is ICrowdsourcer {
     IERC20 disputeTokenAddress = getDisputeToken();
 
     // actually deliver the proceeds/refund
-    assert(rep.transferFrom(this, contributor, refund));
-    assert(disputeTokenAddress.transferFrom(this, contributor, proceeds));
+    assert(rep.transfer(contributor, refund));
+    assert(disputeTokenAddress.transfer(contributor, proceeds));
   }
 
   function withdrawFees() external requiresFinalization {
@@ -150,7 +150,7 @@ contract Crowdsourcer is ICrowdsourcer {
     m_feesCollected = true;
 
     uint128 feesTotal = m_accounting.calculateFees();
-    // 10% fees go to contract author
+    // 10% of fees go to contract author
     uint128 feesForContractAuthor = feesTotal / 10;
     uint128 feesForExecutor = feesTotal - feesForContractAuthor;
 
@@ -162,10 +162,10 @@ contract Crowdsourcer is ICrowdsourcer {
     IERC20 disputeTokenAddress = getDisputeToken();
 
     assert(
-      disputeTokenAddress.transferFrom(this, contractFeesRecipient, feesForContractAuthor)
+      disputeTokenAddress.transfer(contractFeesRecipient, feesForContractAuthor)
     );
     assert(
-      disputeTokenAddress.transferFrom(this, executorFeesRecipient, feesForExecutor)
+      disputeTokenAddress.transfer(executorFeesRecipient, feesForExecutor)
     );
   }
 }
