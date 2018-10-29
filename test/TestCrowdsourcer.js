@@ -47,7 +47,11 @@ contract("Crowdsourcer", accounts => {
     return await Crowdsourcer.new(
       mockCrowdsourcerParent.address,
       accountingFactory.address,
-      disputerFactory.address
+      disputerFactory.address,
+      0,
+      0,
+      [],
+      false
     );
   };
 

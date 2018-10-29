@@ -45,7 +45,7 @@ contract("MockDisputer", accounts => {
     );
     await factory.prepareMocks();
     const event = await factory
-      .create(Eve)
+      .create(Eve, 0, 0, [], false)
       .then(receipt => onlyx(receipt.logs).args);
     return IDisputer.at(event._address);
   };

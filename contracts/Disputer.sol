@@ -8,8 +8,14 @@ import "./IDisputer.sol";
  * the rest goes into BaseDisputer for better testability.
  */
 contract Disputer is BaseDisputer {
-  constructor(address owner) public {
-    baseInit(owner);
+  constructor(
+    address owner,
+    address market,
+    uint256 feeWindowId,
+    uint256[] payoutNumerators,
+    bool invalid
+  ) public {
+    baseInit(owner, market, feeWindowId, payoutNumerators, invalid);
   }
 
   /**

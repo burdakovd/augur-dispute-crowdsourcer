@@ -6,9 +6,13 @@ import "./MockDisputer.sol";
 import "./MockERC20.sol";
 
 contract MockDisputerFactory is IDisputerFactory {
-  event Created (
+  event DisputerCreated (
     address _owner,
-    IDisputer _address
+    IDisputer _address,
+    address market,
+    uint256 feeWindowId,
+    uint256[] payoutNumerators,
+    bool invalid
   );
 
   address m_accountToGiveSomeREPTo;
@@ -36,14 +40,31 @@ contract MockDisputerFactory is IDisputerFactory {
     assert(m_rep.mint(m_accountToGiveSomeREPTo, m_amountOfREPToGive));
   }
 
-  function create(address owner) external returns (IDisputer) {
+  function create(
+    address owner,
+    address market,
+    uint256 feeWindowId,
+    uint256[] payoutNumerators,
+    bool invalid
+  ) external returns (IDisputer) {
     assert(address(m_rep) != 0);
     IDisputer _address = new MockDisputer(
       owner,
       m_rep,
-      m_amountOfREPToDisputeWith
+      m_amountOfREPToDisputeWith,
+      market,
+      feeWindowId,
+      payoutNumerators,
+      invalid
     );
-    emit Created(owner, _address);
+    emit DisputerCreated(
+      owner,
+      _address,
+      market,
+      feeWindowId,
+      payoutNumerators,
+      invalid
+    );
     return _address;
   }
 }

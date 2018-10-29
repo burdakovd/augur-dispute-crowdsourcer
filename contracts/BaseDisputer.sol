@@ -1,6 +1,7 @@
 pragma solidity ^0.4.24;
 
 import "./IDisputer.sol";
+import "./DisputerParams.sol";
 
 /**
  * Shared code between real disputer and mock disputer, to make test coverage
@@ -9,14 +10,28 @@ import "./IDisputer.sol";
 contract BaseDisputer is IDisputer {
   address public m_owner;
   address public m_feeReceiver = 0;
+  DisputerParams.Params public params;
 
   // it is ESSENTIAL that this function is kept internal
   // otherwise it can allow taking over ownership
-  function baseInit(address owner) internal {
+  function baseInit(
+    address owner,
+    address market,
+    uint256 feeWindowId,
+    uint256[] payoutNumerators,
+    bool invalid
+  ) internal {
     m_owner = owner;
 
     IERC20 rep = getREP();
     assert(rep.approve(m_owner, 2**256 - 1));
+
+    params = DisputerParams.Params(
+      market,
+      feeWindowId,
+      payoutNumerators,
+      invalid
+    );
   }
 
   function getOwner() external view returns (address) {

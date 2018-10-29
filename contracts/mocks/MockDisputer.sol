@@ -18,12 +18,16 @@ contract MockDisputer is BaseDisputer {
   constructor(
     address owner,
     MockERC20 rep,
-    uint256 amountOfREPToDisputeWith
+    uint256 amountOfREPToDisputeWith,
+    address market,
+    uint256 feeWindowId,
+    uint256[] payoutNumerators,
+    bool invalid
   ) public {
     m_rep = rep;
     m_amountOfREPToDisputeWith = amountOfREPToDisputeWith;
 
-    baseInit(owner);
+    baseInit(owner, market, feeWindowId, payoutNumerators, invalid);
   }
 
   function dispute(address feeReceiver) external withDisputePreamble(feeReceiver) {

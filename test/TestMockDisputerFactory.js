@@ -28,7 +28,7 @@ contract("MockDisputerFactory", accounts => {
     await factory.prepareMocks();
 
     const event1 = await factory
-      .create(Manager)
+      .create(Manager, 0, 0, [], false)
       .then(receipt => onlyx(receipt.logs).args);
     expect(event1._owner).toBe(Manager);
     await expect(IDisputer.at(event1._address).getOwner()).resolves.toEqual(
@@ -36,7 +36,7 @@ contract("MockDisputerFactory", accounts => {
     );
 
     const event2 = await factory
-      .create(Alice)
+      .create(Alice, 0, 0, [], false)
       .then(receipt => onlyx(receipt.logs).args);
     expect(event2._owner).toBe(Alice);
     await expect(IDisputer.at(event2._address).getOwner()).resolves.toEqual(

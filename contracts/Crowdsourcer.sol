@@ -18,11 +18,21 @@ contract Crowdsourcer is ICrowdsourcer {
   constructor(
     ICrowdsourcerParent parent,
     IAccountingFactory accountingFactory,
-    IDisputerFactory disputerFactory
+    IDisputerFactory disputerFactory,
+    address market,
+    uint256 feeWindowId,
+    uint256[] payoutNumerators,
+    bool invalid
   ) public {
     m_parent = parent;
     m_accounting = accountingFactory.create(this);
-    m_disputer = disputerFactory.create(this);
+    m_disputer = disputerFactory.create(
+      this,
+      market,
+      feeWindowId,
+      payoutNumerators,
+      invalid
+    );
   }
 
   modifier beforeDisputeOnly() {
