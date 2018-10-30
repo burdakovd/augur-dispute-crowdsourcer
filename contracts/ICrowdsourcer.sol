@@ -33,11 +33,15 @@ interface ICrowdsourcer {
     uint128 executorAmount
   );
 
+  function isInitialized() external view returns (bool);
   function getParent() external view returns (ICrowdsourcerParent);
   function getDisputer() external view returns (IDisputer);
   function getAccounting() external view returns (IAccounting);
   function getREP() external view returns (IERC20);
   function getDisputeToken() external view returns (IERC20);
+
+  // initialization stage
+  function initialize() external;
 
   // pre-dispute stage
   function contribute(uint128 amount, uint128 feeNumerator) external;

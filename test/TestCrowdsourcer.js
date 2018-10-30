@@ -32,7 +32,8 @@ contract("Crowdsourcer", accounts => {
   const create_test_crowdsourcer = async (
     repHolder,
     repSupply,
-    disputeSize
+    disputeSize,
+    shouldInitialize = true
   ) => {
     const disputerFactory = await MockDisputerFactory.new(
       repHolder,
@@ -44,7 +45,7 @@ contract("Crowdsourcer", accounts => {
       GeorgeContractAuthor
     );
     const accountingFactory = await AccountingFactory.new();
-    return await Crowdsourcer.new(
+    const crowdsourcer = await Crowdsourcer.new(
       mockCrowdsourcerParent.address,
       accountingFactory.address,
       disputerFactory.address,
@@ -53,10 +54,27 @@ contract("Crowdsourcer", accounts => {
       [],
       false
     );
+
+    if (shouldInitialize) {
+      await crowdsourcer.initialize();
+    }
+
+    return crowdsourcer;
   };
 
   it("can deploy", async () => {
+    await create_test_crowdsourcer(MartinREPHolder, 42, 3, false);
+  });
+
+  it("can deploy and initialize", async () => {
     await create_test_crowdsourcer(MartinREPHolder, 42, 3);
+  });
+
+  it("cannot initialize twice", async () => {
+    const instance = await create_test_crowdsourcer(MartinREPHolder, 42, 3);
+    await expect(instance.initialize()).rejects.toThrow(
+      "VM Exception while processing transaction: revert"
+    );
   });
 
   it("knows parent", async () => {

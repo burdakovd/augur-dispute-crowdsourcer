@@ -5,8 +5,14 @@ import "./IAccountingFactory.sol";
 import "./ICrowdsourcer.sol";
 import "./IDisputer.sol";
 import "./IDisputerFactory.sol";
+import "./DisputerParams.sol";
 
 contract Crowdsourcer is ICrowdsourcer {
+  bool public m_isInitialized = false;
+  DisputerParams.Params public m_disputerParams;
+  IAccountingFactory public m_accountingFactory;
+  IDisputerFactory public m_disputerFactory;
+
   IAccounting public m_accounting;
   ICrowdsourcerParent public m_parent;
   IDisputer public m_disputer;
@@ -24,9 +30,9 @@ contract Crowdsourcer is ICrowdsourcer {
     bool invalid
   ) public {
     m_parent = parent;
-    m_accounting = accountingFactory.create(this);
-    m_disputer = disputerFactory.create(
-      this,
+    m_accountingFactory = accountingFactory;
+    m_disputerFactory = disputerFactory;
+    m_disputerParams = DisputerParams.Params(
       market,
       feeWindowId,
       payoutNumerators,
@@ -39,6 +45,11 @@ contract Crowdsourcer is ICrowdsourcer {
     _;
   }
 
+  modifier requiresInitialization() {
+    require(isInitialized(), "Must call initialize() first");
+    _;
+  }
+
   modifier requiresFinalization() {
     if (!isFinalized()) {
       finalize();
@@ -47,30 +58,47 @@ contract Crowdsourcer is ICrowdsourcer {
     _;
   }
 
+  function isInitialized() public view returns (bool) {
+    return m_isInitialized;
+  }
+
+  function initialize() external {
+    require(!m_isInitialized, "Already initialized");
+    m_isInitialized = true;
+    m_accounting = m_accountingFactory.create(this);
+    m_disputer = m_disputerFactory.create(
+      this,
+      m_disputerParams.market,
+      m_disputerParams.feeWindowId,
+      m_disputerParams.payoutNumerators,
+      m_disputerParams.invalid
+    );
+  }
+
   function getParent() external view returns (ICrowdsourcerParent) {
     return m_parent;
   }
 
-  function getDisputer() external view returns (IDisputer) {
+  function getDisputer() external view requiresInitialization returns (IDisputer) {
     return m_disputer;
   }
 
-  function getAccounting() external view returns (IAccounting) {
+  function getAccounting() external view requiresInitialization returns (IAccounting) {
     return m_accounting;
   }
 
-  function getREP() public view returns (IERC20) {
+  function getREP() public view requiresInitialization returns (IERC20) {
     return m_disputer.getREP();
   }
 
-  function getDisputeToken() public view returns (IERC20) {
+  function getDisputeToken() public view requiresInitialization returns (IERC20) {
     return m_disputer.getDisputeTokenAddress();
   }
 
   function contribute(
     uint128 amount,
     uint128 feeNumerator
-  ) external beforeDisputeOnly {
+  ) external requiresInitialization beforeDisputeOnly {
     IERC20 rep = getREP();
     require(rep.balanceOf(msg.sender) >= amount, "Not enough funds");
     require(rep.allowance(msg.sender, this) >= amount, "Now enough allowance");
@@ -97,7 +125,7 @@ contract Crowdsourcer is ICrowdsourcer {
     );
   }
 
-  function withdrawContribution() external beforeDisputeOnly {
+  function withdrawContribution() external requiresInitialization beforeDisputeOnly {
     IERC20 rep = getREP();
 
     // record withdrawal in accounting (will perform validations)
@@ -117,11 +145,11 @@ contract Crowdsourcer is ICrowdsourcer {
     );
   }
 
-  function hasDisputed() public view returns (bool) {
+  function hasDisputed() public view requiresInitialization returns (bool) {
     return m_disputer.hasDisputed();
   }
 
-  function finalize() public {
+  function finalize() public requiresInitialization {
     require(hasDisputed(), "Can only finalize after dispute");
     require(!isFinalized(), "Can only finalize once");
 
@@ -156,7 +184,7 @@ contract Crowdsourcer is ICrowdsourcer {
     emit CrowdsourcerFinalized(amountDisputed128);
   }
 
-  function isFinalized() public view returns (bool) {
+  function isFinalized() public view requiresInitialization returns (bool) {
     return m_accounting.isFinalized();
   }
 
