@@ -1,8 +1,9 @@
 import web3 from "web3";
+import expect from "expect";
+import { Map as ImmMap } from "immutable";
 
-// TODO: add rogue funds explicitly
 function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
-  return {
+  const raw = {
     test0_0: {
       // test with no activity whatsoever
       contributions: {},
@@ -13,6 +14,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       // test with some rogue dispute tokens despite no contributions
       contributions: {},
       disputed: 14,
+      allowRogueDisputeTokens: true,
       expectations: { fee: 0 }
     },
     test0_0_single_contributor_no_dispute: {
@@ -92,6 +94,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
         [Alice]: { amount: 1000, fee: 30 }
       },
       disputed: 1050,
+      allowRogueDisputeTokens: true,
       expectations: {
         [Alice]: { proceeds: 970, refund: 0 },
         fee: 30
@@ -158,6 +161,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
         [Elena]: { amount: 80000, fee: 20 }
       },
       disputed: 135913,
+      allowRogueDisputeTokens: true,
       expectations: {
         [Alice]: { proceeds: 2871, refund: 0 },
         [Bob]: { proceeds: 958, refund: 0 },
@@ -221,6 +225,29 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       }
     }
   };
+
+  ImmMap(raw)
+    .filter(definition => !definition.allowRogueDisputeTokens)
+    .forEach(definition =>
+      expect(
+        ImmMap(definition.contributions)
+          .valueSeq()
+          .map(contribution =>
+            web3.utils
+              .toBN(contribution.amount.toString())
+              .mul(
+                web3.utils
+                  .toBN("1000")
+                  .sub(web3.utils.toBN(contribution.fee.toString()))
+              )
+              .div(web3.utils.toBN("1000"))
+          )
+          .reduce((x, y) => x.add(y), web3.utils.toBN("0"))
+          .gte(web3.utils.toBN(definition.disputed.toString()))
+      ).toBe(true)
+    );
+
+  return raw;
 }
 
 export default getPayoutScenarioTests;
