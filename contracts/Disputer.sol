@@ -6,6 +6,8 @@ import "./IDisputer.sol";
 /**
  * Only the code that really interacts with Augur should be place here,
  * the rest goes into BaseDisputer for better testability.
+ *
+ * Gotta be careful around scenario of Augur forking while disputer still holds funds.
  */
 contract Disputer is BaseDisputer {
   constructor(
