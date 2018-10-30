@@ -185,6 +185,8 @@ contract Accounting is IAccounting {
     );
     assert(fundsUsedFromBoundaryBucket <= usableFundsInCurrentBucket);
   }
+  
+  // TODO: make safemath internal, or s/assert/require/
 
   function safeAdd(uint128 a, uint128 b) public pure returns (uint128) {
     uint128 r = a + b;
