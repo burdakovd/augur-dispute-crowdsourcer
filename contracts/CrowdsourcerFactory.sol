@@ -7,6 +7,10 @@ import "./ICrowdsourcer.sol";
 import "./Crowdsourcer.sol";
 import "./DisputerParams.sol";
 
+/**
+ * NOTE: the created crowdsourcers trust the market that was passed in constructor.
+ * If a malicious market is passed in, all bets are off.
+ */
 contract CrowdsourcerFactory is ICrowdsourcerParent {
   event CrowdsourcerCreated (
     ICrowdsourcer crowdsourcer,
