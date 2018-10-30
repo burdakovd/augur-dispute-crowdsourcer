@@ -9,6 +9,30 @@ import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
  * Crowdsourcer for specific market/outcome/round.
  */
 interface ICrowdsourcer {
+  event ContributionAccepted (
+    address contributor,
+    uint128 amount,
+    uint128 feeNumerator
+  );
+  event ContributionWithdrawn (
+    address contributor,
+    uint128 amount
+  );
+  event CrowdsourcerFinalized (
+    uint128 amountDisputeTokensAcquired
+  );
+  event ProceedsWithdrawn(
+    address contributor,
+    uint128 disputeTokensAmount,
+    uint128 repAmount
+  );
+  event FeesWithdrawn(
+    address contractAuthor,
+    address executor,
+    uint128 contractAuthorAmount,
+    uint128 executorAmount
+  );
+
   function getParent() external view returns (ICrowdsourcerParent);
   function getDisputer() external view returns (IDisputer);
   function getAccounting() external view returns (IAccounting);

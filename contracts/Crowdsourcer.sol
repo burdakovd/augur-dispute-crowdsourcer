@@ -6,14 +6,13 @@ import "./ICrowdsourcer.sol";
 import "./IDisputer.sol";
 import "./IDisputerFactory.sol";
 
-// TODO: add events (global stream)
 contract Crowdsourcer is ICrowdsourcer {
   IAccounting public m_accounting;
   ICrowdsourcerParent public m_parent;
   IDisputer public m_disputer;
 
-  mapping(address => bool) m_proceedsCollected;
-  bool m_feesCollected = false;
+  mapping(address => bool) public m_proceedsCollected;
+  bool public m_feesCollected = false;
 
   constructor(
     ICrowdsourcerParent parent,
@@ -90,6 +89,12 @@ contract Crowdsourcer is ICrowdsourcer {
     // actually transfer tokens and revert tx if any problem
     assert(rep.transferFrom(msg.sender, m_disputer, depositedLessFees));
     assert(rep.transferFrom(msg.sender, this, depositedFees));
+
+    emit ContributionAccepted(
+      msg.sender,
+      amount,
+      feeNumerator
+    );
   }
 
   function withdrawContribution() external beforeDisputeOnly {
@@ -105,6 +110,11 @@ contract Crowdsourcer is ICrowdsourcer {
     // actually transfer tokens and revert tx if any problem
     assert(rep.transferFrom(m_disputer, msg.sender, withdrawnLessFees));
     assert(rep.transfer(msg.sender, withdrawnFees));
+
+    emit ContributionWithdrawn(
+      msg.sender,
+      withdrawnLessFees + withdrawnFees
+    );
   }
 
   function hasDisputed() public view returns (bool) {
@@ -142,6 +152,8 @@ contract Crowdsourcer is ICrowdsourcer {
     m_accounting.finalize(amountDisputed128);
 
     assert(isFinalized());
+
+    emit CrowdsourcerFinalized(amountDisputed128);
   }
 
   function isFinalized() public view returns (bool) {
@@ -166,6 +178,8 @@ contract Crowdsourcer is ICrowdsourcer {
     // actually deliver the proceeds/refund
     assert(rep.transfer(contributor, refund));
     assert(disputeTokenAddress.transfer(contributor, proceeds));
+
+    emit ProceedsWithdrawn(contributor, proceeds, refund);
   }
 
   function withdrawFees() external requiresFinalization {
@@ -187,5 +201,12 @@ contract Crowdsourcer is ICrowdsourcer {
 
     assert(rep.transfer(contractFeesRecipient, feesForContractAuthor));
     assert(rep.transfer(executorFeesRecipient, feesForExecutor));
+
+    emit FeesWithdrawn(
+      contractFeesRecipient,
+      executorFeesRecipient,
+      feesForContractAuthor,
+      feesForExecutor
+    );
   }
 }
