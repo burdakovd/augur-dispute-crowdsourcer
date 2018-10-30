@@ -185,21 +185,19 @@ contract Accounting is IAccounting {
     );
     assert(fundsUsedFromBoundaryBucket <= usableFundsInCurrentBucket);
   }
-  
-  // TODO: make safemath internal, or s/assert/require/
 
-  function safeAdd(uint128 a, uint128 b) public pure returns (uint128) {
+  function safeAdd(uint128 a, uint128 b) internal pure returns (uint128) {
     uint128 r = a + b;
     assert(r >= a && r >= b);
     return r;
   }
 
-  function safeSub(uint128 a, uint128 b) public pure returns (uint128) {
+  function safeSub(uint128 a, uint128 b) internal pure returns (uint128) {
     assert(a >= b);
     return a - b;
   }
 
-  function safeMulDiv(uint128 a, uint128 b, uint128 c) public pure returns (uint128) {
+  function safeMulDiv(uint128 a, uint128 b, uint128 c) internal pure returns (uint128) {
     assert(c > 0);
     uint256 wa = a;
     uint256 wb = b;
@@ -212,7 +210,7 @@ contract Accounting is IAccounting {
     return result128;
   }
 
-  function safeMulDivExact(uint128 a, uint128 b, uint128 c) public pure returns (uint128) {
+  function safeMulDivExact(uint128 a, uint128 b, uint128 c) internal pure returns (uint128) {
     assert(c > 0);
     uint256 wa = a;
     uint256 wb = b;
