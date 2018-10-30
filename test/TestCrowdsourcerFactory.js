@@ -169,12 +169,18 @@ contract("CrowdsourcerFactory", accounts => {
     );
   });
 
-  /*
-  it("can create and initialize crowdsourcer", async () => {
-    // this one doesn't work for some reason
+  it("can create and initialize crowdsourcer when it exists", async () => {
     const factory = await create_test_factory();
-    // TODO: debug thix tx
+    await factory.getCrowdsourcer(Alice, 0, [], false);
     await factory.getInitializedCrowdsourcer(Alice, 0, [], false);
   });
-  */
+
+  it("can create and initialize crowdsourcer - out of gas", async () => {
+    const factory = await create_test_factory();
+    await expect(
+      factory.getInitializedCrowdsourcer(Alice, 0, [], false)
+    ).rejects.toThrow("VM Exception while processing transaction: revert");
+  });
+
+  // TODO: create tests for gas costs
 });

@@ -184,6 +184,20 @@ contract("Crowdsourcer", accounts => {
     await instance.withdrawContribution({ from: Alice });
   });
 
+  it("cannot withdraw without initialization", async () => {
+    const instance = await create_test_crowdsourcer(
+      MartinREPHolder,
+      10000,
+      0,
+      false
+    );
+    await expect(
+      instance.withdrawContribution({ from: Alice })
+    ).rejects.toThrow("VM Exception while processing transaction: revert");
+    await instance.initialize();
+    await instance.withdrawContribution({ from: Alice });
+  });
+
   it("cannot contribute 0", async () => {
     const instance = await create_test_crowdsourcer(MartinREPHolder, 10000, 0);
     await expect(instance.contribute(0, 42, { from: Alice })).rejects.toThrow(

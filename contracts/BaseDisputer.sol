@@ -10,7 +10,7 @@ import "./DisputerParams.sol";
 contract BaseDisputer is IDisputer {
   address public m_owner;
   address public m_feeReceiver = 0;
-  DisputerParams.Params public params;
+  DisputerParams.Params public m_params;
 
   // it is ESSENTIAL that this function is kept internal
   // otherwise it can allow taking over ownership
@@ -22,16 +22,15 @@ contract BaseDisputer is IDisputer {
     bool invalid
   ) internal {
     m_owner = owner;
-
-    IERC20 rep = getREP();
-    assert(rep.approve(m_owner, 2**256 - 1));
-
-    params = DisputerParams.Params(
+    m_params = DisputerParams.Params(
       market,
       feeWindowId,
       payoutNumerators,
       invalid
     );
+
+    IERC20 rep = getREP();
+    assert(rep.approve(m_owner, 2**256 - 1));
   }
 
   function getOwner() external view returns (address) {
