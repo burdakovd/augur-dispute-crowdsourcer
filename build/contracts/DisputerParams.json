@@ -3,22 +3,22 @@
   "abi": [],
   "bytecode": "0x604c602c600b82828239805160001a60731460008114601c57601e565bfe5b5030600052607381538281f30073000000000000000000000000000000000000000030146080604052600080fd00a165627a7a72305820e95c5cf8e1cfd05b33f4ef18f8573b3cb613805c67c9f9421ee12d764315bd6b0029",
   "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fd00a165627a7a72305820e95c5cf8e1cfd05b33f4ef18f8573b3cb613805c67c9f9421ee12d764315bd6b0029",
-  "sourceMap": "26:143:3:-;;132:2:-1;166:7;155:9;146:7;137:37;252:7;246:14;243:1;238:23;232:4;229:33;270:1;265:20;;;;222:63;;265:20;274:9;222:63;;298:9;295:1;288:20;328:4;319:7;311:22;352:7;343;336:24",
-  "deployedSourceMap": "26:143:3:-;;;;;;;;",
+  "sourceMap": "26:143:7:-;;132:2:-1;166:7;155:9;146:7;137:37;252:7;246:14;243:1;238:23;232:4;229:33;270:1;265:20;;;;222:63;;265:20;274:9;222:63;;298:9;295:1;288:20;328:4;319:7;311:22;352:7;343;336:24",
+  "deployedSourceMap": "26:143:7:-;;;;;;;;",
   "source": "pragma solidity ^0.4.24;\n\nlibrary DisputerParams {\n  struct Params {\n    address market;\n    uint256 feeWindowId;\n    uint256[] payoutNumerators;\n    bool invalid;\n  }\n}\n",
   "sourcePath": "/src/contracts/DisputerParams.sol",
   "ast": {
     "absolutePath": "/src/contracts/DisputerParams.sol",
     "exportedSymbols": {
       "DisputerParams": [
-        259
+        1886
       ]
     },
-    "id": 260,
+    "id": 1887,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 248,
+        "id": 1875,
         "literals": [
           "solidity",
           "^",
@@ -26,7 +26,7 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:3"
+        "src": "0:24:7"
       },
       {
         "baseContracts": [],
@@ -34,24 +34,24 @@
         "contractKind": "library",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 259,
+        "id": 1886,
         "linearizedBaseContracts": [
-          259
+          1886
         ],
         "name": "DisputerParams",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "DisputerParams.Params",
-            "id": 258,
+            "id": 1885,
             "members": [
               {
                 "constant": false,
-                "id": 250,
+                "id": 1877,
                 "name": "market",
                 "nodeType": "VariableDeclaration",
-                "scope": 258,
-                "src": "73:14:3",
+                "scope": 1885,
+                "src": "73:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -59,10 +59,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 249,
+                  "id": 1876,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "73:7:3",
+                  "src": "73:7:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
@@ -73,11 +73,11 @@
               },
               {
                 "constant": false,
-                "id": 252,
+                "id": 1879,
                 "name": "feeWindowId",
                 "nodeType": "VariableDeclaration",
-                "scope": 258,
-                "src": "93:19:3",
+                "scope": 1885,
+                "src": "93:19:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -85,10 +85,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 251,
+                  "id": 1878,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "93:7:3",
+                  "src": "93:7:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -99,11 +99,11 @@
               },
               {
                 "constant": false,
-                "id": 255,
+                "id": 1882,
                 "name": "payoutNumerators",
                 "nodeType": "VariableDeclaration",
-                "scope": 258,
-                "src": "118:26:3",
+                "scope": 1885,
+                "src": "118:26:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -112,19 +112,19 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 253,
+                    "id": 1880,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "118:7:3",
+                    "src": "118:7:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 254,
+                  "id": 1881,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "118:9:3",
+                  "src": "118:9:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                     "typeString": "uint256[]"
@@ -135,11 +135,11 @@
               },
               {
                 "constant": false,
-                "id": 257,
+                "id": 1884,
                 "name": "invalid",
                 "nodeType": "VariableDeclaration",
-                "scope": 258,
-                "src": "150:12:3",
+                "scope": 1885,
+                "src": "150:12:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -147,10 +147,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 256,
+                  "id": 1883,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "150:4:3",
+                  "src": "150:4:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -162,29 +162,29 @@
             ],
             "name": "Params",
             "nodeType": "StructDefinition",
-            "scope": 259,
-            "src": "53:114:3",
+            "scope": 1886,
+            "src": "53:114:7",
             "visibility": "public"
           }
         ],
-        "scope": 260,
-        "src": "26:143:3"
+        "scope": 1887,
+        "src": "26:143:7"
       }
     ],
-    "src": "0:170:3"
+    "src": "0:170:7"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/DisputerParams.sol",
     "exportedSymbols": {
       "DisputerParams": [
-        259
+        1886
       ]
     },
-    "id": 260,
+    "id": 1887,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 248,
+        "id": 1875,
         "literals": [
           "solidity",
           "^",
@@ -192,7 +192,7 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:3"
+        "src": "0:24:7"
       },
       {
         "baseContracts": [],
@@ -200,24 +200,24 @@
         "contractKind": "library",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 259,
+        "id": 1886,
         "linearizedBaseContracts": [
-          259
+          1886
         ],
         "name": "DisputerParams",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "DisputerParams.Params",
-            "id": 258,
+            "id": 1885,
             "members": [
               {
                 "constant": false,
-                "id": 250,
+                "id": 1877,
                 "name": "market",
                 "nodeType": "VariableDeclaration",
-                "scope": 258,
-                "src": "73:14:3",
+                "scope": 1885,
+                "src": "73:14:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -225,10 +225,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 249,
+                  "id": 1876,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "73:7:3",
+                  "src": "73:7:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
@@ -239,11 +239,11 @@
               },
               {
                 "constant": false,
-                "id": 252,
+                "id": 1879,
                 "name": "feeWindowId",
                 "nodeType": "VariableDeclaration",
-                "scope": 258,
-                "src": "93:19:3",
+                "scope": 1885,
+                "src": "93:19:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -251,10 +251,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 251,
+                  "id": 1878,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "93:7:3",
+                  "src": "93:7:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -265,11 +265,11 @@
               },
               {
                 "constant": false,
-                "id": 255,
+                "id": 1882,
                 "name": "payoutNumerators",
                 "nodeType": "VariableDeclaration",
-                "scope": 258,
-                "src": "118:26:3",
+                "scope": 1885,
+                "src": "118:26:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -278,19 +278,19 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 253,
+                    "id": 1880,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "118:7:3",
+                    "src": "118:7:7",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 254,
+                  "id": 1881,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "118:9:3",
+                  "src": "118:9:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                     "typeString": "uint256[]"
@@ -301,11 +301,11 @@
               },
               {
                 "constant": false,
-                "id": 257,
+                "id": 1884,
                 "name": "invalid",
                 "nodeType": "VariableDeclaration",
-                "scope": 258,
-                "src": "150:12:3",
+                "scope": 1885,
+                "src": "150:12:7",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -313,10 +313,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 256,
+                  "id": 1883,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "150:4:3",
+                  "src": "150:4:7",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -328,16 +328,16 @@
             ],
             "name": "Params",
             "nodeType": "StructDefinition",
-            "scope": 259,
-            "src": "53:114:3",
+            "scope": 1886,
+            "src": "53:114:7",
             "visibility": "public"
           }
         ],
-        "scope": 260,
-        "src": "26:143:3"
+        "scope": 1887,
+        "src": "26:143:7"
       }
     ],
-    "src": "0:170:3"
+    "src": "0:170:7"
   },
   "compiler": {
     "name": "solc",
@@ -345,5 +345,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-30T21:04:29.355Z"
+  "updatedAt": "2018-10-30T23:57:18.263Z"
 }
