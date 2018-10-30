@@ -13,7 +13,7 @@ library DisputerParams {
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) internal pure returns (bytes32) {
+  ) external pure returns (bytes32) {
     return keccak256(
       abi.encodePacked(
         market,
