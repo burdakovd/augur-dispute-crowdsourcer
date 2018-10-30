@@ -102,9 +102,9 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
     },
     test1_two_contributors_story: {
       // in this case Alice partially gets in the dispute, while Bob does not
-      // Alice wins 150 dispute tokens (143 after fee deducted), and 2850 REP
+      // Alice wins 150 dispute tokens, and 2843 REP
       // Bob gets 1000 REP
-      // fee is 6 dispute tokens (4.3% of 150 dispute size)
+      // fee is 6 REP (150/0.957*0.043)
       contributions: {
         [Bob]: { amount: 1000, fee: 42 },
         [Alice]: { amount: 3000, fee: 43 }
