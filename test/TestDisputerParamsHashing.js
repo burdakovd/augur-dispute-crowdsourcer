@@ -1,24 +1,44 @@
 import { Set as ImmSet } from "immutable";
 import expect from "expect";
 
-const DisputerParams = artifacts.require("DisputerParams");
+const AccountingFactory = artifacts.require("AccountingFactory");
+const MockDisputerFactory = artifacts.require("MockDisputerFactory");
+const CrowdsourcerFactory = artifacts.require("CrowdsourcerFactory");
 
-contract("DisputerParams", accounts => {
+contract("CrowdsourcerFactory", accounts => {
   const Manager = accounts[0];
   const Alice = accounts[1];
+  const Bob = accounts[2];
 
   it("can deploy", async () => {
-    await DisputerParams.new();
+    const accountingFactory = await AccountingFactory.new();
+    const disputerFactory = await MockDisputerFactory.new(Alice, 0, 0);
+    await CrowdsourcerFactory.new(
+      accountingFactory.address,
+      disputerFactory.address,
+      Bob
+    );
   });
 
   it("can hash something", async () => {
-    const lib = await DisputerParams.new();
+    const accountingFactory = await AccountingFactory.new();
+    const disputerFactory = await MockDisputerFactory.new(Alice, 0, 0);
+    const lib = await CrowdsourcerFactory.new(
+      accountingFactory.address,
+      disputerFactory.address,
+      Bob
+    );
     const hashed = await lib.hashParams(0, 0, [], true);
-    console.log(hashed);
   });
 
   const hash = async (...a) => {
-    const lib = await DisputerParams.new();
+    const accountingFactory = await AccountingFactory.new();
+    const disputerFactory = await MockDisputerFactory.new(Alice, 0, 0);
+    const lib = await CrowdsourcerFactory.new(
+      accountingFactory.address,
+      disputerFactory.address,
+      Bob
+    );
     return await lib.hashParams(...a);
   };
 
@@ -29,8 +49,6 @@ contract("DisputerParams", accounts => {
   });
 
   it("Doesn't have obvious collisions", async () => {
-    const lib = await DisputerParams.new();
-
     // do various mutations for each subsequent row, that may uncover poorly
     // implemented hashing algorithm
     const examples = [
