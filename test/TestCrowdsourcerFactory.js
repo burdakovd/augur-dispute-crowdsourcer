@@ -173,6 +173,7 @@ contract("CrowdsourcerFactory", accounts => {
   it("can create and initialize crowdsourcer", async () => {
     // this one doesn't work for some reason
     const factory = await create_test_factory();
+    // TODO: debug thix tx
     await factory.getInitializedCrowdsourcer(Alice, 0, [], false);
   });
   */
