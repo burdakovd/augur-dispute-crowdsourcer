@@ -109,7 +109,9 @@ contract("MockDisputer", accounts => {
       rep.balanceOf(disputer.address).then(s => s.toNumber())
     ).resolves.toBe(80);
 
-    await disputer.dispute(Alice);
+    await expect(
+      disputer.dispute(Alice).then(receipt => receipt.receipt.gasUsed)
+    ).resolves.toBe(1421301);
 
     const disputeToken = await disputer
       .getDisputeTokenAddress()

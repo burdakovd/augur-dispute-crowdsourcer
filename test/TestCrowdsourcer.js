@@ -127,7 +127,11 @@ contract("Crowdsourcer", accounts => {
       from: MartinREPHolder
     });
 
-    await instance.contribute(3000, 42, { from: MartinREPHolder });
+    await expect(
+      instance
+        .contribute(3000, 42, { from: MartinREPHolder })
+        .then(receipt => receipt.receipt.gasUsed)
+    ).resolves.toBe(173835);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -145,7 +149,11 @@ contract("Crowdsourcer", accounts => {
         .then(n => n.toNumber())
     ).resolves.toEqual(3000);
 
-    await instance.withdrawContribution({ from: MartinREPHolder });
+    await expect(
+      instance
+        .withdrawContribution({ from: MartinREPHolder })
+        .then(receipt => receipt.receipt.gasUsed)
+    ).resolves.toBe(40649);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -280,7 +288,9 @@ contract("Crowdsourcer", accounts => {
     await expect(instance.hasDisputed()).resolves.toEqual(true);
     await expect(instance.isFinalized()).resolves.toEqual(false);
 
-    await instance.finalize();
+    await expect(
+      instance.finalize().then(receipt => receipt.receipt.gasUsed)
+    ).resolves.toBe(1187072);
 
     await expect(instance.hasDisputed()).resolves.toEqual(true);
     await expect(instance.isFinalized()).resolves.toEqual(true);
@@ -331,7 +341,9 @@ contract("Crowdsourcer", accounts => {
 
     await IDisputer.at(disputer).dispute(Alice);
     await instance.finalize();
-    await instance.withdrawFees();
+    await expect(
+      instance.withdrawFees().then(receipt => receipt.receipt.gasUsed)
+    ).resolves.toBe(745399);
   });
 
   it("proceeds collection is possible after finalization", async () => {
@@ -340,7 +352,9 @@ contract("Crowdsourcer", accounts => {
 
     await IDisputer.at(disputer).dispute(Alice);
     await instance.finalize();
-    await instance.withdrawProceeds(Alice);
+    await expect(
+      instance.withdrawProceeds(Alice).then(receipt => receipt.receipt.gasUsed)
+    ).resolves.toBe(88243);
   });
 
   it("cannot collect fees twice", async () => {

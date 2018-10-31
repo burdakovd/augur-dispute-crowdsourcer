@@ -182,5 +182,32 @@ contract("CrowdsourcerFactory", accounts => {
     ).rejects.toThrow("VM Exception while processing transaction: revert");
   });
 
-  // TODO: create tests for gas costs
+  it("cost of creating simple crowdsourcer", async () => {
+    const factory = await create_test_factory();
+    const receipt = await factory.getCrowdsourcer(Alice, 0, [5000, 5000], true);
+    expect(receipt.receipt.gasUsed).toBe(3003646);
+  });
+
+  it("cost of creating bigger crowdsourcer", async () => {
+    const factory = await create_test_factory();
+    const receipt = await factory.getCrowdsourcer(
+      Alice,
+      4,
+      [1, 2, 3, 4, 5, 6, 7, 8],
+      false
+    );
+    expect(receipt.receipt.gasUsed).toBe(3128699);
+  });
+
+  it("cost of initializing crowdsourcer", async () => {
+    const factory = await create_test_factory();
+    await factory.getCrowdsourcer(Alice, 0, [5000, 5000], true);
+    const receipt = await factory.getInitializedCrowdsourcer(
+      Alice,
+      0,
+      [5000, 5000],
+      true
+    );
+    expect(receipt.receipt.gasUsed).toBe(4115013);
+  });
 });
