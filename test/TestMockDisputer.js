@@ -11,7 +11,7 @@ import invariant from "invariant";
  * (or via more sophisticated test suites).
  */
 
-const IDisputer = artifacts.require("IDisputer");
+const MockDisputer = artifacts.require("MockDisputer");
 const MockDisputerFactory = artifacts.require("MockDisputerFactory");
 const IERC20 = artifacts.require(
   "openzeppelin-solidity/contracts/token/ERC20/IERC20"
@@ -47,7 +47,7 @@ contract("MockDisputer", accounts => {
     const event = await factory
       .create(Eve, 0, 0, [], false)
       .then(receipt => onlyx(receipt.logs).args);
-    return IDisputer.at(event._address);
+    return MockDisputer.at(event._address);
   };
 
   it("can create instance of disputer", async () => {
@@ -64,7 +64,7 @@ contract("MockDisputer", accounts => {
     // check all state we can see from public methods after construction
     await expect(disputer.getOwner()).resolves.toEqual(Eve);
     await expect(disputer.hasDisputed()).resolves.toEqual(false);
-    await expect(disputer.feeReceiver()).resolves.toEqual(ZERO_ADDRESS);
+    await expect(disputer.m_feeReceiver()).resolves.toEqual(ZERO_ADDRESS);
     const rep = await disputer.getREP().then(address => IERC20.at(address));
     await expect(rep.totalSupply().then(s => s.toNumber())).resolves.toBe(110);
 
@@ -132,6 +132,20 @@ contract("MockDisputer", accounts => {
     await rep.transfer(disputer.address, 80, { from: Bob });
     await expect(disputer.dispute(ZERO_ADDRESS)).rejects.toThrow(
       "VM Exception while processing transaction: revert"
+    );
+  });
+
+  it("cannot lose funds while disputing", async () => {
+    const MAGIC_NUMBER_TO_LOSE_FUNDS = 808080;
+    const disputer = await create_test_disputer(
+      Bob,
+      1100000,
+      MAGIC_NUMBER_TO_LOSE_FUNDS
+    );
+    const rep = await disputer.getREP().then(address => IERC20.at(address));
+    await rep.transfer(disputer.address, 1000000, { from: Bob });
+    await expect(disputer.dispute(Alice)).rejects.toThrow(
+      "VM Exception while processing transaction: invalid opcode"
     );
   });
 
