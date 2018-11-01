@@ -3,7 +3,6 @@ pragma solidity ^0.4.24;
 interface IAccounting {
   function getOwner() external view returns (address);
 
-
   function contribute(
     address contributor,
     uint128 amount,
@@ -19,7 +18,7 @@ interface IAccounting {
   );
 
   function finalize(uint128 amountDisputed) external;
-  
+
   function isFinalized() external view returns (bool);
 
   /**
