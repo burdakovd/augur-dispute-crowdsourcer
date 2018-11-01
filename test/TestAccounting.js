@@ -129,7 +129,22 @@ contract("Accounting", accounts => {
     );
   });
 
-  it("can contribute and then withdraw and then again contribute", async () => {
+  it("can contribute and then withdraw", async () => {
+    const instance = await Accounting.new(Manager);
+    await instance.contribute(Bob, 9000, 42, { from: Manager });
+    // first just peek at the result
+    const withdrawn = await instance.withdrawContribution.call(Bob, {
+      from: Manager
+    });
+    expect(withdrawn.map(n => n.toNumber())).toEqual([8622, 378]);
+    // then really run tx
+    await instance.withdrawContribution(Bob, { from: Manager });
+    await expect(
+      instance.m_contributionPerContributor(Bob).then(n => n.toNumber())
+    ).resolves.toEqual(0);
+  });
+
+  it("can contribute and then withdraw and then again contribute with different fee", async () => {
     const instance = await Accounting.new(Manager);
     await instance.contribute(Bob, 9000, 42, { from: Manager });
     // first just peek at the result
@@ -144,6 +159,26 @@ contract("Accounting", accounts => {
     ).resolves.toEqual(0);
 
     await instance.contribute(Bob, 3000, 43, { from: Manager });
+    await expect(
+      instance.m_contributionPerContributor(Bob).then(n => n.toNumber())
+    ).resolves.toEqual(3000);
+  });
+
+  it("can contribute and then withdraw and then again contribute with same fee", async () => {
+    const instance = await Accounting.new(Manager);
+    await instance.contribute(Bob, 9000, 42, { from: Manager });
+    // first just peek at the result
+    const withdrawn = await instance.withdrawContribution.call(Bob, {
+      from: Manager
+    });
+    expect(withdrawn.map(n => n.toNumber())).toEqual([8622, 378]);
+    // then really run tx
+    await instance.withdrawContribution(Bob, { from: Manager });
+    await expect(
+      instance.m_contributionPerContributor(Bob).then(n => n.toNumber())
+    ).resolves.toEqual(0);
+
+    await instance.contribute(Bob, 3000, 42, { from: Manager });
     await expect(
       instance.m_contributionPerContributor(Bob).then(n => n.toNumber())
     ).resolves.toEqual(3000);
