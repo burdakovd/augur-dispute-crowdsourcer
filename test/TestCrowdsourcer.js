@@ -131,7 +131,7 @@ contract("Crowdsourcer", accounts => {
       instance
         .contribute(3000, 42, { from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(173835);
+    ).resolves.toBe(262076);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -153,7 +153,7 @@ contract("Crowdsourcer", accounts => {
       instance
         .withdrawContribution({ from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(40649);
+    ).resolves.toBe(61924);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -290,7 +290,7 @@ contract("Crowdsourcer", accounts => {
 
     await expect(
       instance.finalize().then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(1187072);
+    ).resolves.toBe(179118);
 
     await expect(instance.hasDisputed()).resolves.toEqual(true);
     await expect(instance.isFinalized()).resolves.toEqual(true);
@@ -343,7 +343,7 @@ contract("Crowdsourcer", accounts => {
     await instance.finalize();
     await expect(
       instance.withdrawFees().then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(745399);
+    ).resolves.toBe(115781);
   });
 
   it("proceeds collection is possible after finalization", async () => {
@@ -354,7 +354,7 @@ contract("Crowdsourcer", accounts => {
     await instance.finalize();
     await expect(
       instance.withdrawProceeds(Alice).then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(88243);
+    ).resolves.toBe(88216);
   });
 
   it("cannot collect fees twice", async () => {
@@ -446,7 +446,7 @@ contract("Crowdsourcer", accounts => {
       }
       await expect(
         accounting
-          .m_contributionPerFeeNumerator(feeNumerator)
+          .getContributedForFeeNumerator(feeNumerator)
           .then(n => n.toNumber())
       ).resolves.toEqual(expectedBalanceForFee);
     }

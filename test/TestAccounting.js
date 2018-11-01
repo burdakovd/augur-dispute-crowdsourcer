@@ -45,7 +45,7 @@ contract("Accounting", accounts => {
     expect(contributionForBob.toNumber()).toEqual(1000);
     const feeForBob = await instance.m_feeNumeratorPerContributor(Bob);
     expect(feeForBob.toNumber()).toEqual(42);
-    const contributionFor42 = await instance.m_contributionPerFeeNumerator(42);
+    const contributionFor42 = await instance.getContributedForFeeNumerator(42);
     expect(contributionFor42.toNumber()).toEqual(1000);
   });
 
@@ -91,7 +91,7 @@ contract("Accounting", accounts => {
     expect(contributionForAlice.toNumber()).toEqual(3000);
     const feeForAlice = await instance.m_feeNumeratorPerContributor(Alice);
     expect(feeForAlice.toNumber()).toEqual(42);
-    const contributionFor42 = await instance.m_contributionPerFeeNumerator(42);
+    const contributionFor42 = await instance.getContributedForFeeNumerator(42);
     expect(contributionFor42.toNumber()).toEqual(4000);
   });
 
@@ -109,9 +109,9 @@ contract("Accounting", accounts => {
     expect(contributionForAlice.toNumber()).toEqual(3000);
     const feeForAlice = await instance.m_feeNumeratorPerContributor(Alice);
     expect(feeForAlice.toNumber()).toEqual(43);
-    const contributionFor42 = await instance.m_contributionPerFeeNumerator(42);
+    const contributionFor42 = await instance.getContributedForFeeNumerator(42);
     expect(contributionFor42.toNumber()).toEqual(1000);
-    const contributionFor43 = await instance.m_contributionPerFeeNumerator(43);
+    const contributionFor43 = await instance.getContributedForFeeNumerator(43);
     expect(contributionFor43.toNumber()).toEqual(3000);
   });
 
@@ -319,7 +319,7 @@ contract("Accounting", accounts => {
       }
       await expect(
         instance
-          .m_contributionPerFeeNumerator(feeNumerator)
+          .getContributedForFeeNumerator(feeNumerator)
           .then(n => n.toNumber())
       ).resolves.toEqual(expectedBalanceForFee);
     }
