@@ -134,8 +134,10 @@ contract Disputer is BaseDisputer {
     );
 
     if (market.getNumParticipants() == m_roundNumber) {
+      // we are still within current round
       return market.getCrowdsourcer(m_payoutDistributionHash);
     } else {
+      // We somehow overfilled the round. This sucks, but let's try to recover.
       ReportingParticipant participant = market.getWinningReportingParticipant();
       require(
         participant.getPayoutDistributionHash() == m_payoutDistributionHash,
