@@ -74,7 +74,8 @@ contract Disputer is BaseDisputer {
       m_cumulativeRoundsProcessed < numParticipants &&
         m_cumulativeRoundsProcessed < m_roundNumber
     ) {
-      ReportingParticipant participant = market.participants(m_cumulativeRoundsProcessed);
+      ReportingParticipant participant =
+        market.getReportingParticipant(m_cumulativeRoundsProcessed);
       uint256 stake = participant.getStake();
       m_cumulativeDisputeStake += stake;
       if (participant.getPayoutDistributionHash() == m_payoutDistributionHash) {

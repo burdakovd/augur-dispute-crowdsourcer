@@ -5,16 +5,15 @@ import "./universe.sol";
 import "./feeWindow.sol";
 import "./reportingParticipant.sol";
 
-contract Market {
-  function getReputationToken() public view returns (IERC20);
-  function getUniverse() public view returns (Universe);
-  function derivePayoutDistributionHash(uint256[] _payoutNumerators, bool _invalid) public view returns (bytes32);
-  function getCrowdsourcer(bytes32 _payoutDistributionHash) public view returns (ReportingParticipant);
-  function contribute(uint256[] _payoutNumerators, bool _invalid, uint256 _amount) public returns (bool);
-  function getNumParticipants() public view returns (uint256);
-  function isFinalized() public view returns (bool);
-  function getFeeWindow() public view returns (FeeWindow);
-  function getWinningReportingParticipant() public view returns (ReportingParticipant);
-
-  ReportingParticipant[] public participants;
+interface Market {
+  function getReputationToken() external view returns (IERC20);
+  function getUniverse() external view returns (Universe);
+  function derivePayoutDistributionHash(uint256[] _payoutNumerators, bool _invalid) external view returns (bytes32);
+  function getCrowdsourcer(bytes32 _payoutDistributionHash) external view returns (ReportingParticipant);
+  function contribute(uint256[] _payoutNumerators, bool _invalid, uint256 _amount) external returns (bool);
+  function getNumParticipants() external view returns (uint256);
+  function getReportingParticipant(uint256 _index) external view returns (ReportingParticipant);
+  function isFinalized() external view returns (bool);
+  function getFeeWindow() external view returns (FeeWindow);
+  function getWinningReportingParticipant() external view returns (ReportingParticipant);
 }
