@@ -1,12 +1,13 @@
 pragma solidity ^0.4.24;
 
 import "./IDisputer.sol";
+import "./augur/market.sol";
 
 interface IDisputerFactory {
   event DisputerCreated (
     address _owner,
     IDisputer _address,
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
@@ -14,7 +15,7 @@ interface IDisputerFactory {
 
   function create(
     address owner,
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid

@@ -1,0 +1,374 @@
+{
+  "contractName": "Universe",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getDisputeRoundDurationInSeconds",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isForking",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.24;\n\nimport \"./feeWindow.sol\";\n\ninterface Universe {\n  function getDisputeRoundDurationInSeconds() external view returns (uint256);\n  function isForking() external view returns (bool);\n}\n",
+  "sourcePath": "/src/contracts/augur/universe.sol",
+  "ast": {
+    "absolutePath": "/src/contracts/augur/universe.sol",
+    "exportedSymbols": {
+      "Universe": [
+        1945
+      ]
+    },
+    "id": 1946,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1933,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:15"
+      },
+      {
+        "absolutePath": "/src/contracts/augur/feeWindow.sol",
+        "file": "./feeWindow.sol",
+        "id": 1934,
+        "nodeType": "ImportDirective",
+        "scope": 1946,
+        "sourceUnit": 1847,
+        "src": "26:25:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1945,
+        "linearizedBaseContracts": [
+          1945
+        ],
+        "name": "Universe",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1939,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getDisputeRoundDurationInSeconds",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1935,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "117:2:15"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1938,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1937,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1939,
+                  "src": "143:7:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1936,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "143:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "142:9:15"
+            },
+            "scope": 1945,
+            "src": "76:76:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1944,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isForking",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1940,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "173:2:15"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1943,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1942,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1944,
+                  "src": "199:4:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1941,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "199:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "198:6:15"
+            },
+            "scope": 1945,
+            "src": "155:50:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1946,
+        "src": "53:154:15"
+      }
+    ],
+    "src": "0:208:15"
+  },
+  "legacyAST": {
+    "absolutePath": "/src/contracts/augur/universe.sol",
+    "exportedSymbols": {
+      "Universe": [
+        1945
+      ]
+    },
+    "id": 1946,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1933,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:15"
+      },
+      {
+        "absolutePath": "/src/contracts/augur/feeWindow.sol",
+        "file": "./feeWindow.sol",
+        "id": 1934,
+        "nodeType": "ImportDirective",
+        "scope": 1946,
+        "sourceUnit": 1847,
+        "src": "26:25:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1945,
+        "linearizedBaseContracts": [
+          1945
+        ],
+        "name": "Universe",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1939,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getDisputeRoundDurationInSeconds",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1935,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "117:2:15"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1938,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1937,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1939,
+                  "src": "143:7:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1936,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "143:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "142:9:15"
+            },
+            "scope": 1945,
+            "src": "76:76:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1944,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isForking",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1940,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "173:2:15"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1943,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1942,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1944,
+                  "src": "199:4:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1941,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "199:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "198:6:15"
+            },
+            "scope": 1945,
+            "src": "155:50:15",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1946,
+        "src": "53:154:15"
+      }
+    ],
+    "src": "0:208:15"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-11-01T04:24:01.103Z"
+}

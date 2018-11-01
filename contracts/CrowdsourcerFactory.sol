@@ -16,7 +16,7 @@ import "./DisputerParams.sol";
 contract CrowdsourcerFactory is ICrowdsourcerParent {
   event CrowdsourcerCreated (
     ICrowdsourcer crowdsourcer,
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
@@ -48,7 +48,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
   }
 
   function hashParams(
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
@@ -64,7 +64,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
   }
 
   function maybeGetCrowdsourcer(
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
@@ -79,7 +79,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
   }
 
   function getCrowdsourcer(
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
@@ -115,7 +115,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
   }
 
   function getInitializedCrowdsourcer(
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid

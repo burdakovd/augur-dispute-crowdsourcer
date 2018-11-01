@@ -33,7 +33,7 @@ contract MockDisputerFactory is IDisputerFactory {
 
   function create(
     address owner,
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid

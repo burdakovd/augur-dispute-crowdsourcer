@@ -1,0 +1,1822 @@
+{
+  "contractName": "Market",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "participants",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getReputationToken",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getUniverse",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_payoutNumerators",
+          "type": "uint256[]"
+        },
+        {
+          "name": "_invalid",
+          "type": "bool"
+        }
+      ],
+      "name": "derivePayoutDistributionHash",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_payoutDistributionHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getCrowdsourcer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_payoutNumerators",
+          "type": "uint256[]"
+        },
+        {
+          "name": "_invalid",
+          "type": "bool"
+        },
+        {
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "contribute",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getNumParticipants",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isFinalized",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getFeeWindow",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getWinningReportingParticipant",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.24;\n\nimport \"openzeppelin-solidity/contracts/token/ERC20/IERC20.sol\";\nimport \"./universe.sol\";\nimport \"./feeWindow.sol\";\nimport \"./reportingParticipant.sol\";\n\ncontract Market {\n  function getReputationToken() public view returns (IERC20);\n  function getUniverse() public view returns (Universe);\n  function derivePayoutDistributionHash(uint256[] _payoutNumerators, bool _invalid) public view returns (bytes32);\n  function getCrowdsourcer(bytes32 _payoutDistributionHash) public view returns (ReportingParticipant);\n  function contribute(uint256[] _payoutNumerators, bool _invalid, uint256 _amount) public returns (bool);\n  function getNumParticipants() public view returns (uint256);\n  function isFinalized() public view returns (bool);\n  function getFeeWindow() public view returns (FeeWindow);\n  function getWinningReportingParticipant() public view returns (ReportingParticipant);\n\n  ReportingParticipant[] public participants;\n}\n",
+  "sourcePath": "/src/contracts/augur/market.sol",
+  "ast": {
+    "absolutePath": "/src/contracts/augur/market.sol",
+    "exportedSymbols": {
+      "Market": [
+        1915
+      ]
+    },
+    "id": 1916,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1848,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:13"
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "file": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "id": 1849,
+        "nodeType": "ImportDirective",
+        "scope": 1916,
+        "sourceUnit": 3102,
+        "src": "26:64:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/src/contracts/augur/universe.sol",
+        "file": "./universe.sol",
+        "id": 1850,
+        "nodeType": "ImportDirective",
+        "scope": 1916,
+        "sourceUnit": 1946,
+        "src": "91:24:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/src/contracts/augur/feeWindow.sol",
+        "file": "./feeWindow.sol",
+        "id": 1851,
+        "nodeType": "ImportDirective",
+        "scope": 1916,
+        "sourceUnit": 1847,
+        "src": "116:25:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/src/contracts/augur/reportingParticipant.sol",
+        "file": "./reportingParticipant.sol",
+        "id": 1852,
+        "nodeType": "ImportDirective",
+        "scope": 1916,
+        "sourceUnit": 1932,
+        "src": "142:36:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1915,
+        "linearizedBaseContracts": [
+          1915
+        ],
+        "name": "Market",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1857,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getReputationToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1853,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "227:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1856,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1855,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1857,
+                  "src": "251:6:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$3101",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1854,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 3101,
+                    "src": "251:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$3101",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "250:8:13"
+            },
+            "scope": 1915,
+            "src": "200:59:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1862,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getUniverse",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1858,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "282:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1861,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1860,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1862,
+                  "src": "306:8:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_Universe_$1945",
+                    "typeString": "contract Universe"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1859,
+                    "name": "Universe",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1945,
+                    "src": "306:8:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Universe_$1945",
+                      "typeString": "contract Universe"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "305:10:13"
+            },
+            "scope": 1915,
+            "src": "262:54:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1872,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "derivePayoutDistributionHash",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1868,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1865,
+                  "name": "_payoutNumerators",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1872,
+                  "src": "357:27:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1863,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "357:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 1864,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "357:9:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1867,
+                  "name": "_invalid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1872,
+                  "src": "386:13:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1866,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "386:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "356:44:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1871,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1870,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1872,
+                  "src": "422:7:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1869,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "422:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "421:9:13"
+            },
+            "scope": 1915,
+            "src": "319:112:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1879,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getCrowdsourcer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1875,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1874,
+                  "name": "_payoutDistributionHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1879,
+                  "src": "459:31:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1873,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "459:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "458:33:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1878,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1877,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1879,
+                  "src": "513:20:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                    "typeString": "contract ReportingParticipant"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1876,
+                    "name": "ReportingParticipant",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1931,
+                    "src": "513:20:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                      "typeString": "contract ReportingParticipant"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "512:22:13"
+            },
+            "scope": 1915,
+            "src": "434:101:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1891,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "contribute",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1887,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1882,
+                  "name": "_payoutNumerators",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1891,
+                  "src": "558:27:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1880,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "558:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 1881,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "558:9:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1884,
+                  "name": "_invalid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1891,
+                  "src": "587:13:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1883,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "587:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1886,
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1891,
+                  "src": "602:15:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1885,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "602:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "557:61:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1890,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1889,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1891,
+                  "src": "635:4:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1888,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "635:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "634:6:13"
+            },
+            "scope": 1915,
+            "src": "538:103:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1896,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getNumParticipants",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1892,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "671:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1895,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1894,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1896,
+                  "src": "695:7:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1893,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "695:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "694:9:13"
+            },
+            "scope": 1915,
+            "src": "644:60:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1901,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isFinalized",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1897,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "727:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1900,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1899,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1901,
+                  "src": "751:4:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1898,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "751:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "750:6:13"
+            },
+            "scope": 1915,
+            "src": "707:50:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1906,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getFeeWindow",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1902,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "781:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1905,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1904,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1906,
+                  "src": "805:9:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_FeeWindow_$1846",
+                    "typeString": "contract FeeWindow"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1903,
+                    "name": "FeeWindow",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1846,
+                    "src": "805:9:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_FeeWindow_$1846",
+                      "typeString": "contract FeeWindow"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "804:11:13"
+            },
+            "scope": 1915,
+            "src": "760:56:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1911,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getWinningReportingParticipant",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1907,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "858:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1910,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1909,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1911,
+                  "src": "882:20:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                    "typeString": "contract ReportingParticipant"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1908,
+                    "name": "ReportingParticipant",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1931,
+                    "src": "882:20:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                      "typeString": "contract ReportingParticipant"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "881:22:13"
+            },
+            "scope": 1915,
+            "src": "819:85:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 1914,
+            "name": "participants",
+            "nodeType": "VariableDeclaration",
+            "scope": 1915,
+            "src": "908:42:13",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_contract$_ReportingParticipant_$1931_$dyn_storage",
+              "typeString": "contract ReportingParticipant[]"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 1912,
+                "name": "ReportingParticipant",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 1931,
+                "src": "908:20:13",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                  "typeString": "contract ReportingParticipant"
+                }
+              },
+              "id": 1913,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "908:22:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_contract$_ReportingParticipant_$1931_$dyn_storage_ptr",
+                "typeString": "contract ReportingParticipant[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1916,
+        "src": "180:773:13"
+      }
+    ],
+    "src": "0:954:13"
+  },
+  "legacyAST": {
+    "absolutePath": "/src/contracts/augur/market.sol",
+    "exportedSymbols": {
+      "Market": [
+        1915
+      ]
+    },
+    "id": 1916,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1848,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:13"
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "file": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+        "id": 1849,
+        "nodeType": "ImportDirective",
+        "scope": 1916,
+        "sourceUnit": 3102,
+        "src": "26:64:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/src/contracts/augur/universe.sol",
+        "file": "./universe.sol",
+        "id": 1850,
+        "nodeType": "ImportDirective",
+        "scope": 1916,
+        "sourceUnit": 1946,
+        "src": "91:24:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/src/contracts/augur/feeWindow.sol",
+        "file": "./feeWindow.sol",
+        "id": 1851,
+        "nodeType": "ImportDirective",
+        "scope": 1916,
+        "sourceUnit": 1847,
+        "src": "116:25:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/src/contracts/augur/reportingParticipant.sol",
+        "file": "./reportingParticipant.sol",
+        "id": 1852,
+        "nodeType": "ImportDirective",
+        "scope": 1916,
+        "sourceUnit": 1932,
+        "src": "142:36:13",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 1915,
+        "linearizedBaseContracts": [
+          1915
+        ],
+        "name": "Market",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1857,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getReputationToken",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1853,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "227:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1856,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1855,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1857,
+                  "src": "251:6:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC20_$3101",
+                    "typeString": "contract IERC20"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1854,
+                    "name": "IERC20",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 3101,
+                    "src": "251:6:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC20_$3101",
+                      "typeString": "contract IERC20"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "250:8:13"
+            },
+            "scope": 1915,
+            "src": "200:59:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1862,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getUniverse",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1858,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "282:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1861,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1860,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1862,
+                  "src": "306:8:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_Universe_$1945",
+                    "typeString": "contract Universe"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1859,
+                    "name": "Universe",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1945,
+                    "src": "306:8:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_Universe_$1945",
+                      "typeString": "contract Universe"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "305:10:13"
+            },
+            "scope": 1915,
+            "src": "262:54:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1872,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "derivePayoutDistributionHash",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1868,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1865,
+                  "name": "_payoutNumerators",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1872,
+                  "src": "357:27:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1863,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "357:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 1864,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "357:9:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1867,
+                  "name": "_invalid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1872,
+                  "src": "386:13:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1866,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "386:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "356:44:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1871,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1870,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1872,
+                  "src": "422:7:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1869,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "422:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "421:9:13"
+            },
+            "scope": 1915,
+            "src": "319:112:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1879,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getCrowdsourcer",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1875,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1874,
+                  "name": "_payoutDistributionHash",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1879,
+                  "src": "459:31:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1873,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "459:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "458:33:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1878,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1877,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1879,
+                  "src": "513:20:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                    "typeString": "contract ReportingParticipant"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1876,
+                    "name": "ReportingParticipant",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1931,
+                    "src": "513:20:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                      "typeString": "contract ReportingParticipant"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "512:22:13"
+            },
+            "scope": 1915,
+            "src": "434:101:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1891,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "contribute",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1887,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1882,
+                  "name": "_payoutNumerators",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1891,
+                  "src": "558:27:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1880,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "558:7:13",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 1881,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "558:9:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1884,
+                  "name": "_invalid",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1891,
+                  "src": "587:13:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1883,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "587:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1886,
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1891,
+                  "src": "602:15:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1885,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "602:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "557:61:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1890,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1889,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1891,
+                  "src": "635:4:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1888,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "635:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "634:6:13"
+            },
+            "scope": 1915,
+            "src": "538:103:13",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1896,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getNumParticipants",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1892,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "671:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1895,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1894,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1896,
+                  "src": "695:7:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1893,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "695:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "694:9:13"
+            },
+            "scope": 1915,
+            "src": "644:60:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1901,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isFinalized",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1897,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "727:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1900,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1899,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1901,
+                  "src": "751:4:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1898,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "751:4:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "750:6:13"
+            },
+            "scope": 1915,
+            "src": "707:50:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1906,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getFeeWindow",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1902,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "781:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1905,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1904,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1906,
+                  "src": "805:9:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_FeeWindow_$1846",
+                    "typeString": "contract FeeWindow"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1903,
+                    "name": "FeeWindow",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1846,
+                    "src": "805:9:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_FeeWindow_$1846",
+                      "typeString": "contract FeeWindow"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "804:11:13"
+            },
+            "scope": 1915,
+            "src": "760:56:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1911,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "getWinningReportingParticipant",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1907,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "858:2:13"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1910,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1909,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1911,
+                  "src": "882:20:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                    "typeString": "contract ReportingParticipant"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 1908,
+                    "name": "ReportingParticipant",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1931,
+                    "src": "882:20:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                      "typeString": "contract ReportingParticipant"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "881:22:13"
+            },
+            "scope": 1915,
+            "src": "819:85:13",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 1914,
+            "name": "participants",
+            "nodeType": "VariableDeclaration",
+            "scope": 1915,
+            "src": "908:42:13",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_contract$_ReportingParticipant_$1931_$dyn_storage",
+              "typeString": "contract ReportingParticipant[]"
+            },
+            "typeName": {
+              "baseType": {
+                "contractScope": null,
+                "id": 1912,
+                "name": "ReportingParticipant",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 1931,
+                "src": "908:20:13",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_contract$_ReportingParticipant_$1931",
+                  "typeString": "contract ReportingParticipant"
+                }
+              },
+              "id": 1913,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "908:22:13",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_contract$_ReportingParticipant_$1931_$dyn_storage_ptr",
+                "typeString": "contract ReportingParticipant[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1916,
+        "src": "180:773:13"
+      }
+    ],
+    "src": "0:954:13"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-11-01T04:24:01.102Z"
+}

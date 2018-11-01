@@ -24,7 +24,7 @@ contract Crowdsourcer is ICrowdsourcer {
     ICrowdsourcerParent parent,
     IAccountingFactory accountingFactory,
     IDisputerFactory disputerFactory,
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid

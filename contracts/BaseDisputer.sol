@@ -18,7 +18,7 @@ contract BaseDisputer is IDisputer {
   // otherwise it can allow taking over ownership
   function baseInit(
     address owner,
-    address market,
+    Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
@@ -35,6 +35,14 @@ contract BaseDisputer is IDisputer {
     m_rep = getREPImpl();
     assert(m_rep.approve(m_owner, 2**256 - 1));
 
+    if (address(market) != 0) {
+      // this is a hack. Some tests create disputer with 0 as market address
+      // however mock ERC20 won't like approving 0 address
+      // so we skip approval in those cases
+      // TODO: fix those tests and remove conditional here
+      assert(m_rep.approve(market, 2**256 - 1));
+    }
+
     // micro gas optimization, initialize with non-zero to make it cheaper
     // to write during dispute
     m_disputeToken = IERC20(address(this));
@@ -48,17 +56,16 @@ contract BaseDisputer is IDisputer {
    * As much as we can do during dispute, without actually interacting
    * with Augur
    */
-  modifier withDisputeBoilerplate(address feeReceiver) {
+  function dispute(address feeReceiver) external {
     require(m_feeReceiver == 0, "Can only dispute once");
+    preDisputeCheck();
     require(feeReceiver != 0, "Must have valid fee receiver");
     m_feeReceiver = feeReceiver;
 
     IERC20 rep = getREP();
     uint256 initialREPBalance = rep.balanceOf(this);
-    _;
+    IERC20 disputeToken = disputeImpl();
     uint256 finalREPBalance = rep.balanceOf(this);
-    // TODO: can we find out ERC20 _before_ dispute? that will save gas
-    IERC20 disputeToken = getDisputeTokenAddressImpl();
     m_disputeToken = disputeToken;
     uint256 finalDisputeTokenBalance = disputeToken.balanceOf(this);
     assert(finalREPBalance + finalDisputeTokenBalance >= initialREPBalance);
@@ -89,5 +96,6 @@ contract BaseDisputer is IDisputer {
   }
 
   function getREPImpl() internal view returns (IERC20);
-  function getDisputeTokenAddressImpl() internal view returns (IERC20);
+  function disputeImpl() internal returns (IERC20 disputeToken);
+  function preDisputeCheck() internal;
 }
