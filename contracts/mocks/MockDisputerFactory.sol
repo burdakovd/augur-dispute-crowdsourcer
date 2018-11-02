@@ -37,7 +37,7 @@ contract MockDisputerFactory is IDisputerFactory {
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) external returns (IDisputer) {
+  ) external returns(IDisputer) {
     assert(address(m_rep) != 0);
     IDisputer _address = new MockDisputer(
       owner,

@@ -29,7 +29,7 @@ contract MockDisputer is BaseDisputer {
     baseInit(owner, market, feeWindowId, payoutNumerators, invalid);
   }
 
-  function disputeImpl() internal returns (IERC20) {
+  function disputeImpl() internal returns(IERC20) {
     uint256 amountToCreate = m_amountOfREPToDisputeWith;
     uint256 balance = m_rep_mock.balanceOf(this);
     uint256 amountToDestroy = amountToCreate > balance ? balance : amountToCreate;
@@ -46,9 +46,11 @@ contract MockDisputer is BaseDisputer {
     return disputeToken_mock;
   }
 
-  function getREPImpl() internal view returns (IERC20) {
+  function getREPImpl() internal view returns(IERC20) {
     return m_rep_mock;
   }
 
-  function preDisputeCheck() internal {}
+  function preDisputeCheck() internal {
+
+  }
 }

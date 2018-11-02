@@ -1,30 +1,27 @@
 pragma solidity 0.4.24;
 
 interface IAccounting {
-  function getOwner() external view returns (address);
+  function getOwner() external view returns(address);
 
   function addFeesOnTop(
     uint128 amount,
     uint128 feeNumerator
-  ) external pure returns (uint128);
+  ) external pure returns(uint128);
 
   function contribute(
     address contributor,
     uint128 amount,
     uint128 feeNumerator
-  ) external returns (
-    uint128 deposited,
-    uint128 depositedFees
-  );
+  ) external returns(uint128 deposited, uint128 depositedFees);
 
-  function withdrawContribution(address contributor) external returns (
+  function withdrawContribution(address contributor) external returns(
     uint128 withdrawn,
     uint128 withdrawnFees
   );
 
   function finalize(uint128 amountDisputed) external;
 
-  function isFinalized() external view returns (bool);
+  function isFinalized() external view returns(bool);
 
   /**
    * Return value is how much REP and dispute tokens the contributor is entitled to.
@@ -33,7 +30,10 @@ interface IAccounting {
    *
    * In case of partial fill, we round down, leaving some dust in the contract.
    */
-  function calculateProceeds(address contributor) external view returns (uint128 rep, uint128 disputeTokens);
+  function calculateProceeds(address contributor) external view returns(
+    uint128 rep,
+    uint128 disputeTokens
+  );
 
   /**
    * Calculate fee that will be split between contract admin and
@@ -41,5 +41,5 @@ interface IAccounting {
    *
    * In case of partial fill, we round down, leaving some dust in the contract.
    */
-  function calculateFees() external view returns (uint128);
+  function calculateFees() external view returns(uint128);
 }

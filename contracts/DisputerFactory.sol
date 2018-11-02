@@ -11,7 +11,7 @@ contract DisputerFactory is IDisputerFactory {
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) external returns (IDisputer) {
+  ) external returns(IDisputer) {
     IDisputer _address = new Disputer(
       owner,
       market,

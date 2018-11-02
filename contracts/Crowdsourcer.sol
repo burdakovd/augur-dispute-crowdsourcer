@@ -41,7 +41,7 @@ contract Crowdsourcer is ICrowdsourcer {
   }
 
   modifier beforeDisputeOnly() {
-    require (!hasDisputed(), "Method only allowed before dispute");
+    require(!hasDisputed(), "Method only allowed before dispute");
     _;
   }
 
@@ -58,7 +58,7 @@ contract Crowdsourcer is ICrowdsourcer {
     _;
   }
 
-  function isInitialized() public view returns (bool) {
+  function isInitialized() public view returns(bool) {
     return m_isInitialized;
   }
 
@@ -75,23 +75,29 @@ contract Crowdsourcer is ICrowdsourcer {
     );
   }
 
-  function getParent() external view returns (ICrowdsourcerParent) {
+  function getParent() external view returns(ICrowdsourcerParent) {
     return m_parent;
   }
 
-  function getDisputer() external view requiresInitialization returns (IDisputer) {
+  function getDisputer() external view requiresInitialization returns(
+    IDisputer
+  ) {
     return m_disputer;
   }
 
-  function getAccounting() external view requiresInitialization returns (IAccounting) {
+  function getAccounting() external view requiresInitialization returns(
+    IAccounting
+  ) {
     return m_accounting;
   }
 
-  function getREP() public view requiresInitialization returns (IERC20) {
+  function getREP() public view requiresInitialization returns(IERC20) {
     return m_disputer.getREP();
   }
 
-  function getDisputeToken() public view requiresInitialization returns (IERC20) {
+  function getDisputeToken() public view requiresInitialization returns(
+    IERC20
+  ) {
     return m_disputer.getDisputeTokenAddress();
   }
 
@@ -127,7 +133,9 @@ contract Crowdsourcer is ICrowdsourcer {
     emit ContributionAccepted(msg.sender, amount, feeNumerator);
   }
 
-  function withdrawContribution() external requiresInitialization beforeDisputeOnly {
+  function withdrawContribution(
+
+  ) external requiresInitialization beforeDisputeOnly {
     IERC20 rep = getREP();
 
     // record withdrawal in accounting (will perform validations)
@@ -142,7 +150,7 @@ contract Crowdsourcer is ICrowdsourcer {
     emit ContributionWithdrawn(msg.sender, withdrawn);
   }
 
-  function hasDisputed() public view requiresInitialization returns (bool) {
+  function hasDisputed() public view requiresInitialization returns(bool) {
     return m_disputer.hasDisputed();
   }
 
@@ -181,12 +189,15 @@ contract Crowdsourcer is ICrowdsourcer {
     emit CrowdsourcerFinalized(amountDisputed128);
   }
 
-  function isFinalized() public view requiresInitialization returns (bool) {
+  function isFinalized() public view requiresInitialization returns(bool) {
     return m_accounting.isFinalized();
   }
 
   function withdrawProceeds(address contributor) external requiresFinalization {
-    require(!m_proceedsCollected[contributor], "Can only collect proceeds once");
+    require(
+      !m_proceedsCollected[contributor],
+      "Can only collect proceeds once"
+    );
 
     // record proceeds have been collected
     m_proceedsCollected[contributor] = true;

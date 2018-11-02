@@ -27,40 +27,40 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060405160208061016f83398101806040528101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505060ed806100826000396000f300608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063d2a2fc94146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050905600a165627a7a7230582067646401f9e1f8600327ebcc0b7f0e2ecf767e82cf1b563ea032e3af36f4cdfa0029",
-  "deployedBytecode": "0x608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063d2a2fc94146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050905600a165627a7a7230582067646401f9e1f8600327ebcc0b7f0e2ecf767e82cf1b563ea032e3af36f4cdfa0029",
-  "sourceMap": "63:271:20:-;;;149:81;8:9:-1;5:2;;;30:1;27;20:12;5:2;149:81:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;213:12;196:14;;:29;;;;;;;;;;;;;;;;;;149:81;63:271;;;;;;",
-  "deployedSourceMap": "63:271:20:-;;;;;;;;;;;;;;;;;;;;;;;;234:98;;8:9:-1;5:2;;;30:1;27;20:12;5:2;234:98:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;291:7;313:14;;;;;;;;;;;306:21;;234:98;:::o",
-  "source": "pragma solidity 0.4.24;\n\nimport \"../ICrowdsourcerParent.sol\";\n\ncontract MockCrowdsourcerParent is ICrowdsourcerParent {\n  address m_feeRecipient;\n\n  constructor(address feeRecepient) public {\n    m_feeRecipient = feeRecepient;\n  }\n\n  function getContractFeeReceiver() external view returns (address) {\n    return m_feeRecipient;\n  }\n}\n",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405160208061016f83398101806040528101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505060ed806100826000396000f300608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063d2a2fc94146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050905600a165627a7a7230582031bdbc12469bf53a96b5c8375d4e1b06a360e2102290130cc4b5f0744bc28ea80029",
+  "deployedBytecode": "0x608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063d2a2fc94146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff169050905600a165627a7a7230582031bdbc12469bf53a96b5c8375d4e1b06a360e2102290130cc4b5f0744bc28ea80029",
+  "sourceMap": "63:270:19:-;;;149:81;8:9:-1;5:2;;;30:1;27;20:12;5:2;149:81:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;213:12;196:14;;:29;;;;;;;;;;;;;;;;;;149:81;63:270;;;;;;",
+  "deployedSourceMap": "63:270:19:-;;;;;;;;;;;;;;;;;;;;;;;;234:97;;8:9:-1;5:2;;;30:1;27;20:12;5:2;234:97:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;290:7;312:14;;;;;;;;;;;305:21;;234:97;:::o",
+  "source": "pragma solidity 0.4.24;\n\nimport \"../ICrowdsourcerParent.sol\";\n\ncontract MockCrowdsourcerParent is ICrowdsourcerParent {\n  address m_feeRecipient;\n\n  constructor(address feeRecepient) public {\n    m_feeRecipient = feeRecepient;\n  }\n\n  function getContractFeeReceiver() external view returns(address) {\n    return m_feeRecipient;\n  }\n}\n",
   "sourcePath": "/src/contracts/mocks/MockCrowdsourcerParent.sol",
   "ast": {
     "absolutePath": "/src/contracts/mocks/MockCrowdsourcerParent.sol",
     "exportedSymbols": {
       "MockCrowdsourcerParent": [
-        2769
+        2712
       ]
     },
-    "id": 2770,
+    "id": 2713,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2745,
+        "id": 2688,
         "literals": [
           "solidity",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:20"
+        "src": "0:23:19"
       },
       {
         "absolutePath": "/src/contracts/ICrowdsourcerParent.sol",
         "file": "../ICrowdsourcerParent.sol",
-        "id": 2746,
+        "id": 2689,
         "nodeType": "ImportDirective",
-        "scope": 2770,
+        "scope": 2713,
         "sourceUnit": 2482,
-        "src": "25:36:20",
+        "src": "25:36:19",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -70,19 +70,19 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2747,
+              "id": 2690,
               "name": "ICrowdsourcerParent",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 2481,
-              "src": "98:19:20",
+              "src": "98:19:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_ICrowdsourcerParent_$2481",
                 "typeString": "contract ICrowdsourcerParent"
               }
             },
-            "id": 2748,
+            "id": 2691,
             "nodeType": "InheritanceSpecifier",
-            "src": "98:19:20"
+            "src": "98:19:19"
           }
         ],
         "contractDependencies": [
@@ -91,9 +91,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 2769,
+        "id": 2712,
         "linearizedBaseContracts": [
-          2769,
+          2712,
           2481
         ],
         "name": "MockCrowdsourcerParent",
@@ -101,11 +101,11 @@
         "nodes": [
           {
             "constant": false,
-            "id": 2750,
+            "id": 2693,
             "name": "m_feeRecipient",
             "nodeType": "VariableDeclaration",
-            "scope": 2769,
-            "src": "122:22:20",
+            "scope": 2712,
+            "src": "122:22:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -113,10 +113,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 2749,
+              "id": 2692,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "122:7:20",
+              "src": "122:7:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
@@ -127,26 +127,26 @@
           },
           {
             "body": {
-              "id": 2759,
+              "id": 2702,
               "nodeType": "Block",
-              "src": "190:40:20",
+              "src": "190:40:19",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2757,
+                    "id": 2700,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 2755,
+                      "id": 2698,
                       "name": "m_feeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2750,
-                      "src": "196:14:20",
+                      "referencedDeclaration": 2693,
+                      "src": "196:14:19",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -156,31 +156,31 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 2756,
+                      "id": 2699,
                       "name": "feeRecepient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2752,
-                      "src": "213:12:20",
+                      "referencedDeclaration": 2695,
+                      "src": "213:12:19",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "196:29:20",
+                    "src": "196:29:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 2758,
+                  "id": 2701,
                   "nodeType": "ExpressionStatement",
-                  "src": "196:29:20"
+                  "src": "196:29:19"
                 }
               ]
             },
             "documentation": null,
-            "id": 2760,
+            "id": 2703,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -188,16 +188,16 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2753,
+              "id": 2696,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2752,
+                  "id": 2695,
                   "name": "feeRecepient",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2760,
-                  "src": "161:20:20",
+                  "scope": 2703,
+                  "src": "161:20:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -205,10 +205,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2751,
+                    "id": 2694,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "161:7:20",
+                    "src": "161:7:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -218,50 +218,50 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "160:22:20"
+              "src": "160:22:19"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2754,
+              "id": 2697,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "190:0:20"
+              "src": "190:0:19"
             },
-            "scope": 2769,
-            "src": "149:81:20",
+            "scope": 2712,
+            "src": "149:81:19",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2767,
+              "id": 2710,
               "nodeType": "Block",
-              "src": "300:32:20",
+              "src": "299:32:19",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2765,
+                    "id": 2708,
                     "name": "m_feeRecipient",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 2750,
-                    "src": "313:14:20",
+                    "referencedDeclaration": 2693,
+                    "src": "312:14:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 2764,
-                  "id": 2766,
+                  "functionReturnParameters": 2707,
+                  "id": 2709,
                   "nodeType": "Return",
-                  "src": "306:21:20"
+                  "src": "305:21:19"
                 }
               ]
             },
             "documentation": null,
-            "id": 2768,
+            "id": 2711,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -269,23 +269,23 @@
             "name": "getContractFeeReceiver",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2761,
+              "id": 2704,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "265:2:20"
+              "src": "265:2:19"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2764,
+              "id": 2707,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2763,
+                  "id": 2706,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2768,
-                  "src": "291:7:20",
+                  "scope": 2711,
+                  "src": "290:7:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -293,10 +293,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2762,
+                    "id": 2705,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "291:7:20",
+                    "src": "290:7:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -306,49 +306,49 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "290:9:20"
+              "src": "289:9:19"
             },
-            "scope": 2769,
-            "src": "234:98:20",
+            "scope": 2712,
+            "src": "234:97:19",
             "stateMutability": "view",
             "superFunction": 2480,
             "visibility": "external"
           }
         ],
-        "scope": 2770,
-        "src": "63:271:20"
+        "scope": 2713,
+        "src": "63:270:19"
       }
     ],
-    "src": "0:335:20"
+    "src": "0:334:19"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/mocks/MockCrowdsourcerParent.sol",
     "exportedSymbols": {
       "MockCrowdsourcerParent": [
-        2769
+        2712
       ]
     },
-    "id": 2770,
+    "id": 2713,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2745,
+        "id": 2688,
         "literals": [
           "solidity",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:20"
+        "src": "0:23:19"
       },
       {
         "absolutePath": "/src/contracts/ICrowdsourcerParent.sol",
         "file": "../ICrowdsourcerParent.sol",
-        "id": 2746,
+        "id": 2689,
         "nodeType": "ImportDirective",
-        "scope": 2770,
+        "scope": 2713,
         "sourceUnit": 2482,
-        "src": "25:36:20",
+        "src": "25:36:19",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -358,19 +358,19 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2747,
+              "id": 2690,
               "name": "ICrowdsourcerParent",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 2481,
-              "src": "98:19:20",
+              "src": "98:19:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_contract$_ICrowdsourcerParent_$2481",
                 "typeString": "contract ICrowdsourcerParent"
               }
             },
-            "id": 2748,
+            "id": 2691,
             "nodeType": "InheritanceSpecifier",
-            "src": "98:19:20"
+            "src": "98:19:19"
           }
         ],
         "contractDependencies": [
@@ -379,9 +379,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 2769,
+        "id": 2712,
         "linearizedBaseContracts": [
-          2769,
+          2712,
           2481
         ],
         "name": "MockCrowdsourcerParent",
@@ -389,11 +389,11 @@
         "nodes": [
           {
             "constant": false,
-            "id": 2750,
+            "id": 2693,
             "name": "m_feeRecipient",
             "nodeType": "VariableDeclaration",
-            "scope": 2769,
-            "src": "122:22:20",
+            "scope": 2712,
+            "src": "122:22:19",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -401,10 +401,10 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 2749,
+              "id": 2692,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "122:7:20",
+              "src": "122:7:19",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
@@ -415,26 +415,26 @@
           },
           {
             "body": {
-              "id": 2759,
+              "id": 2702,
               "nodeType": "Block",
-              "src": "190:40:20",
+              "src": "190:40:19",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2757,
+                    "id": 2700,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 2755,
+                      "id": 2698,
                       "name": "m_feeRecipient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2750,
-                      "src": "196:14:20",
+                      "referencedDeclaration": 2693,
+                      "src": "196:14:19",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -444,31 +444,31 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 2756,
+                      "id": 2699,
                       "name": "feeRecepient",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2752,
-                      "src": "213:12:20",
+                      "referencedDeclaration": 2695,
+                      "src": "213:12:19",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "196:29:20",
+                    "src": "196:29:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 2758,
+                  "id": 2701,
                   "nodeType": "ExpressionStatement",
-                  "src": "196:29:20"
+                  "src": "196:29:19"
                 }
               ]
             },
             "documentation": null,
-            "id": 2760,
+            "id": 2703,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -476,16 +476,16 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2753,
+              "id": 2696,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2752,
+                  "id": 2695,
                   "name": "feeRecepient",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2760,
-                  "src": "161:20:20",
+                  "scope": 2703,
+                  "src": "161:20:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -493,10 +493,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2751,
+                    "id": 2694,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "161:7:20",
+                    "src": "161:7:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -506,50 +506,50 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "160:22:20"
+              "src": "160:22:19"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2754,
+              "id": 2697,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "190:0:20"
+              "src": "190:0:19"
             },
-            "scope": 2769,
-            "src": "149:81:20",
+            "scope": 2712,
+            "src": "149:81:19",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2767,
+              "id": 2710,
               "nodeType": "Block",
-              "src": "300:32:20",
+              "src": "299:32:19",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2765,
+                    "id": 2708,
                     "name": "m_feeRecipient",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 2750,
-                    "src": "313:14:20",
+                    "referencedDeclaration": 2693,
+                    "src": "312:14:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 2764,
-                  "id": 2766,
+                  "functionReturnParameters": 2707,
+                  "id": 2709,
                   "nodeType": "Return",
-                  "src": "306:21:20"
+                  "src": "305:21:19"
                 }
               ]
             },
             "documentation": null,
-            "id": 2768,
+            "id": 2711,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -557,23 +557,23 @@
             "name": "getContractFeeReceiver",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2761,
+              "id": 2704,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "265:2:20"
+              "src": "265:2:19"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2764,
+              "id": 2707,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2763,
+                  "id": 2706,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2768,
-                  "src": "291:7:20",
+                  "scope": 2711,
+                  "src": "290:7:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -581,10 +581,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2762,
+                    "id": 2705,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "291:7:20",
+                    "src": "290:7:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -594,20 +594,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "290:9:20"
+              "src": "289:9:19"
             },
-            "scope": 2769,
-            "src": "234:98:20",
+            "scope": 2712,
+            "src": "234:97:19",
             "stateMutability": "view",
             "superFunction": 2480,
             "visibility": "external"
           }
         ],
-        "scope": 2770,
-        "src": "63:271:20"
+        "scope": 2713,
+        "src": "63:270:19"
       }
     ],
-    "src": "0:335:20"
+    "src": "0:334:19"
   },
   "compiler": {
     "name": "solc",
@@ -615,5 +615,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-02T01:40:36.568Z"
+  "updatedAt": "2018-11-02T02:08:45.563Z"
 }

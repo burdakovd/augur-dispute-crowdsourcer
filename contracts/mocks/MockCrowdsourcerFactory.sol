@@ -12,9 +12,7 @@ contract MockCrowdsourcerFactory is CrowdsourcerFactory {
     IAccountingFactory accountingFactory,
     IDisputerFactory disputerFactory,
     address feeCollector
-  ) public CrowdsourcerFactory (
-    accountingFactory,
-    disputerFactory,
-    feeCollector
-  ) {}
+  ) public CrowdsourcerFactory(accountingFactory, disputerFactory, feeCollector) {
+
+  }
 }

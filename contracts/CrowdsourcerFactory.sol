@@ -14,7 +14,7 @@ import "./DisputerParams.sol";
  * Individual crowdsourcers have no trust relationships with each other.
  */
 contract CrowdsourcerFactory is ICrowdsourcerParent {
-  event CrowdsourcerCreated (
+  event CrowdsourcerCreated(
     ICrowdsourcer crowdsourcer,
     Market market,
     uint256 feeWindowId,
@@ -43,7 +43,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
     m_feeCollector = recipient;
   }
 
-  function getContractFeeReceiver() external view returns (address) {
+  function getContractFeeReceiver() external view returns(address) {
     return m_feeCollector;
   }
 
@@ -52,14 +52,9 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) public pure returns (bytes32) {
+  ) public pure returns(bytes32) {
     return keccak256(
-      abi.encodePacked(
-        market,
-        feeWindowId,
-        payoutNumerators,
-        invalid
-      )
+      abi.encodePacked(market, feeWindowId, payoutNumerators, invalid)
     );
   }
 
@@ -68,7 +63,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) external view returns (ICrowdsourcer) {
+  ) external view returns(ICrowdsourcer) {
     bytes32 paramsHash = hashParams(
       market,
       feeWindowId,
@@ -83,7 +78,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) public returns (ICrowdsourcer) {
+  ) public returns(ICrowdsourcer) {
     bytes32 paramsHash = hashParams(
       market,
       feeWindowId,
@@ -103,7 +98,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
       payoutNumerators,
       invalid
     );
-    emit CrowdsourcerCreated (
+    emit CrowdsourcerCreated(
       created,
       market,
       feeWindowId,
@@ -119,7 +114,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) external returns (ICrowdsourcer) {
+  ) external returns(ICrowdsourcer) {
     ICrowdsourcer crowdsourcer = getCrowdsourcer(
       market,
       feeWindowId,

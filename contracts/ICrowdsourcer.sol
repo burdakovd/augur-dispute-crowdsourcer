@@ -9,18 +9,13 @@ import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
  * Crowdsourcer for specific market/outcome/round.
  */
 interface ICrowdsourcer {
-  event ContributionAccepted (
+  event ContributionAccepted(
     address contributor,
     uint128 amount,
     uint128 feeNumerator
   );
-  event ContributionWithdrawn (
-    address contributor,
-    uint128 amount
-  );
-  event CrowdsourcerFinalized (
-    uint128 amountDisputeTokensAcquired
-  );
+  event ContributionWithdrawn(address contributor, uint128 amount);
+  event CrowdsourcerFinalized(uint128 amountDisputeTokensAcquired);
   event ProceedsWithdrawn(
     address contributor,
     uint128 disputeTokensAmount,
@@ -33,12 +28,12 @@ interface ICrowdsourcer {
     uint128 executorAmount
   );
 
-  function isInitialized() external view returns (bool);
-  function getParent() external view returns (ICrowdsourcerParent);
-  function getDisputer() external view returns (IDisputer);
-  function getAccounting() external view returns (IAccounting);
-  function getREP() external view returns (IERC20);
-  function getDisputeToken() external view returns (IERC20);
+  function isInitialized() external view returns(bool);
+  function getParent() external view returns(ICrowdsourcerParent);
+  function getDisputer() external view returns(IDisputer);
+  function getAccounting() external view returns(IAccounting);
+  function getREP() external view returns(IERC20);
+  function getDisputeToken() external view returns(IERC20);
 
   // initialization stage
   function initialize() external;
@@ -48,9 +43,9 @@ interface ICrowdsourcer {
   function withdrawContribution() external;
 
   // finalization (after dispute happened)
-  function hasDisputed() external view returns (bool);
+  function hasDisputed() external view returns(bool);
   function finalize() external;
-  function isFinalized() external view returns (bool);
+  function isFinalized() external view returns(bool);
 
   // after finalization
 

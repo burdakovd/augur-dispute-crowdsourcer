@@ -9,7 +9,7 @@ import "./IAccounting.sol";
  * Doesn't actually hold any funds, just keeps records.
  */
 contract Accounting is IAccounting {
-  uint128 constant public FEE_DENOMINATOR = 1000;
+  uint128 public constant FEE_DENOMINATOR = 1000;
   address public m_owner;
 
   uint128[FEE_DENOMINATOR] public m_contributionPerFeeNumerator;
@@ -27,28 +27,28 @@ contract Accounting is IAccounting {
   }
 
   modifier ownerOnly() {
-    require (msg.sender == m_owner, "Not Authorized");
+    require(msg.sender == m_owner, "Not Authorized");
     _;
   }
 
   modifier beforeFinalizationOnly() {
-    require (!m_isFinalized, "Method only allowed before finalization");
+    require(!m_isFinalized, "Method only allowed before finalization");
     _;
   }
 
   modifier afterFinalizationOnly() {
-    require (m_isFinalized, "Method only allowed after finalization");
+    require(m_isFinalized, "Method only allowed after finalization");
     _;
   }
 
-  function getOwner() external view returns (address) {
+  function getOwner() external view returns(address) {
     return m_owner;
   }
 
   function addFeesOnTop(
     uint128 amount,
     uint128 feeNumerator
-  ) public pure returns (uint128) {
+  ) public pure returns(uint128) {
     return safeMulDivExact(
       amount,
       safeAdd(FEE_DENOMINATOR, feeNumerator),
@@ -60,14 +60,11 @@ contract Accounting is IAccounting {
     address contributor,
     uint128 amount,
     uint128 feeNumerator
-  ) external ownerOnly beforeFinalizationOnly returns (
+  ) external ownerOnly beforeFinalizationOnly returns(
     uint128 depositedLessFees,
     uint128 depositedFees
   ) {
-    require(
-      amount > 0,
-      "Gotta have something to contribute"
-    );
+    require(amount > 0, "Gotta have something to contribute");
     require(
       amount % FEE_DENOMINATOR == 0,
       "Amount must be divisible by fee denominator"
@@ -93,7 +90,7 @@ contract Accounting is IAccounting {
 
   function withdrawContribution(
     address contributor
-  ) external ownerOnly beforeFinalizationOnly returns (
+  ) external ownerOnly beforeFinalizationOnly returns(
     uint128 withdrawnLessFees,
     uint128 withdrawnFees
   ) {
@@ -115,16 +112,17 @@ contract Accounting is IAccounting {
    * This is not fatal, but we need to be aware that amountDisputed may actually
    * be greater than the REP contributed and not crash.
    */
-  function finalize(uint128 amountDisputed) external ownerOnly beforeFinalizationOnly {
+  function finalize(
+    uint128 amountDisputed
+  ) external ownerOnly beforeFinalizationOnly {
     m_isFinalized = true;
     m_fundsUsed = amountDisputed;
-    (
-      m_boundaryFeeNumerator,
-      m_fundsUsedFromBoundaryBucket
-    ) = findBoundaryBucketForAmountDisputed(amountDisputed);
+    (m_boundaryFeeNumerator, m_fundsUsedFromBoundaryBucket) = findBoundaryBucketForAmountDisputed(
+      amountDisputed
+    );
   }
 
-  function isFinalized() external view returns (bool) {
+  function isFinalized() external view returns(bool) {
     return m_isFinalized;
   }
 
@@ -141,7 +139,10 @@ contract Accounting is IAccounting {
    */
   function findBoundaryBucketForAmountDisputed(
     uint128 amountDisputed
-  ) internal view returns (uint128 feeNumerator, uint128 fundsUsedFromBoundaryBucket) {
+  ) internal view returns(
+    uint128 feeNumerator,
+    uint128 fundsUsedFromBoundaryBucket
+  ) {
     // initialize with one-past-last bucket; loop will do at least one iteration
     uint128 tentativeBoundaryBucket = FEE_DENOMINATOR;
     uint128 usableFundsInCurrentBucket;
@@ -149,7 +150,9 @@ contract Accounting is IAccounting {
     uint128 usableFundsInBucketsWithHigherFee;
 
     // length of the loop constrained by constant FEE_DENOMINATOR
-    assert(tentativeBoundaryBucket > 0 && usableFundsWithCurrentBucket <= amountDisputed);
+    assert(
+      tentativeBoundaryBucket > 0 && usableFundsWithCurrentBucket <= amountDisputed
+    );
     while (tentativeBoundaryBucket > 0 && usableFundsWithCurrentBucket <= amountDisputed) {
       tentativeBoundaryBucket -= 1;
       usableFundsInBucketsWithHigherFee = usableFundsWithCurrentBucket;
@@ -166,9 +169,7 @@ contract Accounting is IAccounting {
 
     // this is needed to protect against corner cases if someone sent dispute
     // tokens into this contract directly in excess from what contributors funded
-    uint128 cappedAmountDisputed = amountDisputed <= usableFundsWithCurrentBucket
-      ? amountDisputed
-      : usableFundsWithCurrentBucket;
+    uint128 cappedAmountDisputed = amountDisputed <= usableFundsWithCurrentBucket ? amountDisputed : usableFundsWithCurrentBucket;
 
     assert(cappedAmountDisputed >= usableFundsInBucketsWithHigherFee);
 
@@ -180,18 +181,20 @@ contract Accounting is IAccounting {
     assert(fundsUsedFromBoundaryBucket <= usableFundsInCurrentBucket);
   }
 
-  function safeAdd(uint128 a, uint128 b) internal pure returns (uint128) {
+  function safeAdd(uint128 a, uint128 b) internal pure returns(uint128) {
     uint128 r = a + b;
     assert(r >= a);
     return r;
   }
 
-  function safeSub(uint128 a, uint128 b) internal pure returns (uint128) {
+  function safeSub(uint128 a, uint128 b) internal pure returns(uint128) {
     assert(a >= b);
     return a - b;
   }
 
-  function safeMulDiv(uint128 a, uint128 b, uint128 c) internal pure returns (uint128) {
+  function safeMulDiv(uint128 a, uint128 b, uint128 c) internal pure returns(
+    uint128
+  ) {
     assert(c > 0);
     uint256 wa = a;
     uint256 wb = b;
@@ -204,7 +207,11 @@ contract Accounting is IAccounting {
     return result128;
   }
 
-  function safeMulDivExact(uint128 a, uint128 b, uint128 c) internal pure returns (uint128) {
+  function safeMulDivExact(
+    uint128 a,
+    uint128 b,
+    uint128 c
+  ) internal pure returns(uint128) {
     assert(c > 0);
     uint256 wa = a;
     uint256 wb = b;
@@ -227,7 +234,10 @@ contract Accounting is IAccounting {
    */
   function calculateProceeds(
     address contributor
-  ) external afterFinalizationOnly view returns (uint128 rep, uint128 disputeTokens) {
+  ) external view afterFinalizationOnly returns(
+    uint128 rep,
+    uint128 disputeTokens
+  ) {
     uint128 contributorFeeNumerator = m_feeNumeratorPerContributor[contributor];
     uint128 originalContributionOfContributor = m_contributionPerContributor[contributor];
 
@@ -286,7 +296,9 @@ contract Accounting is IAccounting {
    *
    * In case of partial fill, we round down, leaving some dust in the contract.
    */
-  function calculateFees() external afterFinalizationOnly view returns (uint128) {
+  function calculateFees() external view afterFinalizationOnly returns(
+    uint128
+  ) {
     return safeMulDiv(m_fundsUsed, m_boundaryFeeNumerator, FEE_DENOMINATOR);
   }
 }

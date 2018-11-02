@@ -9,7 +9,7 @@ contract MockCrowdsourcerParent is ICrowdsourcerParent {
     m_feeRecipient = feeRecepient;
   }
 
-  function getContractFeeReceiver() external view returns (address) {
+  function getContractFeeReceiver() external view returns(address) {
     return m_feeRecipient;
   }
 }

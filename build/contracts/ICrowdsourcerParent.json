@@ -20,7 +20,7 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.4.24;\n\n/**\n * Parent of a crowdsourcer that is passed into it on construction. Used\n * to determine destination for fees.\n */\ninterface ICrowdsourcerParent {\n  function getContractFeeReceiver() external view returns (address);\n}\n",
+  "source": "pragma solidity 0.4.24;\n\n/**\n * Parent of a crowdsourcer that is passed into it on construction. Used\n * to determine destination for fees.\n */\ninterface ICrowdsourcerParent {\n  function getContractFeeReceiver() external view returns(address);\n}\n",
   "sourcePath": "/src/contracts/ICrowdsourcerParent.sol",
   "ast": {
     "absolutePath": "/src/contracts/ICrowdsourcerParent.sol",
@@ -82,7 +82,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 2480,
-                  "src": "235:7:11",
+                  "src": "234:7:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -93,7 +93,7 @@
                     "id": 2477,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "235:7:11",
+                    "src": "234:7:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -103,20 +103,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "234:9:11"
+              "src": "233:9:11"
             },
             "scope": 2481,
-            "src": "178:66:11",
+            "src": "178:65:11",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 2482,
-        "src": "144:102:11"
+        "src": "144:101:11"
       }
     ],
-    "src": "0:247:11"
+    "src": "0:246:11"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/ICrowdsourcerParent.sol",
@@ -178,7 +178,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 2480,
-                  "src": "235:7:11",
+                  "src": "234:7:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -189,7 +189,7 @@
                     "id": 2477,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "235:7:11",
+                    "src": "234:7:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -199,20 +199,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "234:9:11"
+              "src": "233:9:11"
             },
             "scope": 2481,
-            "src": "178:66:11",
+            "src": "178:65:11",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 2482,
-        "src": "144:102:11"
+        "src": "144:101:11"
       }
     ],
-    "src": "0:247:11"
+    "src": "0:246:11"
   },
   "compiler": {
     "name": "solc",
@@ -220,5 +220,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-02T01:40:36.566Z"
+  "updatedAt": "2018-11-02T02:08:45.559Z"
 }

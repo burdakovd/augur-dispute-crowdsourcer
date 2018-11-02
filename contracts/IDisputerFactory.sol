@@ -4,7 +4,7 @@ import "./IDisputer.sol";
 import "./augur/market.sol";
 
 interface IDisputerFactory {
-  event DisputerCreated (
+  event DisputerCreated(
     address _owner,
     IDisputer _address,
     Market market,
@@ -19,5 +19,5 @@ interface IDisputerFactory {
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) external returns (IDisputer);
+  ) external returns(IDisputer);
 }

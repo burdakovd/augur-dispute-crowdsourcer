@@ -78,7 +78,7 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.4.24;\n\nimport \"./IDisputer.sol\";\nimport \"./augur/market.sol\";\n\ninterface IDisputerFactory {\n  event DisputerCreated (\n    address _owner,\n    IDisputer _address,\n    Market market,\n    uint256 feeWindowId,\n    uint256[] payoutNumerators,\n    bool invalid\n  );\n\n  function create(\n    address owner,\n    Market market,\n    uint256 feeWindowId,\n    uint256[] payoutNumerators,\n    bool invalid\n  ) external returns (IDisputer);\n}\n",
+  "source": "pragma solidity 0.4.24;\n\nimport \"./IDisputer.sol\";\nimport \"./augur/market.sol\";\n\ninterface IDisputerFactory {\n  event DisputerCreated(\n    address _owner,\n    IDisputer _address,\n    Market market,\n    uint256 feeWindowId,\n    uint256[] payoutNumerators,\n    bool invalid\n  );\n\n  function create(\n    address owner,\n    Market market,\n    uint256 feeWindowId,\n    uint256[] payoutNumerators,\n    bool invalid\n  ) external returns(IDisputer);\n}\n",
   "sourcePath": "/src/contracts/IDisputerFactory.sol",
   "ast": {
     "absolutePath": "/src/contracts/IDisputerFactory.sol",
@@ -117,7 +117,7 @@
         "id": 2522,
         "nodeType": "ImportDirective",
         "scope": 2555,
-        "sourceUnit": 2693,
+        "sourceUnit": 2636,
         "src": "51:28:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -152,7 +152,7 @@
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "140:14:13",
+                  "src": "139:14:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -163,7 +163,7 @@
                     "id": 2523,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "140:7:13",
+                    "src": "139:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -179,7 +179,7 @@
                   "name": "_address",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "160:18:13",
+                  "src": "159:18:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -192,7 +192,7 @@
                     "name": "IDisputer",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 2518,
-                    "src": "160:9:13",
+                    "src": "159:9:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_IDisputer_$2518",
                       "typeString": "contract IDisputer"
@@ -208,11 +208,11 @@
                   "name": "market",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "184:13:13",
+                  "src": "183:13:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Market_$2692",
+                    "typeIdentifier": "t_contract$_Market_$2635",
                     "typeString": "contract Market"
                   },
                   "typeName": {
@@ -220,10 +220,10 @@
                     "id": 2527,
                     "name": "Market",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2692,
-                    "src": "184:6:13",
+                    "referencedDeclaration": 2635,
+                    "src": "183:6:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Market_$2692",
+                      "typeIdentifier": "t_contract$_Market_$2635",
                       "typeString": "contract Market"
                     }
                   },
@@ -237,7 +237,7 @@
                   "name": "feeWindowId",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "203:19:13",
+                  "src": "202:19:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -248,7 +248,7 @@
                     "id": 2529,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "203:7:13",
+                    "src": "202:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -264,7 +264,7 @@
                   "name": "payoutNumerators",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "228:26:13",
+                  "src": "227:26:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -276,7 +276,7 @@
                       "id": 2531,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "228:7:13",
+                      "src": "227:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -285,7 +285,7 @@
                     "id": 2532,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "228:9:13",
+                    "src": "227:9:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -301,7 +301,7 @@
                   "name": "invalid",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "260:12:13",
+                  "src": "259:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -312,7 +312,7 @@
                     "id": 2534,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "260:4:13",
+                    "src": "259:4:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -322,9 +322,9 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "134:142:13"
+              "src": "133:142:13"
             },
-            "src": "112:165:13"
+            "src": "112:164:13"
           },
           {
             "body": null,
@@ -346,7 +346,7 @@
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "302:13:13",
+                  "src": "301:13:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -357,7 +357,7 @@
                     "id": 2538,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "302:7:13",
+                    "src": "301:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -372,11 +372,11 @@
                   "name": "market",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "321:13:13",
+                  "src": "320:13:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Market_$2692",
+                    "typeIdentifier": "t_contract$_Market_$2635",
                     "typeString": "contract Market"
                   },
                   "typeName": {
@@ -384,10 +384,10 @@
                     "id": 2540,
                     "name": "Market",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2692,
-                    "src": "321:6:13",
+                    "referencedDeclaration": 2635,
+                    "src": "320:6:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Market_$2692",
+                      "typeIdentifier": "t_contract$_Market_$2635",
                       "typeString": "contract Market"
                     }
                   },
@@ -400,7 +400,7 @@
                   "name": "feeWindowId",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "340:19:13",
+                  "src": "339:19:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -411,7 +411,7 @@
                     "id": 2542,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "340:7:13",
+                    "src": "339:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -426,7 +426,7 @@
                   "name": "payoutNumerators",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "365:26:13",
+                  "src": "364:26:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -438,7 +438,7 @@
                       "id": 2544,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "365:7:13",
+                      "src": "364:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -447,7 +447,7 @@
                     "id": 2545,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "365:9:13",
+                    "src": "364:9:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -462,7 +462,7 @@
                   "name": "invalid",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "397:12:13",
+                  "src": "396:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -473,7 +473,7 @@
                     "id": 2547,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "397:4:13",
+                    "src": "396:4:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -483,7 +483,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "296:117:13"
+              "src": "295:117:13"
             },
             "payable": false,
             "returnParameters": {
@@ -496,7 +496,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "432:9:13",
+                  "src": "430:9:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -509,7 +509,7 @@
                     "name": "IDisputer",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 2518,
-                    "src": "432:9:13",
+                    "src": "430:9:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_IDisputer_$2518",
                       "typeString": "contract IDisputer"
@@ -519,20 +519,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "431:11:13"
+              "src": "429:11:13"
             },
             "scope": 2554,
-            "src": "281:162:13",
+            "src": "280:161:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 2555,
-        "src": "81:364:13"
+        "src": "81:362:13"
       }
     ],
-    "src": "0:446:13"
+    "src": "0:444:13"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/IDisputerFactory.sol",
@@ -571,7 +571,7 @@
         "id": 2522,
         "nodeType": "ImportDirective",
         "scope": 2555,
-        "sourceUnit": 2693,
+        "sourceUnit": 2636,
         "src": "51:28:13",
         "symbolAliases": [],
         "unitAlias": ""
@@ -606,7 +606,7 @@
                   "name": "_owner",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "140:14:13",
+                  "src": "139:14:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -617,7 +617,7 @@
                     "id": 2523,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "140:7:13",
+                    "src": "139:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -633,7 +633,7 @@
                   "name": "_address",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "160:18:13",
+                  "src": "159:18:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -646,7 +646,7 @@
                     "name": "IDisputer",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 2518,
-                    "src": "160:9:13",
+                    "src": "159:9:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_IDisputer_$2518",
                       "typeString": "contract IDisputer"
@@ -662,11 +662,11 @@
                   "name": "market",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "184:13:13",
+                  "src": "183:13:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Market_$2692",
+                    "typeIdentifier": "t_contract$_Market_$2635",
                     "typeString": "contract Market"
                   },
                   "typeName": {
@@ -674,10 +674,10 @@
                     "id": 2527,
                     "name": "Market",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2692,
-                    "src": "184:6:13",
+                    "referencedDeclaration": 2635,
+                    "src": "183:6:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Market_$2692",
+                      "typeIdentifier": "t_contract$_Market_$2635",
                       "typeString": "contract Market"
                     }
                   },
@@ -691,7 +691,7 @@
                   "name": "feeWindowId",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "203:19:13",
+                  "src": "202:19:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -702,7 +702,7 @@
                     "id": 2529,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "203:7:13",
+                    "src": "202:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -718,7 +718,7 @@
                   "name": "payoutNumerators",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "228:26:13",
+                  "src": "227:26:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -730,7 +730,7 @@
                       "id": 2531,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "228:7:13",
+                      "src": "227:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -739,7 +739,7 @@
                     "id": 2532,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "228:9:13",
+                    "src": "227:9:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -755,7 +755,7 @@
                   "name": "invalid",
                   "nodeType": "VariableDeclaration",
                   "scope": 2537,
-                  "src": "260:12:13",
+                  "src": "259:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -766,7 +766,7 @@
                     "id": 2534,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "260:4:13",
+                    "src": "259:4:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -776,9 +776,9 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "134:142:13"
+              "src": "133:142:13"
             },
-            "src": "112:165:13"
+            "src": "112:164:13"
           },
           {
             "body": null,
@@ -800,7 +800,7 @@
                   "name": "owner",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "302:13:13",
+                  "src": "301:13:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -811,7 +811,7 @@
                     "id": 2538,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "302:7:13",
+                    "src": "301:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -826,11 +826,11 @@
                   "name": "market",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "321:13:13",
+                  "src": "320:13:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Market_$2692",
+                    "typeIdentifier": "t_contract$_Market_$2635",
                     "typeString": "contract Market"
                   },
                   "typeName": {
@@ -838,10 +838,10 @@
                     "id": 2540,
                     "name": "Market",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2692,
-                    "src": "321:6:13",
+                    "referencedDeclaration": 2635,
+                    "src": "320:6:13",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Market_$2692",
+                      "typeIdentifier": "t_contract$_Market_$2635",
                       "typeString": "contract Market"
                     }
                   },
@@ -854,7 +854,7 @@
                   "name": "feeWindowId",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "340:19:13",
+                  "src": "339:19:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -865,7 +865,7 @@
                     "id": 2542,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "340:7:13",
+                    "src": "339:7:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -880,7 +880,7 @@
                   "name": "payoutNumerators",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "365:26:13",
+                  "src": "364:26:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -892,7 +892,7 @@
                       "id": 2544,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "365:7:13",
+                      "src": "364:7:13",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -901,7 +901,7 @@
                     "id": 2545,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "365:9:13",
+                    "src": "364:9:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -916,7 +916,7 @@
                   "name": "invalid",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "397:12:13",
+                  "src": "396:12:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -927,7 +927,7 @@
                     "id": 2547,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "397:4:13",
+                    "src": "396:4:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -937,7 +937,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "296:117:13"
+              "src": "295:117:13"
             },
             "payable": false,
             "returnParameters": {
@@ -950,7 +950,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 2553,
-                  "src": "432:9:13",
+                  "src": "430:9:13",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -963,7 +963,7 @@
                     "name": "IDisputer",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 2518,
-                    "src": "432:9:13",
+                    "src": "430:9:13",
                     "typeDescriptions": {
                       "typeIdentifier": "t_contract$_IDisputer_$2518",
                       "typeString": "contract IDisputer"
@@ -973,20 +973,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "431:11:13"
+              "src": "429:11:13"
             },
             "scope": 2554,
-            "src": "281:162:13",
+            "src": "280:161:13",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
         "scope": 2555,
-        "src": "81:364:13"
+        "src": "81:362:13"
       }
     ],
-    "src": "0:446:13"
+    "src": "0:444:13"
   },
   "compiler": {
     "name": "solc",
@@ -994,5 +994,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-02T01:40:36.566Z"
+  "updatedAt": "2018-11-02T02:08:45.560Z"
 }

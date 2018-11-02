@@ -5,5 +5,5 @@ pragma solidity 0.4.24;
  * to determine destination for fees.
  */
 interface ICrowdsourcerParent {
-  function getContractFeeReceiver() external view returns (address);
+  function getContractFeeReceiver() external view returns(address);
 }

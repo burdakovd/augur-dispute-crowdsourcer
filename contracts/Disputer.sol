@@ -43,7 +43,7 @@ contract Disputer is BaseDisputer {
     processCumulativeRounds();
   }
 
-  function inferRoundNumber() public view returns (uint256) {
+  function inferRoundNumber() public view returns(uint256) {
     Market market = m_params.market;
     Universe universe = market.getUniverse();
     require(!universe.isForking());
@@ -70,12 +70,10 @@ contract Disputer is BaseDisputer {
     require(!market.isFinalized());
     uint256 numParticipants = market.getNumParticipants();
 
-    while (
-      m_cumulativeRoundsProcessed < numParticipants &&
-        m_cumulativeRoundsProcessed < m_roundNumber
-    ) {
-      ReportingParticipant participant =
-        market.getReportingParticipant(m_cumulativeRoundsProcessed);
+    while (m_cumulativeRoundsProcessed < numParticipants && m_cumulativeRoundsProcessed < m_roundNumber) {
+      ReportingParticipant participant = market.getReportingParticipant(
+        m_cumulativeRoundsProcessed
+      );
       uint256 stake = participant.getStake();
       m_cumulativeDisputeStake += stake;
       if (participant.getPayoutDistributionHash() == m_payoutDistributionHash) {
@@ -85,12 +83,11 @@ contract Disputer is BaseDisputer {
     }
   }
 
-  function shouldProcessCumulativeRounds() public view returns (bool) {
+  function shouldProcessCumulativeRounds() public view returns(bool) {
     Market market = m_params.market;
     require(!market.isFinalized());
     uint256 numParticipants = market.getNumParticipants();
-    return m_cumulativeRoundsProcessed < m_roundNumber &&
-      m_cumulativeRoundsProcessed < numParticipants;
+    return m_cumulativeRoundsProcessed < m_roundNumber && m_cumulativeRoundsProcessed < numParticipants;
   }
 
   function preDisputeCheck() internal {
@@ -104,7 +101,7 @@ contract Disputer is BaseDisputer {
    *
    * Can only be called once.
    */
-  function disputeImpl() internal returns (IERC20) {
+  function disputeImpl() internal returns(IERC20) {
     if (m_cumulativeRoundsProcessed < m_roundNumber) {
       // hopefully we won't need it, we should prepare contract a few days
       // before time T
@@ -114,15 +111,14 @@ contract Disputer is BaseDisputer {
     Market market = m_params.market;
 
     // don't waste gas on safe math
-    uint256 roundSizeMinusOne = 2 * m_cumulativeDisputeStake -
-      3 * m_cumulativeDisputeStakeInOurOutcome - 1;
+    uint256 roundSizeMinusOne = 2 * m_cumulativeDisputeStake - 3 * m_cumulativeDisputeStakeInOurOutcome - 1;
 
     ReportingParticipant crowdsourcerBefore = market.getCrowdsourcer(
       m_payoutDistributionHash
     );
-    uint256 alreadyContributed = address(crowdsourcerBefore) == 0
-      ? 0
-      : crowdsourcerBefore.getStake();
+    uint256 alreadyContributed = address(
+      crowdsourcerBefore
+    ) == 0 ? 0 : crowdsourcerBefore.getStake();
 
     require(alreadyContributed < roundSizeMinusOne, "We are too late");
 
@@ -139,7 +135,9 @@ contract Disputer is BaseDisputer {
       return market.getCrowdsourcer(m_payoutDistributionHash);
     } else {
       // We somehow overfilled the round. This sucks, but let's try to recover.
-      ReportingParticipant participant = market.getWinningReportingParticipant();
+      ReportingParticipant participant = market.getWinningReportingParticipant(
+
+      );
       require(
         participant.getPayoutDistributionHash() == m_payoutDistributionHash,
         "Wrong winning participant?"
@@ -148,7 +146,7 @@ contract Disputer is BaseDisputer {
     }
   }
 
-  function getREPImpl() internal view returns (IERC20) {
+  function getREPImpl() internal view returns(IERC20) {
     return m_params.market.getReputationToken();
   }
 }
