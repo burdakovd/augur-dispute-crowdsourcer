@@ -111,7 +111,7 @@ contract("MockDisputer", accounts => {
 
     await expect(
       disputer.dispute(Alice).then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(1400027);
+    ).resolves.toBe(1400093);
 
     const disputeToken = await disputer
       .getDisputeTokenAddress()

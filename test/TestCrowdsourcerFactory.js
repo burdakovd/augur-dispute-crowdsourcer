@@ -208,6 +208,6 @@ contract("CrowdsourcerFactory", accounts => {
       [5000, 5000],
       true
     );
-    expect(receipt.receipt.gasUsed).toBe(4117976);
+    expect(receipt.receipt.gasUsed).toBe(4184546);
   });
 });
