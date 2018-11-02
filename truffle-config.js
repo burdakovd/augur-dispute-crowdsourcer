@@ -26,12 +26,12 @@ require("babel-register");
 require("babel-polyfill");
 
 const fs = require("fs");
-const HDWallet = require("truffle-hdwallet-provider");
+const HDWalletProvider = require("truffle-hdwallet-provider-privkey");
 // const infuraKey = "fj4jll3k.....";
 //
 const mnemonic = () =>
   fs
-    .readFileSync(".secret")
+    .readFileSync("/src/.secret")
     .toString()
     .trim();
 
@@ -83,7 +83,7 @@ module.exports = {
     rinkeby: {
       provider: function() {
         return new HDWalletProvider(
-          mnemonic(),
+          [mnemonic()],
           "https://rinkeby.infura.io/augur"
         );
       },
