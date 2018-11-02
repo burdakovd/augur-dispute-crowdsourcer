@@ -1,5 +1,6 @@
 import expect from "expect";
 import invariant from "invariant";
+import expectGas from "./expectGas";
 
 /**
  * We can't rest real disputer easily as it requires deploying all Augur
@@ -109,7 +110,7 @@ contract("MockDisputer", accounts => {
       rep.balanceOf(disputer.address).then(s => s.toNumber())
     ).resolves.toBe(80);
 
-    await expect(
+    await expectGas(
       disputer.dispute(Alice).then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(1400093);
 

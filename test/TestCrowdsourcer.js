@@ -3,6 +3,7 @@ import expect from "expect";
 import web3 from "web3";
 import Prando from "prando";
 import getPayoutScenarioTests from "./scenarios";
+import expectGas from "./expectGas";
 
 const AccountingFactory = artifacts.require("AccountingFactory");
 const Crowdsourcer = artifacts.require("Crowdsourcer");
@@ -127,7 +128,7 @@ contract("Crowdsourcer", accounts => {
       from: MartinREPHolder
     });
 
-    await expect(
+    await expectGas(
       instance
         .contribute(3000, 42, { from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
@@ -149,7 +150,7 @@ contract("Crowdsourcer", accounts => {
         .then(n => n.toNumber())
     ).resolves.toEqual(3000);
 
-    await expect(
+    await expectGas(
       instance
         .withdrawContribution({ from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
@@ -288,7 +289,7 @@ contract("Crowdsourcer", accounts => {
     await expect(instance.hasDisputed()).resolves.toEqual(true);
     await expect(instance.isFinalized()).resolves.toEqual(false);
 
-    await expect(
+    await expectGas(
       instance.finalize().then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(727626);
 
@@ -341,7 +342,7 @@ contract("Crowdsourcer", accounts => {
 
     await IDisputer.at(disputer).dispute(Alice);
     await instance.finalize();
-    await expect(
+    await expectGas(
       instance.withdrawFees().then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(89034);
   });
@@ -352,7 +353,7 @@ contract("Crowdsourcer", accounts => {
 
     await IDisputer.at(disputer).dispute(Alice);
     await instance.finalize();
-    await expect(
+    await expectGas(
       instance.withdrawProceeds(Alice).then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(88348);
   });

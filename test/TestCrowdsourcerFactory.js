@@ -1,4 +1,5 @@
 import expect from "expect";
+import expectGas from "./expectGas";
 
 const ICrowdsourcer = artifacts.require("ICrowdsourcer");
 const Crowdsourcer = artifacts.require("Crowdsourcer");
@@ -144,7 +145,7 @@ contract("CrowdsourcerFactory", accounts => {
         .m_disputerParams()
         .then(a => a.map(e => e.toString()))
     ).resolves.toEqual([
-      "0xf17f52151ebef6c7334fad080c5704d77216b732",
+      Alice,
       "566",
       // somehow Truffle loses array here :(
       "true"
@@ -177,15 +178,14 @@ contract("CrowdsourcerFactory", accounts => {
 
   it("can create and initialize crowdsourcer - out of gas", async () => {
     const factory = await create_test_factory();
-    await expect(
-      factory.getInitializedCrowdsourcer(Alice, 0, [], false)
-    ).rejects.toThrow("VM Exception while processing transaction: revert");
+    // not sending tx as it is a lot of gas
+    await factory.getInitializedCrowdsourcer.call(Alice, 0, [], false);
   });
 
   it("cost of creating simple crowdsourcer", async () => {
     const factory = await create_test_factory();
     const receipt = await factory.getCrowdsourcer(Alice, 0, [5000, 5000], true);
-    expect(receipt.receipt.gasUsed).toBe(3070414);
+    expectGas(receipt.receipt.gasUsed).toBe(3070414);
   });
 
   it("cost of creating bigger crowdsourcer", async () => {
@@ -196,7 +196,7 @@ contract("CrowdsourcerFactory", accounts => {
       [1, 2, 3, 4, 5, 6, 7, 8],
       false
     );
-    expect(receipt.receipt.gasUsed).toBe(3195469);
+    expectGas(receipt.receipt.gasUsed).toBe(3195469);
   });
 
   it("cost of initializing crowdsourcer", async () => {
@@ -208,6 +208,6 @@ contract("CrowdsourcerFactory", accounts => {
       [5000, 5000],
       true
     );
-    expect(receipt.receipt.gasUsed).toBe(4184546);
+    expectGas(receipt.receipt.gasUsed).toBe(4184546);
   });
 });
