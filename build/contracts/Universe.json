@@ -34,37 +34,36 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.24;\n\nimport \"./feeWindow.sol\";\n\ninterface Universe {\n  function getDisputeRoundDurationInSeconds() external view returns (uint256);\n  function isForking() external view returns (bool);\n}\n",
+  "source": "pragma solidity 0.4.24;\n\nimport \"./feeWindow.sol\";\n\ninterface Universe {\n  function getDisputeRoundDurationInSeconds() external view returns (uint256);\n  function isForking() external view returns (bool);\n}\n",
   "sourcePath": "/src/contracts/augur/universe.sol",
   "ast": {
     "absolutePath": "/src/contracts/augur/universe.sol",
     "exportedSymbols": {
       "Universe": [
-        1963
+        2680
       ]
     },
-    "id": 1964,
+    "id": 2681,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1951,
+        "id": 2668,
         "literals": [
           "solidity",
-          "^",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:14"
+        "src": "0:23:18"
       },
       {
         "absolutePath": "/src/contracts/augur/feeWindow.sol",
         "file": "./feeWindow.sol",
-        "id": 1952,
+        "id": 2669,
         "nodeType": "ImportDirective",
-        "scope": 1964,
-        "sourceUnit": 1861,
-        "src": "26:25:14",
+        "scope": 2681,
+        "sourceUnit": 2578,
+        "src": "25:25:18",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -74,9 +73,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1963,
+        "id": 2680,
         "linearizedBaseContracts": [
-          1963
+          2680
         ],
         "name": "Universe",
         "nodeType": "ContractDefinition",
@@ -84,7 +83,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1957,
+            "id": 2674,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -92,23 +91,23 @@
             "name": "getDisputeRoundDurationInSeconds",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1953,
+              "id": 2670,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "117:2:14"
+              "src": "116:2:18"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1956,
+              "id": 2673,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1955,
+                  "id": 2672,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1957,
-                  "src": "143:7:14",
+                  "scope": 2674,
+                  "src": "142:7:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -116,10 +115,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1954,
+                    "id": 2671,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "143:7:14",
+                    "src": "142:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -129,10 +128,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "142:9:14"
+              "src": "141:9:18"
             },
-            "scope": 1963,
-            "src": "76:76:14",
+            "scope": 2680,
+            "src": "75:76:18",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -140,7 +139,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1962,
+            "id": 2679,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -148,23 +147,23 @@
             "name": "isForking",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1958,
+              "id": 2675,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "173:2:14"
+              "src": "172:2:18"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1961,
+              "id": 2678,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1960,
+                  "id": 2677,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1962,
-                  "src": "199:4:14",
+                  "scope": 2679,
+                  "src": "198:4:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -172,10 +171,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1959,
+                    "id": 2676,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "199:4:14",
+                    "src": "198:4:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -185,50 +184,49 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "198:6:14"
+              "src": "197:6:18"
             },
-            "scope": 1963,
-            "src": "155:50:14",
+            "scope": 2680,
+            "src": "154:50:18",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1964,
-        "src": "53:154:14"
+        "scope": 2681,
+        "src": "52:154:18"
       }
     ],
-    "src": "0:208:14"
+    "src": "0:207:18"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/augur/universe.sol",
     "exportedSymbols": {
       "Universe": [
-        1963
+        2680
       ]
     },
-    "id": 1964,
+    "id": 2681,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1951,
+        "id": 2668,
         "literals": [
           "solidity",
-          "^",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:14"
+        "src": "0:23:18"
       },
       {
         "absolutePath": "/src/contracts/augur/feeWindow.sol",
         "file": "./feeWindow.sol",
-        "id": 1952,
+        "id": 2669,
         "nodeType": "ImportDirective",
-        "scope": 1964,
-        "sourceUnit": 1861,
-        "src": "26:25:14",
+        "scope": 2681,
+        "sourceUnit": 2578,
+        "src": "25:25:18",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -238,9 +236,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1963,
+        "id": 2680,
         "linearizedBaseContracts": [
-          1963
+          2680
         ],
         "name": "Universe",
         "nodeType": "ContractDefinition",
@@ -248,7 +246,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1957,
+            "id": 2674,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -256,23 +254,23 @@
             "name": "getDisputeRoundDurationInSeconds",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1953,
+              "id": 2670,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "117:2:14"
+              "src": "116:2:18"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1956,
+              "id": 2673,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1955,
+                  "id": 2672,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1957,
-                  "src": "143:7:14",
+                  "scope": 2674,
+                  "src": "142:7:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -280,10 +278,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1954,
+                    "id": 2671,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "143:7:14",
+                    "src": "142:7:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -293,10 +291,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "142:9:14"
+              "src": "141:9:18"
             },
-            "scope": 1963,
-            "src": "76:76:14",
+            "scope": 2680,
+            "src": "75:76:18",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -304,7 +302,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1962,
+            "id": 2679,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -312,23 +310,23 @@
             "name": "isForking",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1958,
+              "id": 2675,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "173:2:14"
+              "src": "172:2:18"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1961,
+              "id": 2678,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1960,
+                  "id": 2677,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1962,
-                  "src": "199:4:14",
+                  "scope": 2679,
+                  "src": "198:4:18",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -336,10 +334,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1959,
+                    "id": 2676,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "199:4:14",
+                    "src": "198:4:18",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -349,20 +347,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "198:6:14"
+              "src": "197:6:18"
             },
-            "scope": 1963,
-            "src": "155:50:14",
+            "scope": 2680,
+            "src": "154:50:18",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1964,
-        "src": "53:154:14"
+        "scope": 2681,
+        "src": "52:154:18"
       }
     ],
-    "src": "0:208:14"
+    "src": "0:207:18"
   },
   "compiler": {
     "name": "solc",
@@ -370,5 +368,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-01T23:53:21.607Z"
+  "updatedAt": "2018-11-02T01:37:39.862Z"
 }

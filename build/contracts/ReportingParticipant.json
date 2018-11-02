@@ -207,37 +207,36 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.24;\n\nimport \"openzeppelin-solidity/contracts/token/ERC20/IERC20.sol\";\n\n/**\n * This should've been an interface, but interfaces cannot inherit interfaces\n */\ncontract ReportingParticipant is IERC20 {\n  function getStake() external view returns (uint256);\n  function getPayoutDistributionHash() external view returns (bytes32);\n}\n",
+  "source": "pragma solidity 0.4.24;\n\nimport \"openzeppelin-solidity/contracts/token/ERC20/IERC20.sol\";\n\n/**\n * This should've been an interface, but interfaces cannot inherit interfaces\n */\ncontract ReportingParticipant is IERC20 {\n  function getStake() external view returns (uint256);\n  function getPayoutDistributionHash() external view returns (bytes32);\n}\n",
   "sourcePath": "/src/contracts/augur/reportingParticipant.sol",
   "ast": {
     "absolutePath": "/src/contracts/augur/reportingParticipant.sol",
     "exportedSymbols": {
       "ReportingParticipant": [
-        1949
+        2666
       ]
     },
-    "id": 1950,
+    "id": 2667,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1935,
+        "id": 2652,
         "literals": [
           "solidity",
-          "^",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:13"
+        "src": "0:23:17"
       },
       {
         "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
         "file": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
-        "id": 1936,
+        "id": 2653,
         "nodeType": "ImportDirective",
-        "scope": 1950,
-        "sourceUnit": 2054,
-        "src": "26:64:13",
+        "scope": 2667,
+        "sourceUnit": 3863,
+        "src": "25:64:17",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -247,31 +246,31 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1937,
+              "id": 2654,
               "name": "IERC20",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2053,
-              "src": "211:6:13",
+              "referencedDeclaration": 3862,
+              "src": "210:6:17",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC20_$2053",
+                "typeIdentifier": "t_contract$_IERC20_$3862",
                 "typeString": "contract IERC20"
               }
             },
-            "id": 1938,
+            "id": 2655,
             "nodeType": "InheritanceSpecifier",
-            "src": "211:6:13"
+            "src": "210:6:17"
           }
         ],
         "contractDependencies": [
-          2053
+          3862
         ],
         "contractKind": "contract",
         "documentation": "This should've been an interface, but interfaces cannot inherit interfaces",
         "fullyImplemented": false,
-        "id": 1949,
+        "id": 2666,
         "linearizedBaseContracts": [
-          1949,
-          2053
+          2666,
+          3862
         ],
         "name": "ReportingParticipant",
         "nodeType": "ContractDefinition",
@@ -279,7 +278,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1943,
+            "id": 2660,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -287,23 +286,23 @@
             "name": "getStake",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1939,
+              "id": 2656,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "239:2:13"
+              "src": "238:2:17"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1942,
+              "id": 2659,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1941,
+                  "id": 2658,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1943,
-                  "src": "265:7:13",
+                  "scope": 2660,
+                  "src": "264:7:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -311,10 +310,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1940,
+                    "id": 2657,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "265:7:13",
+                    "src": "264:7:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -324,10 +323,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "264:9:13"
+              "src": "263:9:17"
             },
-            "scope": 1949,
-            "src": "222:52:13",
+            "scope": 2666,
+            "src": "221:52:17",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -335,7 +334,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1948,
+            "id": 2665,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -343,23 +342,23 @@
             "name": "getPayoutDistributionHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1944,
+              "id": 2661,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "311:2:13"
+              "src": "310:2:17"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1947,
+              "id": 2664,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1946,
+                  "id": 2663,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1948,
-                  "src": "337:7:13",
+                  "scope": 2665,
+                  "src": "336:7:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -367,10 +366,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1945,
+                    "id": 2662,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "337:7:13",
+                    "src": "336:7:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -380,50 +379,49 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "336:9:13"
+              "src": "335:9:17"
             },
-            "scope": 1949,
-            "src": "277:69:13",
+            "scope": 2666,
+            "src": "276:69:17",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1950,
-        "src": "178:170:13"
+        "scope": 2667,
+        "src": "177:170:17"
       }
     ],
-    "src": "0:349:13"
+    "src": "0:348:17"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/augur/reportingParticipant.sol",
     "exportedSymbols": {
       "ReportingParticipant": [
-        1949
+        2666
       ]
     },
-    "id": 1950,
+    "id": 2667,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1935,
+        "id": 2652,
         "literals": [
           "solidity",
-          "^",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:13"
+        "src": "0:23:17"
       },
       {
         "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
         "file": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
-        "id": 1936,
+        "id": 2653,
         "nodeType": "ImportDirective",
-        "scope": 1950,
-        "sourceUnit": 2054,
-        "src": "26:64:13",
+        "scope": 2667,
+        "sourceUnit": 3863,
+        "src": "25:64:17",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -433,31 +431,31 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1937,
+              "id": 2654,
               "name": "IERC20",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2053,
-              "src": "211:6:13",
+              "referencedDeclaration": 3862,
+              "src": "210:6:17",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_IERC20_$2053",
+                "typeIdentifier": "t_contract$_IERC20_$3862",
                 "typeString": "contract IERC20"
               }
             },
-            "id": 1938,
+            "id": 2655,
             "nodeType": "InheritanceSpecifier",
-            "src": "211:6:13"
+            "src": "210:6:17"
           }
         ],
         "contractDependencies": [
-          2053
+          3862
         ],
         "contractKind": "contract",
         "documentation": "This should've been an interface, but interfaces cannot inherit interfaces",
         "fullyImplemented": false,
-        "id": 1949,
+        "id": 2666,
         "linearizedBaseContracts": [
-          1949,
-          2053
+          2666,
+          3862
         ],
         "name": "ReportingParticipant",
         "nodeType": "ContractDefinition",
@@ -465,7 +463,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1943,
+            "id": 2660,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -473,23 +471,23 @@
             "name": "getStake",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1939,
+              "id": 2656,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "239:2:13"
+              "src": "238:2:17"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1942,
+              "id": 2659,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1941,
+                  "id": 2658,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1943,
-                  "src": "265:7:13",
+                  "scope": 2660,
+                  "src": "264:7:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -497,10 +495,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1940,
+                    "id": 2657,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "265:7:13",
+                    "src": "264:7:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -510,10 +508,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "264:9:13"
+              "src": "263:9:17"
             },
-            "scope": 1949,
-            "src": "222:52:13",
+            "scope": 2666,
+            "src": "221:52:17",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -521,7 +519,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1948,
+            "id": 2665,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -529,23 +527,23 @@
             "name": "getPayoutDistributionHash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1944,
+              "id": 2661,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "311:2:13"
+              "src": "310:2:17"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1947,
+              "id": 2664,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1946,
+                  "id": 2663,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1948,
-                  "src": "337:7:13",
+                  "scope": 2665,
+                  "src": "336:7:17",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -553,10 +551,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1945,
+                    "id": 2662,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "337:7:13",
+                    "src": "336:7:17",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -566,20 +564,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "336:9:13"
+              "src": "335:9:17"
             },
-            "scope": 1949,
-            "src": "277:69:13",
+            "scope": 2666,
+            "src": "276:69:17",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1950,
-        "src": "178:170:13"
+        "scope": 2667,
+        "src": "177:170:17"
       }
     ],
-    "src": "0:349:13"
+    "src": "0:348:17"
   },
   "compiler": {
     "name": "solc",
@@ -587,5 +585,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-01T23:53:21.606Z"
+  "updatedAt": "2018-11-02T01:37:39.862Z"
 }

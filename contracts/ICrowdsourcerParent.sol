@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity 0.4.24;
 
 /**
  * Parent of a crowdsourcer that is passed into it on construction. Used

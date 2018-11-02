@@ -20,28 +20,27 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.24;\n\n/**\n * Parent of a crowdsourcer that is passed into it on construction. Used\n * to determine destination for fees.\n */\ninterface ICrowdsourcerParent {\n  function getContractFeeReceiver() external view returns (address);\n}\n",
+  "source": "pragma solidity 0.4.24;\n\n/**\n * Parent of a crowdsourcer that is passed into it on construction. Used\n * to determine destination for fees.\n */\ninterface ICrowdsourcerParent {\n  function getContractFeeReceiver() external view returns (address);\n}\n",
   "sourcePath": "/src/contracts/ICrowdsourcerParent.sol",
   "ast": {
     "absolutePath": "/src/contracts/ICrowdsourcerParent.sol",
     "exportedSymbols": {
       "ICrowdsourcerParent": [
-        1779
+        2481
       ]
     },
-    "id": 1780,
+    "id": 2482,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1773,
+        "id": 2475,
         "literals": [
           "solidity",
-          "^",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:8"
+        "src": "0:23:11"
       },
       {
         "baseContracts": [],
@@ -49,9 +48,9 @@
         "contractKind": "interface",
         "documentation": "Parent of a crowdsourcer that is passed into it on construction. Used\nto determine destination for fees.",
         "fullyImplemented": false,
-        "id": 1779,
+        "id": 2481,
         "linearizedBaseContracts": [
-          1779
+          2481
         ],
         "name": "ICrowdsourcerParent",
         "nodeType": "ContractDefinition",
@@ -59,7 +58,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1778,
+            "id": 2480,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -67,23 +66,23 @@
             "name": "getContractFeeReceiver",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1774,
+              "id": 2476,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "210:2:8"
+              "src": "209:2:11"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1777,
+              "id": 2479,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1776,
+                  "id": 2478,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1778,
-                  "src": "236:7:8",
+                  "scope": 2480,
+                  "src": "235:7:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -91,10 +90,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1775,
+                    "id": 2477,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "236:7:8",
+                    "src": "235:7:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -104,41 +103,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "235:9:8"
+              "src": "234:9:11"
             },
-            "scope": 1779,
-            "src": "179:66:8",
+            "scope": 2481,
+            "src": "178:66:11",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1780,
-        "src": "145:102:8"
+        "scope": 2482,
+        "src": "144:102:11"
       }
     ],
-    "src": "0:248:8"
+    "src": "0:247:11"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/ICrowdsourcerParent.sol",
     "exportedSymbols": {
       "ICrowdsourcerParent": [
-        1779
+        2481
       ]
     },
-    "id": 1780,
+    "id": 2482,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1773,
+        "id": 2475,
         "literals": [
           "solidity",
-          "^",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:8"
+        "src": "0:23:11"
       },
       {
         "baseContracts": [],
@@ -146,9 +144,9 @@
         "contractKind": "interface",
         "documentation": "Parent of a crowdsourcer that is passed into it on construction. Used\nto determine destination for fees.",
         "fullyImplemented": false,
-        "id": 1779,
+        "id": 2481,
         "linearizedBaseContracts": [
-          1779
+          2481
         ],
         "name": "ICrowdsourcerParent",
         "nodeType": "ContractDefinition",
@@ -156,7 +154,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1778,
+            "id": 2480,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -164,23 +162,23 @@
             "name": "getContractFeeReceiver",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1774,
+              "id": 2476,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "210:2:8"
+              "src": "209:2:11"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1777,
+              "id": 2479,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1776,
+                  "id": 2478,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1778,
-                  "src": "236:7:8",
+                  "scope": 2480,
+                  "src": "235:7:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -188,10 +186,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1775,
+                    "id": 2477,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "236:7:8",
+                    "src": "235:7:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -201,20 +199,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "235:9:8"
+              "src": "234:9:11"
             },
-            "scope": 1779,
-            "src": "179:66:8",
+            "scope": 2481,
+            "src": "178:66:11",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1780,
-        "src": "145:102:8"
+        "scope": 2482,
+        "src": "144:102:11"
       }
     ],
-    "src": "0:248:8"
+    "src": "0:247:11"
   },
   "compiler": {
     "name": "solc",
@@ -222,5 +220,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-01T23:53:21.604Z"
+  "updatedAt": "2018-11-02T01:37:39.859Z"
 }
