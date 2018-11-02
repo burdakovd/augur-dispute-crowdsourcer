@@ -29,11 +29,11 @@ const fs = require("fs");
 const HDWallet = require("truffle-hdwallet-provider");
 // const infuraKey = "fj4jll3k.....";
 //
-// const fs = require('fs');
-const mnemonic = fs
-  .readFileSync(".secret")
-  .toString()
-  .trim();
+const mnemonic = () =>
+  fs
+    .readFileSync(".secret")
+    .toString()
+    .trim();
 
 module.exports = {
   /**
@@ -83,7 +83,7 @@ module.exports = {
     rinkeby: {
       provider: function() {
         return new HDWalletProvider(
-          mnemonic,
+          mnemonic(),
           "https://rinkeby.infura.io/augur"
         );
       },
