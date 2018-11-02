@@ -3,17 +3,22 @@ pragma solidity ^0.4.24;
 interface IAccounting {
   function getOwner() external view returns (address);
 
+  function addFeesOnTop(
+    uint128 amount,
+    uint128 feeNumerator
+  ) external pure returns (uint128);
+
   function contribute(
     address contributor,
     uint128 amount,
     uint128 feeNumerator
   ) external returns (
-    uint128 depositedLessFees,
+    uint128 deposited,
     uint128 depositedFees
   );
 
   function withdrawContribution(address contributor) external returns (
-    uint128 withdrawnLessFees,
+    uint128 withdrawn,
     uint128 withdrawnFees
   );
 

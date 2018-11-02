@@ -18,8 +18,9 @@ contract Accounting is IAccounting {
 
   // populated at finalization
   bool public m_isFinalized = false;
-  uint128 m_boundaryFeeNumerator;
-  uint128 m_fundsUsedFromBoundaryBucket;
+  uint128 public m_fundsUsed;
+  uint128 public m_boundaryFeeNumerator;
+  uint128 public m_fundsUsedFromBoundaryBucket;
 
   constructor(address owner) public {
     m_owner = owner;
@@ -42,6 +43,17 @@ contract Accounting is IAccounting {
 
   function getOwner() external view returns (address) {
     return m_owner;
+  }
+
+  function addFeesOnTop(
+    uint128 amount,
+    uint128 feeNumerator
+  ) public pure returns (uint128) {
+    return safeMulDivExact(
+      amount,
+      safeAdd(FEE_DENOMINATOR, feeNumerator),
+      FEE_DENOMINATOR
+    );
   }
 
   function contribute(
@@ -76,14 +88,7 @@ contract Accounting is IAccounting {
       amount
     );
 
-    return (
-      safeMulDiv(
-        amount,
-        safeSub(FEE_DENOMINATOR, feeNumerator),
-        FEE_DENOMINATOR
-      ),
-      safeMulDiv(amount, feeNumerator, FEE_DENOMINATOR)
-    );
+    return (amount, safeMulDivExact(amount, feeNumerator, FEE_DENOMINATOR));
   }
 
   function withdrawContribution(
@@ -102,14 +107,7 @@ contract Accounting is IAccounting {
       amount
     );
 
-    return (
-      safeMulDiv(
-        amount,
-        safeSub(FEE_DENOMINATOR, feeNumerator),
-        FEE_DENOMINATOR
-      ),
-      safeMulDiv(amount, feeNumerator, FEE_DENOMINATOR)
-    );
+    return (amount, safeMulDivExact(amount, feeNumerator, FEE_DENOMINATOR));
   }
 
   /**
@@ -119,6 +117,7 @@ contract Accounting is IAccounting {
    */
   function finalize(uint128 amountDisputed) external ownerOnly beforeFinalizationOnly {
     m_isFinalized = true;
+    m_fundsUsed = amountDisputed;
     (
       m_boundaryFeeNumerator,
       m_fundsUsedFromBoundaryBucket
@@ -154,16 +153,11 @@ contract Accounting is IAccounting {
     while (tentativeBoundaryBucket > 0 && usableFundsWithCurrentBucket <= amountDisputed) {
       tentativeBoundaryBucket -= 1;
       usableFundsInBucketsWithHigherFee = usableFundsWithCurrentBucket;
-      uint128 fundsInCurrentBucket = m_contributionPerFeeNumerator[tentativeBoundaryBucket];
-      // TODO: consider skipping executions if fundsInCurrentBucket = 0
+      // TODO: consider skipping executions if usableFundsInCurrentBucket = 0
       // Not skipping now to make it more evident that 1000 iterations of full
       // loop body (worst case) is OK gas-wise. I.e. we make sure that
       // worst-case is triggered frequently enough to not become a surprise.
-      usableFundsInCurrentBucket = safeMulDivExact(
-        fundsInCurrentBucket,
-        safeSub(FEE_DENOMINATOR, tentativeBoundaryBucket),
-        FEE_DENOMINATOR
-      );
+      usableFundsInCurrentBucket = m_contributionPerFeeNumerator[tentativeBoundaryBucket];
       usableFundsWithCurrentBucket = safeAdd(
         usableFundsInBucketsWithHigherFee,
         usableFundsInCurrentBucket
@@ -188,7 +182,7 @@ contract Accounting is IAccounting {
 
   function safeAdd(uint128 a, uint128 b) internal pure returns (uint128) {
     uint128 r = a + b;
-    assert(r >= a && r >= b);
+    assert(r >= a);
     return r;
   }
 
@@ -242,49 +236,44 @@ contract Accounting is IAccounting {
     }
 
     if (contributorFeeNumerator < m_boundaryFeeNumerator) {
-      // this contributor didn't make it into dispute round, just refund REP
-      rep = originalContributionOfContributor;
+      // this contributor didn't make it into dispute round,
+      // just refund their contribution with prepaid fees
       disputeTokens = 0;
-    } else if (contributorFeeNumerator > m_boundaryFeeNumerator) {
-      // this contributor fully got into dispute round, award dispute tokens
-      // while subtracting fee
-      rep = 0;
-      disputeTokens = safeMulDivExact(
+      rep = addFeesOnTop(
         originalContributionOfContributor,
-        safeSub(FEE_DENOMINATOR, contributorFeeNumerator),
+        contributorFeeNumerator
+      );
+    } else if (contributorFeeNumerator > m_boundaryFeeNumerator) {
+      // this contributor fully got into dispute round,
+      // give them dispute tokens in full, and refund unused portion of fee
+      disputeTokens = originalContributionOfContributor;
+      rep = safeMulDivExact(
+        originalContributionOfContributor,
+        safeSub(contributorFeeNumerator, m_boundaryFeeNumerator),
         FEE_DENOMINATOR
       );
     } else {
       assert(contributorFeeNumerator == m_boundaryFeeNumerator);
       // most complex case, contributor partially got into dispute rounds
-      uint128 fundsContributedInBucket = m_contributionPerFeeNumerator[contributorFeeNumerator];
+      uint128 usableFundsContributedInBucket = m_contributionPerFeeNumerator[contributorFeeNumerator];
       // assertion gotta be true because contributor admittedly did some
       // contribution
-      assert(fundsContributedInBucket > 0);
-      uint128 usableFundsContributedInBucket = safeMulDivExact(
-        fundsContributedInBucket,
-        safeSub(FEE_DENOMINATOR, contributorFeeNumerator),
-        FEE_DENOMINATOR
-      );
-      // assertion gotta be true since contribution must be exactly divisible
-      // by fee denominator
       assert(usableFundsContributedInBucket > 0);
       uint128 fundsUsedInBucket = m_fundsUsedFromBoundaryBucket;
       assert(fundsUsedInBucket <= usableFundsContributedInBucket);
 
-      // award dispute tokens proportionally, less fee
+      // award dispute tokens pro rata
       disputeTokens = safeMulDiv(
-        safeMulDivExact(
-          originalContributionOfContributor,
-          safeSub(FEE_DENOMINATOR, contributorFeeNumerator),
-          FEE_DENOMINATOR
-        ),
+        originalContributionOfContributor,
         fundsUsedInBucket,
         usableFundsContributedInBucket
       );
-      // refund rep for the rest
+      // refund rep for the unused portion of contribution + fees
       rep = safeMulDiv(
-        originalContributionOfContributor,
+        addFeesOnTop(
+          originalContributionOfContributor,
+          contributorFeeNumerator
+        ),
         safeSub(usableFundsContributedInBucket, fundsUsedInBucket),
         usableFundsContributedInBucket
       );
@@ -298,24 +287,6 @@ contract Accounting is IAccounting {
    * In case of partial fill, we round down, leaving some dust in the contract.
    */
   function calculateFees() external afterFinalizationOnly view returns (uint128) {
-    uint128 boundaryFeeNumerator = m_boundaryFeeNumerator;
-    uint128 feesFromBoundaryBucket = safeMulDiv(
-      m_fundsUsedFromBoundaryBucket,
-      boundaryFeeNumerator,
-      safeSub(FEE_DENOMINATOR, boundaryFeeNumerator)
-    );
-
-    uint128 feeNumerator = boundaryFeeNumerator + 1;
-    uint128 totalFees = feesFromBoundaryBucket;
-    while (feeNumerator < FEE_DENOMINATOR) {
-      totalFees += safeMulDiv(
-        m_contributionPerFeeNumerator[feeNumerator],
-        feeNumerator,
-        FEE_DENOMINATOR
-      );
-      feeNumerator += 1;
-    }
-
-    return totalFees;
+    return safeMulDiv(m_fundsUsed, m_boundaryFeeNumerator, FEE_DENOMINATOR);
   }
 }

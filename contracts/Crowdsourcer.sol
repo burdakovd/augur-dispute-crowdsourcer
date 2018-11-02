@@ -99,50 +99,47 @@ contract Crowdsourcer is ICrowdsourcer {
     uint128 amount,
     uint128 feeNumerator
   ) external requiresInitialization beforeDisputeOnly {
+    uint128 amountWithFees = m_accounting.addFeesOnTop(amount, feeNumerator);
+
     IERC20 rep = getREP();
-    require(rep.balanceOf(msg.sender) >= amount, "Not enough funds");
-    require(rep.allowance(msg.sender, this) >= amount, "Now enough allowance");
+    require(rep.balanceOf(msg.sender) >= amountWithFees, "Not enough funds");
+    require(
+      rep.allowance(msg.sender, this) >= amountWithFees,
+      "Now enough allowance"
+    );
 
     // record contribution in accounting (will perform validations)
-    uint128 depositedLessFees;
+    uint128 deposited;
     uint128 depositedFees;
-    (depositedLessFees, depositedFees) = m_accounting.contribute(
+    (deposited, depositedFees) = m_accounting.contribute(
       msg.sender,
       amount,
       feeNumerator
     );
 
-    assert(depositedLessFees + depositedFees == amount);
+    assert(deposited == amount);
+    assert(deposited + depositedFees == amountWithFees);
 
     // actually transfer tokens and revert tx if any problem
-    assert(rep.transferFrom(msg.sender, m_disputer, depositedLessFees));
+    assert(rep.transferFrom(msg.sender, m_disputer, deposited));
     assert(rep.transferFrom(msg.sender, this, depositedFees));
 
-    emit ContributionAccepted(
-      msg.sender,
-      amount,
-      feeNumerator
-    );
+    emit ContributionAccepted(msg.sender, amount, feeNumerator);
   }
 
   function withdrawContribution() external requiresInitialization beforeDisputeOnly {
     IERC20 rep = getREP();
 
     // record withdrawal in accounting (will perform validations)
-    uint128 withdrawnLessFees;
+    uint128 withdrawn;
     uint128 withdrawnFees;
-    (withdrawnLessFees, withdrawnFees) = m_accounting.withdrawContribution(
-      msg.sender
-    );
+    (withdrawn, withdrawnFees) = m_accounting.withdrawContribution(msg.sender);
 
     // actually transfer tokens and revert tx if any problem
-    assert(rep.transferFrom(m_disputer, msg.sender, withdrawnLessFees));
+    assert(rep.transferFrom(m_disputer, msg.sender, withdrawn));
     assert(rep.transfer(msg.sender, withdrawnFees));
 
-    emit ContributionWithdrawn(
-      msg.sender,
-      withdrawnLessFees + withdrawnFees
-    );
+    emit ContributionWithdrawn(msg.sender, withdrawn);
   }
 
   function hasDisputed() public view requiresInitialization returns (bool) {

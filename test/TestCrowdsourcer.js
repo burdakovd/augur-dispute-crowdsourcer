@@ -131,17 +131,17 @@ contract("Crowdsourcer", accounts => {
       instance
         .contribute(3000, 42, { from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(173791);
+    ).resolves.toBe(176601);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
-    ).resolves.toEqual(7000);
+    ).resolves.toEqual(6874);
     await expect(
       rep.balanceOf(instance.address).then(b => b.toNumber())
     ).resolves.toEqual(126);
     await expect(
       rep.balanceOf(disputer).then(b => b.toNumber())
-    ).resolves.toEqual(2874);
+    ).resolves.toEqual(3000);
 
     await expect(
       Accounting.at(accounting)
@@ -153,7 +153,7 @@ contract("Crowdsourcer", accounts => {
       instance
         .withdrawContribution({ from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(40627);
+    ).resolves.toBe(40519);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -290,7 +290,7 @@ contract("Crowdsourcer", accounts => {
 
     await expect(
       instance.finalize().then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(1186984);
+    ).resolves.toBe(727494);
 
     await expect(instance.hasDisputed()).resolves.toEqual(true);
     await expect(instance.isFinalized()).resolves.toEqual(true);
@@ -343,7 +343,7 @@ contract("Crowdsourcer", accounts => {
     await instance.finalize();
     await expect(
       instance.withdrawFees().then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(745355);
+    ).resolves.toBe(88924);
   });
 
   it("proceeds collection is possible after finalization", async () => {
@@ -354,7 +354,7 @@ contract("Crowdsourcer", accounts => {
     await instance.finalize();
     await expect(
       instance.withdrawProceeds(Alice).then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(88199);
+    ).resolves.toBe(88304);
   });
 
   it("cannot collect fees twice", async () => {
@@ -404,10 +404,10 @@ contract("Crowdsourcer", accounts => {
       const fee = rng.nextInt(0, 149);
       expectedFeeNumerator[address] = fee;
       expectedBalance[address] = amount;
-      await rep.transfer(address, amount, {
+      await rep.transfer(address, amount * (1 + fee / 1000), {
         from: MartinREPHolder
       });
-      await rep.approve(crowdsourcer.address, amount, {
+      await rep.approve(crowdsourcer.address, amount * (1 + fee / 1000), {
         from: address
       });
       await crowdsourcer.contribute(amount, fee, { from: address });
@@ -424,7 +424,9 @@ contract("Crowdsourcer", accounts => {
       await crowdsourcer.withdrawContribution({ from: address });
       await expect(
         rep.balanceOf(address).then(n => n.toNumber())
-      ).resolves.toEqual(expectedBalance[address]);
+      ).resolves.toEqual(
+        expectedBalance[address] * (1 + expectedFeeNumerator[address] / 1000)
+      );
       expectedBalance[address] = 0;
     }
 
@@ -475,10 +477,14 @@ contract("Crowdsourcer", accounts => {
           .entrySeq()
           .sort()
           .map(([address, contribution]) => async () => {
-            await rep.transfer(address, contribution.amount, {
+            const amountWithFee = web3.utils
+              .toBN(contribution.amount)
+              .mul(web3.utils.toBN(1000 + contribution.fee))
+              .div(web3.utils.toBN(1000));
+            await rep.transfer(address, amountWithFee.toString(), {
               from: MartinREPHolder
             });
-            await rep.approve(crowdsourcer.address, contribution.amount, {
+            await rep.approve(crowdsourcer.address, amountWithFee.toString(), {
               from: address
             });
             await crowdsourcer.contribute(

@@ -136,7 +136,7 @@ contract("Accounting", accounts => {
     const withdrawn = await instance.withdrawContribution.call(Bob, {
       from: Manager
     });
-    expect(withdrawn.map(n => n.toNumber())).toEqual([8622, 378]);
+    expect(withdrawn.map(n => n.toNumber())).toEqual([9000, 378]);
     // then really run tx
     await instance.withdrawContribution(Bob, { from: Manager });
     await expect(
@@ -151,7 +151,7 @@ contract("Accounting", accounts => {
     const withdrawn = await instance.withdrawContribution.call(Bob, {
       from: Manager
     });
-    expect(withdrawn.map(n => n.toNumber())).toEqual([8622, 378]);
+    expect(withdrawn.map(n => n.toNumber())).toEqual([9000, 378]);
     // then really run tx
     await instance.withdrawContribution(Bob, { from: Manager });
     await expect(
@@ -171,7 +171,7 @@ contract("Accounting", accounts => {
     const withdrawn = await instance.withdrawContribution.call(Bob, {
       from: Manager
     });
-    expect(withdrawn.map(n => n.toNumber())).toEqual([8622, 378]);
+    expect(withdrawn.map(n => n.toNumber())).toEqual([9000, 378]);
     // then really run tx
     await instance.withdrawContribution(Bob, { from: Manager });
     await expect(
@@ -293,8 +293,7 @@ contract("Accounting", accounts => {
         from: Manager
       });
       expect(withdrawn.map(n => n.toNumber())).toEqual([
-        (expectedBalance[address] * (1000 - expectedFeeNumerator[address])) /
-          1000,
+        expectedBalance[address],
         (expectedBalance[address] * expectedFeeNumerator[address]) / 1000
       ]);
       expectedBalance[address] = 0;

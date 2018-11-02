@@ -23,7 +23,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       },
       disputed: 0,
       expectations: {
-        [Alice]: { proceeds: 0, refund: 1000 },
+        [Alice]: { proceeds: 0, refund: 1030 },
         fee: 0
       }
     },
@@ -31,21 +31,21 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       contributions: {
         [Alice]: { amount: 1000, fee: 30 }
       },
-      disputed: 970,
+      disputed: 1000,
       expectations: {
-        [Alice]: { proceeds: 970, refund: 0 },
-        fee: 30
+        [Alice]: { proceeds: 1000, refund: 30 },
+        fee: 0
       }
     },
     test0_1_single_contributor_full_dispute_and_another_person_claiming: {
       contributions: {
         [Alice]: { amount: 1000, fee: 30 }
       },
-      disputed: 970,
+      disputed: 1000,
       expectations: {
-        [Alice]: { proceeds: 970, refund: 0 },
+        [Alice]: { proceeds: 1000, refund: 30 },
         [Bob]: { proceeds: 0, refund: 0 },
-        fee: 30
+        fee: 0
       }
     },
     test0_1_single_contributor_partial_dispute: {
@@ -54,8 +54,8 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       },
       disputed: 875,
       expectations: {
-        [Bob]: { proceeds: 875, refund: 97 },
-        fee: 27
+        [Bob]: { proceeds: 875, refund: 128 },
+        fee: 26
       }
     },
     test0_1_single_contributor_partial_dispute_extreme_0: {
@@ -64,7 +64,7 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       },
       disputed: 875,
       expectations: {
-        [Bob]: { proceeds: 875, refund: 124 },
+        [Bob]: { proceeds: 875, refund: 125 },
         fee: 0
       }
     },
@@ -82,10 +82,10 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       contributions: {
         [Bob]: { amount: 100000, fee: 999 }
       },
-      disputed: 9,
+      disputed: 2018,
       expectations: {
-        [Bob]: { proceeds: 9, refund: 91000 },
-        fee: 8991
+        [Bob]: { proceeds: 2018, refund: 195866 },
+        fee: 2015
       }
     },
     test0_2_single_contributor_full_dispute_with_rogue_tokens: {
@@ -96,8 +96,8 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       disputed: 1050,
       allowRogueDisputeTokens: true,
       expectations: {
-        [Alice]: { proceeds: 970, refund: 0 },
-        fee: 30
+        [Alice]: { proceeds: 1000, refund: 30 },
+        fee: 0
       }
     },
     test1_two_contributors_story: {
@@ -111,8 +111,8 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       },
       disputed: 150,
       expectations: {
-        [Alice]: { proceeds: 150, refund: 2843 },
-        [Bob]: { proceeds: 0, refund: 1000 },
+        [Alice]: { proceeds: 150, refund: 2972 },
+        [Bob]: { proceeds: 0, refund: 1042 },
         fee: 6
       }
     },
@@ -126,12 +126,12 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       },
       disputed: 48299,
       expectations: {
-        [Alice]: { proceeds: 2871, refund: 0 },
-        [Bob]: { proceeds: 958, refund: 0 },
-        [Eve]: { proceeds: 31129, refund: 2573 },
-        [John]: { proceeds: 13341, refund: 1103 },
-        [Elena]: { proceeds: 0, refund: 80000 },
-        fee: 2023
+        [Alice]: { proceeds: 3000, refund: 9 },
+        [Bob]: { proceeds: 1000, refund: 2 },
+        [Eve]: { proceeds: 31009, refund: 4150 },
+        [John]: { proceeds: 13289, refund: 1778 },
+        [Elena]: { proceeds: 0, refund: 81600 },
+        fee: 1931
       }
     },
     test2_many_contributors_full_same_bucket: {
@@ -142,14 +142,14 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
         [John]: { amount: 15000, fee: 40 },
         [Elena]: { amount: 80000, fee: 20 }
       },
-      disputed: 130229,
+      disputed: 134000,
       expectations: {
-        [Alice]: { proceeds: 2871, refund: 0 },
-        [Bob]: { proceeds: 958, refund: 0 },
-        [Eve]: { proceeds: 33600, refund: 0 },
-        [John]: { proceeds: 14400, refund: 0 },
-        [Elena]: { proceeds: 78400, refund: 0 },
-        fee: 3771
+        [Alice]: { proceeds: 3000, refund: 129 },
+        [Bob]: { proceeds: 1000, refund: 42 },
+        [Eve]: { proceeds: 35000, refund: 1400 },
+        [John]: { proceeds: 15000, refund: 600 },
+        [Elena]: { proceeds: 80000, refund: 1600 },
+        fee: 0
       }
     },
     test2_many_contributors_full_same_bucket_with_rogue_funds: {
@@ -163,12 +163,12 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       disputed: 135913,
       allowRogueDisputeTokens: true,
       expectations: {
-        [Alice]: { proceeds: 2871, refund: 0 },
-        [Bob]: { proceeds: 958, refund: 0 },
-        [Eve]: { proceeds: 33600, refund: 0 },
-        [John]: { proceeds: 14400, refund: 0 },
-        [Elena]: { proceeds: 78400, refund: 0 },
-        fee: 3771
+        [Alice]: { proceeds: 3000, refund: 129 },
+        [Bob]: { proceeds: 1000, refund: 42 },
+        [Eve]: { proceeds: 35000, refund: 1400 },
+        [John]: { proceeds: 15000, refund: 600 },
+        [Elena]: { proceeds: 80000, refund: 1600 },
+        fee: 0
       }
     },
     test3_many_contributors_no_fill: {
@@ -181,11 +181,11 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       },
       disputed: 0,
       expectations: {
-        [Alice]: { proceeds: 0, refund: 3000 },
-        [Bob]: { proceeds: 0, refund: 1000 },
-        [Eve]: { proceeds: 0, refund: 35000 },
-        [John]: { proceeds: 0, refund: 15000 },
-        [Elena]: { proceeds: 0, refund: 80000 },
+        [Alice]: { proceeds: 0, refund: 3129 },
+        [Bob]: { proceeds: 0, refund: 1042 },
+        [Eve]: { proceeds: 0, refund: 36400 },
+        [John]: { proceeds: 0, refund: 15600 },
+        [Elena]: { proceeds: 0, refund: 81600 },
         fee: 0
       }
     },
@@ -198,9 +198,9 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       expectations: {
         [Alice]: {
           proceeds: "955",
-          refund: 2
+          refund: 46
         },
-        fee: "42"
+        fee: "41"
       }
     },
     test5_big_numbers: {
@@ -219,33 +219,22 @@ function getPayoutScenarioTests({ Alice, Bob, Eve, John, Elena }) {
       expectations: {
         [Alice]: {
           proceeds: "954000000000000000000842",
-          refund: "3134796238244514105703"
+          refund: "47977999999999999999121"
         },
-        fee: "42865203761755485893454"
+        fee: "41022000000000000000036"
       }
     }
   };
 
-  ImmMap(raw)
-    .filter(definition => !definition.allowRogueDisputeTokens)
-    .forEach(definition =>
-      expect(
-        ImmMap(definition.contributions)
-          .valueSeq()
-          .map(contribution =>
-            web3.utils
-              .toBN(contribution.amount.toString())
-              .mul(
-                web3.utils
-                  .toBN("1000")
-                  .sub(web3.utils.toBN(contribution.fee.toString()))
-              )
-              .div(web3.utils.toBN("1000"))
-          )
-          .reduce((x, y) => x.add(y), web3.utils.toBN("0"))
-          .gte(web3.utils.toBN(definition.disputed.toString()))
-      ).toBe(true)
-    );
+  ImmMap(raw).forEach(definition =>
+    expect(
+      ImmMap(definition.contributions)
+        .valueSeq()
+        .map(contribution => web3.utils.toBN(contribution.amount.toString()))
+        .reduce((x, y) => x.add(y), web3.utils.toBN("0"))
+        .gte(web3.utils.toBN(definition.disputed.toString()))
+    ).toBe(!definition.allowRogueDisputeTokens)
+  );
 
   return raw;
 }
