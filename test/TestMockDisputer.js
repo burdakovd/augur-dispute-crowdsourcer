@@ -111,6 +111,7 @@ contract("MockDisputer", accounts => {
     ).resolves.toBe(80);
 
     await expectGas(
+      web3,
       disputer.dispute(Alice).then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(1400093);
 

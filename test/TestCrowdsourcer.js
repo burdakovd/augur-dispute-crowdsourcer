@@ -129,6 +129,7 @@ contract("Crowdsourcer", accounts => {
     });
 
     await expectGas(
+      web3,
       instance
         .contribute(3000, 42, { from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
@@ -151,6 +152,7 @@ contract("Crowdsourcer", accounts => {
     ).resolves.toEqual(3000);
 
     await expectGas(
+      web3,
       instance
         .withdrawContribution({ from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
@@ -167,7 +169,7 @@ contract("Crowdsourcer", accounts => {
       Accounting.at(accounting)
         .m_contributionPerContributor(MartinREPHolder)
         .then(n => n.toNumber())
-    ).resolves.toEqual(0);
+    ).resolves.toBe(0);
   });
 
   it("cannot contribute weird amount", async () => {
@@ -290,6 +292,7 @@ contract("Crowdsourcer", accounts => {
     await expect(instance.isFinalized()).resolves.toEqual(false);
 
     await expectGas(
+      web3,
       instance.finalize().then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(727626);
 
@@ -343,6 +346,7 @@ contract("Crowdsourcer", accounts => {
     await IDisputer.at(disputer).dispute(Alice);
     await instance.finalize();
     await expectGas(
+      web3,
       instance.withdrawFees().then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(89034);
   });
@@ -354,6 +358,7 @@ contract("Crowdsourcer", accounts => {
     await IDisputer.at(disputer).dispute(Alice);
     await instance.finalize();
     await expectGas(
+      web3,
       instance.withdrawProceeds(Alice).then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(88348);
   });

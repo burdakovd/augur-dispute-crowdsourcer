@@ -176,16 +176,10 @@ contract("CrowdsourcerFactory", accounts => {
     await factory.getInitializedCrowdsourcer(Alice, 0, [], false);
   });
 
-  it("can create and initialize crowdsourcer - out of gas", async () => {
-    const factory = await create_test_factory();
-    // not sending tx as it is a lot of gas
-    await factory.getInitializedCrowdsourcer.call(Alice, 0, [], false);
-  });
-
   it("cost of creating simple crowdsourcer", async () => {
     const factory = await create_test_factory();
     const receipt = await factory.getCrowdsourcer(Alice, 0, [5000, 5000], true);
-    expectGas(receipt.receipt.gasUsed).toBe(3070414);
+    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(3070414);
   });
 
   it("cost of creating bigger crowdsourcer", async () => {
@@ -196,7 +190,7 @@ contract("CrowdsourcerFactory", accounts => {
       [1, 2, 3, 4, 5, 6, 7, 8],
       false
     );
-    expectGas(receipt.receipt.gasUsed).toBe(3195469);
+    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(3195469);
   });
 
   it("cost of initializing crowdsourcer", async () => {
@@ -208,6 +202,6 @@ contract("CrowdsourcerFactory", accounts => {
       [5000, 5000],
       true
     );
-    expectGas(receipt.receipt.gasUsed).toBe(4184546);
+    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(4184546);
   });
 });
