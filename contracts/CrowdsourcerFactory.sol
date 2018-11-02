@@ -43,19 +43,27 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
     m_feeCollector = recipient;
   }
 
-  function getContractFeeReceiver() external view returns(address) {
-    return m_feeCollector;
-  }
-
-  function hashParams(
+  function getInitializedCrowdsourcer(
     Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) public pure returns(bytes32) {
-    return keccak256(
-      abi.encodePacked(market, feeWindowId, payoutNumerators, invalid)
+  ) external returns(ICrowdsourcer) {
+    ICrowdsourcer crowdsourcer = getCrowdsourcer(
+      market,
+      feeWindowId,
+      payoutNumerators,
+      invalid
     );
+    if (!crowdsourcer.isInitialized()) {
+      crowdsourcer.initialize();
+      assert(crowdsourcer.isInitialized());
+    }
+    return crowdsourcer;
+  }
+
+  function getContractFeeReceiver() external view returns(address) {
+    return m_feeCollector;
   }
 
   function maybeGetCrowdsourcer(
@@ -109,22 +117,15 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
     return created;
   }
 
-  function getInitializedCrowdsourcer(
+  function hashParams(
     Market market,
     uint256 feeWindowId,
     uint256[] payoutNumerators,
     bool invalid
-  ) external returns(ICrowdsourcer) {
-    ICrowdsourcer crowdsourcer = getCrowdsourcer(
-      market,
-      feeWindowId,
-      payoutNumerators,
-      invalid
+  ) public pure returns(bytes32) {
+    return keccak256(
+      abi.encodePacked(market, feeWindowId, payoutNumerators, invalid)
     );
-    if (!crowdsourcer.isInitialized()) {
-      crowdsourcer.initialize();
-      assert(crowdsourcer.isInitialized());
-    }
-    return crowdsourcer;
   }
+
 }

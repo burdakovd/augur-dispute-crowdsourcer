@@ -14,13 +14,17 @@ interface ICrowdsourcer {
     uint128 amount,
     uint128 feeNumerator
   );
+
   event ContributionWithdrawn(address contributor, uint128 amount);
+
   event CrowdsourcerFinalized(uint128 amountDisputeTokensAcquired);
+
   event ProceedsWithdrawn(
     address contributor,
     uint128 disputeTokensAmount,
     uint128 repAmount
   );
+
   event FeesWithdrawn(
     address contractAuthor,
     address executor,
@@ -28,29 +32,38 @@ interface ICrowdsourcer {
     uint128 executorAmount
   );
 
-  function isInitialized() external view returns(bool);
-  function getParent() external view returns(ICrowdsourcerParent);
-  function getDisputer() external view returns(IDisputer);
-  function getAccounting() external view returns(IAccounting);
-  function getREP() external view returns(IERC20);
-  function getDisputeToken() external view returns(IERC20);
-
   // initialization stage
   function initialize() external;
 
   // pre-dispute stage
   function contribute(uint128 amount, uint128 feeNumerator) external;
+
   function withdrawContribution() external;
 
   // finalization (after dispute happened)
-  function hasDisputed() external view returns(bool);
   function finalize() external;
-  function isFinalized() external view returns(bool);
 
   // after finalization
 
   // intentionally anyone can call it, since they won't harm contributor
   // by helping them withdraw their proceeds
   function withdrawProceeds(address contributor) external;
+
   function withdrawFees() external;
+
+  function hasDisputed() external view returns(bool);
+
+  function isInitialized() external view returns(bool);
+
+  function getParent() external view returns(ICrowdsourcerParent);
+
+  function getDisputer() external view returns(IDisputer);
+
+  function getAccounting() external view returns(IAccounting);
+
+  function getREP() external view returns(IERC20);
+
+  function getDisputeToken() external view returns(IERC20);
+
+  function isFinalized() external view returns(bool);
 }

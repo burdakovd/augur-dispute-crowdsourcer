@@ -12,6 +12,7 @@ contract MockCrowdsourcerFactory is CrowdsourcerFactory {
     IAccountingFactory accountingFactory,
     IDisputerFactory disputerFactory,
     address feeCollector
+    // solhint-disable-next-line no-empty-blocks
   ) public CrowdsourcerFactory(accountingFactory, disputerFactory, feeCollector) {
 
   }

@@ -58,10 +58,6 @@ contract Crowdsourcer is ICrowdsourcer {
     _;
   }
 
-  function isInitialized() public view returns(bool) {
-    return m_isInitialized;
-  }
-
   function initialize() external {
     require(!m_isInitialized, "Already initialized");
     m_isInitialized = true;
@@ -73,32 +69,6 @@ contract Crowdsourcer is ICrowdsourcer {
       m_disputerParams.payoutNumerators,
       m_disputerParams.invalid
     );
-  }
-
-  function getParent() external view returns(ICrowdsourcerParent) {
-    return m_parent;
-  }
-
-  function getDisputer() external view requiresInitialization returns(
-    IDisputer
-  ) {
-    return m_disputer;
-  }
-
-  function getAccounting() external view requiresInitialization returns(
-    IAccounting
-  ) {
-    return m_accounting;
-  }
-
-  function getREP() public view requiresInitialization returns(IERC20) {
-    return m_disputer.getREP();
-  }
-
-  function getDisputeToken() public view requiresInitialization returns(
-    IERC20
-  ) {
-    return m_disputer.getDisputeTokenAddress();
   }
 
   function contribute(
@@ -148,49 +118,6 @@ contract Crowdsourcer is ICrowdsourcer {
     assert(rep.transfer(msg.sender, withdrawnFees));
 
     emit ContributionWithdrawn(msg.sender, withdrawn);
-  }
-
-  function hasDisputed() public view requiresInitialization returns(bool) {
-    return m_disputer.hasDisputed();
-  }
-
-  function finalize() public requiresInitialization {
-    require(hasDisputed(), "Can only finalize after dispute");
-    require(!isFinalized(), "Can only finalize once");
-
-    // now that we've disputed we must know dispute token address
-    IERC20 disputeTokenAddress = getDisputeToken();
-    IERC20 rep = getREP();
-
-    m_disputer.approveManagerToSpendDisputeTokens();
-
-    // retrieve all tokens from disputer for proceeds distribution
-    // This wouldn't work extremely well if it is called from disputer's
-    // dispute() method, but it should only call Augur which we trust.
-    assert(rep.transferFrom(m_disputer, this, rep.balanceOf(m_disputer)));
-    assert(
-      disputeTokenAddress.transferFrom(
-        m_disputer,
-        this,
-        disputeTokenAddress.balanceOf(m_disputer)
-      )
-    );
-
-    uint256 amountDisputed = disputeTokenAddress.balanceOf(this);
-    uint128 amountDisputed128 = uint128(amountDisputed);
-
-    // REP has only so many tokens
-    assert(amountDisputed128 == amountDisputed);
-
-    m_accounting.finalize(amountDisputed128);
-
-    assert(isFinalized());
-
-    emit CrowdsourcerFinalized(amountDisputed128);
-  }
-
-  function isFinalized() public view requiresInitialization returns(bool) {
-    return m_accounting.isFinalized();
   }
 
   function withdrawProceeds(address contributor) external requiresFinalization {
@@ -244,5 +171,78 @@ contract Crowdsourcer is ICrowdsourcer {
       feesForContractAuthor,
       feesForExecutor
     );
+  }
+
+  function getParent() external view returns(ICrowdsourcerParent) {
+    return m_parent;
+  }
+
+  function getDisputer() external view requiresInitialization returns(
+    IDisputer
+  ) {
+    return m_disputer;
+  }
+
+  function getAccounting() external view requiresInitialization returns(
+    IAccounting
+  ) {
+    return m_accounting;
+  }
+
+  function finalize() public requiresInitialization {
+    require(hasDisputed(), "Can only finalize after dispute");
+    require(!isFinalized(), "Can only finalize once");
+
+    // now that we've disputed we must know dispute token address
+    IERC20 disputeTokenAddress = getDisputeToken();
+    IERC20 rep = getREP();
+
+    m_disputer.approveManagerToSpendDisputeTokens();
+
+    // retrieve all tokens from disputer for proceeds distribution
+    // This wouldn't work extremely well if it is called from disputer's
+    // dispute() method, but it should only call Augur which we trust.
+    assert(rep.transferFrom(m_disputer, this, rep.balanceOf(m_disputer)));
+    assert(
+      disputeTokenAddress.transferFrom(
+        m_disputer,
+        this,
+        disputeTokenAddress.balanceOf(m_disputer)
+      )
+    );
+
+    uint256 amountDisputed = disputeTokenAddress.balanceOf(this);
+    uint128 amountDisputed128 = uint128(amountDisputed);
+
+    // REP has only so many tokens
+    assert(amountDisputed128 == amountDisputed);
+
+    m_accounting.finalize(amountDisputed128);
+
+    assert(isFinalized());
+
+    emit CrowdsourcerFinalized(amountDisputed128);
+  }
+
+  function isInitialized() public view returns(bool) {
+    return m_isInitialized;
+  }
+
+  function getREP() public view requiresInitialization returns(IERC20) {
+    return m_disputer.getREP();
+  }
+
+  function getDisputeToken() public view requiresInitialization returns(
+    IERC20
+  ) {
+    return m_disputer.getDisputeTokenAddress();
+  }
+
+  function hasDisputed() public view requiresInitialization returns(bool) {
+    return m_disputer.hasDisputed();
+  }
+
+  function isFinalized() public view requiresInitialization returns(bool) {
+    return m_accounting.isFinalized();
   }
 }

@@ -3,7 +3,7 @@ pragma solidity 0.4.24;
 import "../ICrowdsourcerParent.sol";
 
 contract MockCrowdsourcerParent is ICrowdsourcerParent {
-  address m_feeRecipient;
+  address public m_feeRecipient;
 
   constructor(address feeRecepient) public {
     m_feeRecipient = feeRecepient;

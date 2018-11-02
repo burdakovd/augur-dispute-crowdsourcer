@@ -1,13 +1,6 @@
 pragma solidity 0.4.24;
 
 interface IAccounting {
-  function getOwner() external view returns(address);
-
-  function addFeesOnTop(
-    uint128 amount,
-    uint128 feeNumerator
-  ) external pure returns(uint128);
-
   function contribute(
     address contributor,
     uint128 amount,
@@ -20,6 +13,8 @@ interface IAccounting {
   );
 
   function finalize(uint128 amountDisputed) external;
+
+  function getOwner() external view returns(address);
 
   function isFinalized() external view returns(bool);
 
@@ -42,4 +37,9 @@ interface IAccounting {
    * In case of partial fill, we round down, leaving some dust in the contract.
    */
   function calculateFees() external view returns(uint128);
+
+  function addFeesOnTop(
+    uint128 amount,
+    uint128 feeNumerator
+  ) external pure returns(uint128);
 }

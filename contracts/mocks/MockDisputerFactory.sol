@@ -6,9 +6,9 @@ import "./MockDisputer.sol";
 import "./MockERC20.sol";
 
 contract MockDisputerFactory is IDisputerFactory {
-  address m_accountToGiveSomeREPTo;
-  uint256 m_amountOfREPToGive;
-  uint256 m_amountOfREPToDisputeWith;
+  address public m_accountToGiveSomeREPTo;
+  uint256 public m_amountOfREPToGive;
+  uint256 public m_amountOfREPToDisputeWith;
 
   MockERC20 public m_rep = MockERC20(0);
 

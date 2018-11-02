@@ -92,6 +92,7 @@ contract Disputer is BaseDisputer {
 
   function preDisputeCheck() internal {
     // most frequent reasons for failure, to fail early and save gas
+    // solhint-disable-next-line not-rely-on-time
     require(block.timestamp > m_windowStart && block.timestamp < m_windowEnd);
   }
 

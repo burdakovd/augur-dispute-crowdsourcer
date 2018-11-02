@@ -15,8 +15,6 @@ import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
  * is done in other contracts.
  */
 interface IDisputer {
-  function getOwner() external view returns(address);
-
   /**
    * This function should use as little gas as possible, as it will be called
    * during rush time. Unnecessary operations are postponed for later.
@@ -25,10 +23,16 @@ interface IDisputer {
    */
   function dispute(address feeReceiver) external;
 
-  function hasDisputed() external view returns(bool);
-  function feeReceiver() external view returns(address);
-  function getREP() external view returns(IERC20);
-  function getDisputeTokenAddress() external view returns(IERC20);
   // intentionally can be called by anyone, as no user input is used
   function approveManagerToSpendDisputeTokens() external;
+
+  function getOwner() external view returns(address);
+
+  function hasDisputed() external view returns(bool);
+
+  function feeReceiver() external view returns(address);
+
+  function getREP() external view returns(IERC20);
+
+  function getDisputeTokenAddress() external view returns(IERC20);
 }

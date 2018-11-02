@@ -11,8 +11,8 @@ import "./MockERC20.sol";
  * Used to test crowdsourcer.
  */
 contract MockDisputer is BaseDisputer {
-  MockERC20 public m_rep_mock;
-  uint256 m_amountOfREPToDisputeWith;
+  MockERC20 public m_repMock;
+  uint256 public m_amountOfREPToDisputeWith;
 
   constructor(
     address owner,
@@ -23,7 +23,7 @@ contract MockDisputer is BaseDisputer {
     uint256[] payoutNumerators,
     bool invalid
   ) public {
-    m_rep_mock = rep;
+    m_repMock = rep;
     m_amountOfREPToDisputeWith = amountOfREPToDisputeWith;
 
     baseInit(owner, market, feeWindowId, payoutNumerators, invalid);
@@ -31,12 +31,12 @@ contract MockDisputer is BaseDisputer {
 
   function disputeImpl() internal returns(IERC20) {
     uint256 amountToCreate = m_amountOfREPToDisputeWith;
-    uint256 balance = m_rep_mock.balanceOf(this);
+    uint256 balance = m_repMock.balanceOf(this);
     uint256 amountToDestroy = amountToCreate > balance ? balance : amountToCreate;
 
     // simulate dispute
     MockERC20 disputeToken_mock = new MockERC20();
-    m_rep_mock.burn(amountToDestroy);
+    m_repMock.burn(amountToDestroy);
 
     // 808080 is special value used in tests to simulate funds loss
     if (m_amountOfREPToDisputeWith != 808080) {
@@ -47,9 +47,10 @@ contract MockDisputer is BaseDisputer {
   }
 
   function getREPImpl() internal view returns(IERC20) {
-    return m_rep_mock;
+    return m_repMock;
   }
 
+  // solhint-disable-next-line no-empty-blocks
   function preDisputeCheck() internal {
 
   }

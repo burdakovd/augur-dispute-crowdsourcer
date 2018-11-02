@@ -41,21 +41,6 @@ contract Accounting is IAccounting {
     _;
   }
 
-  function getOwner() external view returns(address) {
-    return m_owner;
-  }
-
-  function addFeesOnTop(
-    uint128 amount,
-    uint128 feeNumerator
-  ) public pure returns(uint128) {
-    return safeMulDivExact(
-      amount,
-      safeAdd(FEE_DENOMINATOR, feeNumerator),
-      FEE_DENOMINATOR
-    );
-  }
-
   function contribute(
     address contributor,
     uint128 amount,
@@ -122,8 +107,100 @@ contract Accounting is IAccounting {
     );
   }
 
+  function getOwner() external view returns(address) {
+    return m_owner;
+  }
+
   function isFinalized() external view returns(bool) {
     return m_isFinalized;
+  }
+
+  /**
+   * Return value is how much REP and dispute tokens the contributor is entitled to.
+   *
+   * Does not change the state, as accounting is finalized at that moment.
+   *
+   * In case of partial fill, we round down, leaving some dust in the contract.
+   */
+  function calculateProceeds(
+    address contributor
+  ) external view afterFinalizationOnly returns(
+    uint128 rep,
+    uint128 disputeTokens
+  ) {
+    uint128 contributorFeeNumerator = m_feeNumeratorPerContributor[contributor];
+    uint128 originalContributionOfContributor = m_contributionPerContributor[contributor];
+
+    if (originalContributionOfContributor == 0) {
+      return (0, 0);
+    }
+
+    if (contributorFeeNumerator < m_boundaryFeeNumerator) {
+      // this contributor didn't make it into dispute round,
+      // just refund their contribution with prepaid fees
+      disputeTokens = 0;
+      rep = addFeesOnTop(
+        originalContributionOfContributor,
+        contributorFeeNumerator
+      );
+    } else if (contributorFeeNumerator > m_boundaryFeeNumerator) {
+      // this contributor fully got into dispute round,
+      // give them dispute tokens in full, and refund unused portion of fee
+      disputeTokens = originalContributionOfContributor;
+      rep = safeMulDivExact(
+        originalContributionOfContributor,
+        safeSub(contributorFeeNumerator, m_boundaryFeeNumerator),
+        FEE_DENOMINATOR
+      );
+    } else {
+      assert(contributorFeeNumerator == m_boundaryFeeNumerator);
+      // most complex case, contributor partially got into dispute rounds
+      uint128 usableFundsContributedInBucket = m_contributionPerFeeNumerator[contributorFeeNumerator];
+      // assertion gotta be true because contributor admittedly did some
+      // contribution
+      assert(usableFundsContributedInBucket > 0);
+      uint128 fundsUsedInBucket = m_fundsUsedFromBoundaryBucket;
+      assert(fundsUsedInBucket <= usableFundsContributedInBucket);
+
+      // award dispute tokens pro rata
+      disputeTokens = safeMulDiv(
+        originalContributionOfContributor,
+        fundsUsedInBucket,
+        usableFundsContributedInBucket
+      );
+      // refund rep for the unused portion of contribution + fees
+      rep = safeMulDiv(
+        addFeesOnTop(
+          originalContributionOfContributor,
+          contributorFeeNumerator
+        ),
+        safeSub(usableFundsContributedInBucket, fundsUsedInBucket),
+        usableFundsContributedInBucket
+      );
+    }
+  }
+
+  /**
+   * Calculate fee that will be split between contract admin and
+   * account that triggered dispute transaction.
+   *
+   * In case of partial fill, we round down, leaving some dust in the contract.
+   */
+  function calculateFees() external view afterFinalizationOnly returns(
+    uint128
+  ) {
+    return safeMulDiv(m_fundsUsed, m_boundaryFeeNumerator, FEE_DENOMINATOR);
+  }
+
+  function addFeesOnTop(
+    uint128 amount,
+    uint128 feeNumerator
+  ) public pure returns(uint128) {
+    return safeMulDivExact(
+      amount,
+      safeAdd(FEE_DENOMINATOR, feeNumerator),
+      FEE_DENOMINATOR
+    );
   }
 
   /**
@@ -223,82 +300,5 @@ contract Accounting is IAccounting {
 
     assert(result == result128);
     return result128;
-  }
-
-  /**
-   * Return value is how much REP and dispute tokens the contributor is entitled to.
-   *
-   * Does not change the state, as accounting is finalized at that moment.
-   *
-   * In case of partial fill, we round down, leaving some dust in the contract.
-   */
-  function calculateProceeds(
-    address contributor
-  ) external view afterFinalizationOnly returns(
-    uint128 rep,
-    uint128 disputeTokens
-  ) {
-    uint128 contributorFeeNumerator = m_feeNumeratorPerContributor[contributor];
-    uint128 originalContributionOfContributor = m_contributionPerContributor[contributor];
-
-    if (originalContributionOfContributor == 0) {
-      return (0, 0);
-    }
-
-    if (contributorFeeNumerator < m_boundaryFeeNumerator) {
-      // this contributor didn't make it into dispute round,
-      // just refund their contribution with prepaid fees
-      disputeTokens = 0;
-      rep = addFeesOnTop(
-        originalContributionOfContributor,
-        contributorFeeNumerator
-      );
-    } else if (contributorFeeNumerator > m_boundaryFeeNumerator) {
-      // this contributor fully got into dispute round,
-      // give them dispute tokens in full, and refund unused portion of fee
-      disputeTokens = originalContributionOfContributor;
-      rep = safeMulDivExact(
-        originalContributionOfContributor,
-        safeSub(contributorFeeNumerator, m_boundaryFeeNumerator),
-        FEE_DENOMINATOR
-      );
-    } else {
-      assert(contributorFeeNumerator == m_boundaryFeeNumerator);
-      // most complex case, contributor partially got into dispute rounds
-      uint128 usableFundsContributedInBucket = m_contributionPerFeeNumerator[contributorFeeNumerator];
-      // assertion gotta be true because contributor admittedly did some
-      // contribution
-      assert(usableFundsContributedInBucket > 0);
-      uint128 fundsUsedInBucket = m_fundsUsedFromBoundaryBucket;
-      assert(fundsUsedInBucket <= usableFundsContributedInBucket);
-
-      // award dispute tokens pro rata
-      disputeTokens = safeMulDiv(
-        originalContributionOfContributor,
-        fundsUsedInBucket,
-        usableFundsContributedInBucket
-      );
-      // refund rep for the unused portion of contribution + fees
-      rep = safeMulDiv(
-        addFeesOnTop(
-          originalContributionOfContributor,
-          contributorFeeNumerator
-        ),
-        safeSub(usableFundsContributedInBucket, fundsUsedInBucket),
-        usableFundsContributedInBucket
-      );
-    }
-  }
-
-  /**
-   * Calculate fee that will be split between contract admin and
-   * account that triggered dispute transaction.
-   *
-   * In case of partial fill, we round down, leaving some dust in the contract.
-   */
-  function calculateFees() external view afterFinalizationOnly returns(
-    uint128
-  ) {
-    return safeMulDiv(m_fundsUsed, m_boundaryFeeNumerator, FEE_DENOMINATOR);
   }
 }
