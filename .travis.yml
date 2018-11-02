@@ -9,4 +9,5 @@ script:
   - yarn truffle compile
   - yarn test
   - yarn solidity-coverage
+  - cat coverage/lcov.info | coveralls
   - git status
