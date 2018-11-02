@@ -1,5 +1,6 @@
 import { Set as ImmSet, Map as ImmMap } from "immutable";
 import expect from "expect";
+const truffleWeb3 = global.web3;
 import web3 from "web3";
 import Prando from "prando";
 import getPayoutScenarioTests from "./scenarios";
@@ -129,7 +130,7 @@ contract("Crowdsourcer", accounts => {
     });
 
     await expectGas(
-      web3,
+      truffleWeb3,
       instance
         .contribute(3000, 42, { from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
@@ -152,7 +153,7 @@ contract("Crowdsourcer", accounts => {
     ).resolves.toEqual(3000);
 
     await expectGas(
-      web3,
+      truffleWeb3,
       instance
         .withdrawContribution({ from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
@@ -292,7 +293,7 @@ contract("Crowdsourcer", accounts => {
     await expect(instance.isFinalized()).resolves.toEqual(false);
 
     await expectGas(
-      web3,
+      truffleWeb3,
       instance.finalize().then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(727626);
 
@@ -346,7 +347,7 @@ contract("Crowdsourcer", accounts => {
     await IDisputer.at(disputer).dispute(Alice);
     await instance.finalize();
     await expectGas(
-      web3,
+      truffleWeb3,
       instance.withdrawFees().then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(89034);
   });
@@ -358,7 +359,7 @@ contract("Crowdsourcer", accounts => {
     await IDisputer.at(disputer).dispute(Alice);
     await instance.finalize();
     await expectGas(
-      web3,
+      truffleWeb3,
       instance.withdrawProceeds(Alice).then(receipt => receipt.receipt.gasUsed)
     ).resolves.toBe(88348);
   });
