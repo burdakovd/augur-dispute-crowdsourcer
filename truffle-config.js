@@ -22,8 +22,8 @@
  *
  */
 
-require('babel-register');
-require('babel-polyfill');
+require("babel-register");
+require("babel-polyfill");
 
 // const HDWallet = require('truffle-hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
@@ -103,4 +103,4 @@ module.exports = {
       // }
     }
   }
-}
+};
