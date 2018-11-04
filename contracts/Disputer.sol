@@ -123,11 +123,14 @@ contract Disputer is BaseDisputer {
 
     require(alreadyContributed < roundSizeMinusOne, "We are too late");
 
+    uint256 optimalContributionSize = roundSizeMinusOne - alreadyContributed;
+    uint256 ourBalance = getREP().balanceOf(this);
+
     require(
       market.contribute(
         m_params.payoutNumerators,
         m_params.invalid,
-        roundSizeMinusOne - alreadyContributed
+        ourBalance > optimalContributionSize ? optimalContributionSize : ourBalance
       )
     );
 

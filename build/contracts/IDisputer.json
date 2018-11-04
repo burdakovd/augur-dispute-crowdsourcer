@@ -105,30 +105,30 @@
     "absolutePath": "/src/contracts/IDisputer.sol",
     "exportedSymbols": {
       "IDisputer": [
-        2518
+        769
       ]
     },
-    "id": 2519,
+    "id": 770,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2483,
+        "id": 734,
         "literals": [
           "solidity",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:12"
+        "src": "0:23:4"
       },
       {
         "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
         "file": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
-        "id": 2484,
+        "id": 735,
         "nodeType": "ImportDirective",
-        "scope": 2519,
-        "sourceUnit": 3905,
-        "src": "25:64:12",
+        "scope": 770,
+        "sourceUnit": 986,
+        "src": "25:64:4",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -138,9 +138,9 @@
         "contractKind": "interface",
         "documentation": "Interface of what the disputer contract should do.\n * Its main responsibility to interact with Augur. Only minimal glue methods\nare added apart from that in order for crowdsourcer to be able to interact\nwith it.\n * This contract holds the actual crowdsourced REP for dispute, so it doesn't\nneed to transfer it from elsewhere at the moment of dispute. It doesn't care\nat all who this REP belongs to, it just spends it for dispute. Accounting\nis done in other contracts.",
         "fullyImplemented": false,
-        "id": 2518,
+        "id": 769,
         "linearizedBaseContracts": [
-          2518
+          769
         ],
         "name": "IDisputer",
         "nodeType": "ContractDefinition",
@@ -148,7 +148,7 @@
           {
             "body": null,
             "documentation": "This function should use as little gas as possible, as it will be called\nduring rush time. Unnecessary operations are postponed for later.\n   * Can by called by anyone, but only once.",
-            "id": 2489,
+            "id": 740,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -156,16 +156,16 @@
             "name": "dispute",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2487,
+              "id": 738,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2486,
+                  "id": 737,
                   "name": "feeReceiver",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2489,
-                  "src": "844:19:12",
+                  "scope": 740,
+                  "src": "844:19:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -173,10 +173,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2485,
+                    "id": 736,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "844:7:12",
+                    "src": "844:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -186,17 +186,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "843:21:12"
+              "src": "843:21:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2488,
+              "id": 739,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "873:0:12"
+              "src": "873:0:4"
             },
-            "scope": 2518,
-            "src": "827:47:12",
+            "scope": 769,
+            "src": "827:47:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -204,7 +204,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2492,
+            "id": 743,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -212,20 +212,20 @@
             "name": "approveManagerToSpendDisputeTokens",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2490,
+              "id": 741,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "990:2:12"
+              "src": "990:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2491,
+              "id": 742,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1001:0:12"
+              "src": "1001:0:4"
             },
-            "scope": 2518,
-            "src": "947:55:12",
+            "scope": 769,
+            "src": "947:55:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -233,7 +233,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2497,
+            "id": 748,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -241,23 +241,23 @@
             "name": "getOwner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2493,
+              "id": 744,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1023:2:12"
+              "src": "1023:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2496,
+              "id": 747,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2495,
+                  "id": 746,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2497,
-                  "src": "1048:7:12",
+                  "scope": 748,
+                  "src": "1048:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -265,10 +265,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2494,
+                    "id": 745,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1048:7:12",
+                    "src": "1048:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -278,10 +278,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1047:9:12"
+              "src": "1047:9:4"
             },
-            "scope": 2518,
-            "src": "1006:51:12",
+            "scope": 769,
+            "src": "1006:51:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -289,7 +289,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2502,
+            "id": 753,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -297,23 +297,23 @@
             "name": "hasDisputed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2498,
+              "id": 749,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1081:2:12"
+              "src": "1081:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2501,
+              "id": 752,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2500,
+                  "id": 751,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2502,
-                  "src": "1106:4:12",
+                  "scope": 753,
+                  "src": "1106:4:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -321,10 +321,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2499,
+                    "id": 750,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1106:4:12",
+                    "src": "1106:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -334,10 +334,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1105:6:12"
+              "src": "1105:6:4"
             },
-            "scope": 2518,
-            "src": "1061:51:12",
+            "scope": 769,
+            "src": "1061:51:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -345,7 +345,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2507,
+            "id": 758,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -353,23 +353,23 @@
             "name": "feeReceiver",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2503,
+              "id": 754,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1136:2:12"
+              "src": "1136:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2506,
+              "id": 757,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2505,
+                  "id": 756,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2507,
-                  "src": "1161:7:12",
+                  "scope": 758,
+                  "src": "1161:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -377,10 +377,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2504,
+                    "id": 755,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1161:7:12",
+                    "src": "1161:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -390,10 +390,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1160:9:12"
+              "src": "1160:9:4"
             },
-            "scope": 2518,
-            "src": "1116:54:12",
+            "scope": 769,
+            "src": "1116:54:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -401,7 +401,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2512,
+            "id": 763,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -409,38 +409,38 @@
             "name": "getREP",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2508,
+              "id": 759,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1189:2:12"
+              "src": "1189:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2511,
+              "id": 762,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2510,
+                  "id": 761,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2512,
-                  "src": "1214:6:12",
+                  "scope": 763,
+                  "src": "1214:6:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$3904",
+                    "typeIdentifier": "t_contract$_IERC20_$985",
                     "typeString": "contract IERC20"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2509,
+                    "id": 760,
                     "name": "IERC20",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 3904,
-                    "src": "1214:6:12",
+                    "referencedDeclaration": 985,
+                    "src": "1214:6:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$3904",
+                      "typeIdentifier": "t_contract$_IERC20_$985",
                       "typeString": "contract IERC20"
                     }
                   },
@@ -448,10 +448,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1213:8:12"
+              "src": "1213:8:4"
             },
-            "scope": 2518,
-            "src": "1174:48:12",
+            "scope": 769,
+            "src": "1174:48:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -459,7 +459,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2517,
+            "id": 768,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -467,38 +467,38 @@
             "name": "getDisputeTokenAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2513,
+              "id": 764,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1257:2:12"
+              "src": "1257:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2516,
+              "id": 767,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2515,
+                  "id": 766,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2517,
-                  "src": "1282:6:12",
+                  "scope": 768,
+                  "src": "1282:6:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$3904",
+                    "typeIdentifier": "t_contract$_IERC20_$985",
                     "typeString": "contract IERC20"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2514,
+                    "id": 765,
                     "name": "IERC20",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 3904,
-                    "src": "1282:6:12",
+                    "referencedDeclaration": 985,
+                    "src": "1282:6:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$3904",
+                      "typeIdentifier": "t_contract$_IERC20_$985",
                       "typeString": "contract IERC20"
                     }
                   },
@@ -506,49 +506,49 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1281:8:12"
+              "src": "1281:8:4"
             },
-            "scope": 2518,
-            "src": "1226:64:12",
+            "scope": 769,
+            "src": "1226:64:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2519,
-        "src": "592:700:12"
+        "scope": 770,
+        "src": "592:700:4"
       }
     ],
-    "src": "0:1293:12"
+    "src": "0:1293:4"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/IDisputer.sol",
     "exportedSymbols": {
       "IDisputer": [
-        2518
+        769
       ]
     },
-    "id": 2519,
+    "id": 770,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2483,
+        "id": 734,
         "literals": [
           "solidity",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:12"
+        "src": "0:23:4"
       },
       {
         "absolutePath": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
         "file": "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
-        "id": 2484,
+        "id": 735,
         "nodeType": "ImportDirective",
-        "scope": 2519,
-        "sourceUnit": 3905,
-        "src": "25:64:12",
+        "scope": 770,
+        "sourceUnit": 986,
+        "src": "25:64:4",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -558,9 +558,9 @@
         "contractKind": "interface",
         "documentation": "Interface of what the disputer contract should do.\n * Its main responsibility to interact with Augur. Only minimal glue methods\nare added apart from that in order for crowdsourcer to be able to interact\nwith it.\n * This contract holds the actual crowdsourced REP for dispute, so it doesn't\nneed to transfer it from elsewhere at the moment of dispute. It doesn't care\nat all who this REP belongs to, it just spends it for dispute. Accounting\nis done in other contracts.",
         "fullyImplemented": false,
-        "id": 2518,
+        "id": 769,
         "linearizedBaseContracts": [
-          2518
+          769
         ],
         "name": "IDisputer",
         "nodeType": "ContractDefinition",
@@ -568,7 +568,7 @@
           {
             "body": null,
             "documentation": "This function should use as little gas as possible, as it will be called\nduring rush time. Unnecessary operations are postponed for later.\n   * Can by called by anyone, but only once.",
-            "id": 2489,
+            "id": 740,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -576,16 +576,16 @@
             "name": "dispute",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2487,
+              "id": 738,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2486,
+                  "id": 737,
                   "name": "feeReceiver",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2489,
-                  "src": "844:19:12",
+                  "scope": 740,
+                  "src": "844:19:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -593,10 +593,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2485,
+                    "id": 736,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "844:7:12",
+                    "src": "844:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -606,17 +606,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "843:21:12"
+              "src": "843:21:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2488,
+              "id": 739,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "873:0:12"
+              "src": "873:0:4"
             },
-            "scope": 2518,
-            "src": "827:47:12",
+            "scope": 769,
+            "src": "827:47:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -624,7 +624,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2492,
+            "id": 743,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -632,20 +632,20 @@
             "name": "approveManagerToSpendDisputeTokens",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2490,
+              "id": 741,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "990:2:12"
+              "src": "990:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2491,
+              "id": 742,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1001:0:12"
+              "src": "1001:0:4"
             },
-            "scope": 2518,
-            "src": "947:55:12",
+            "scope": 769,
+            "src": "947:55:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
@@ -653,7 +653,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2497,
+            "id": 748,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -661,23 +661,23 @@
             "name": "getOwner",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2493,
+              "id": 744,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1023:2:12"
+              "src": "1023:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2496,
+              "id": 747,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2495,
+                  "id": 746,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2497,
-                  "src": "1048:7:12",
+                  "scope": 748,
+                  "src": "1048:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -685,10 +685,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2494,
+                    "id": 745,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1048:7:12",
+                    "src": "1048:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -698,10 +698,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1047:9:12"
+              "src": "1047:9:4"
             },
-            "scope": 2518,
-            "src": "1006:51:12",
+            "scope": 769,
+            "src": "1006:51:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -709,7 +709,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2502,
+            "id": 753,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -717,23 +717,23 @@
             "name": "hasDisputed",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2498,
+              "id": 749,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1081:2:12"
+              "src": "1081:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2501,
+              "id": 752,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2500,
+                  "id": 751,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2502,
-                  "src": "1106:4:12",
+                  "scope": 753,
+                  "src": "1106:4:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -741,10 +741,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2499,
+                    "id": 750,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1106:4:12",
+                    "src": "1106:4:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -754,10 +754,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1105:6:12"
+              "src": "1105:6:4"
             },
-            "scope": 2518,
-            "src": "1061:51:12",
+            "scope": 769,
+            "src": "1061:51:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -765,7 +765,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2507,
+            "id": 758,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -773,23 +773,23 @@
             "name": "feeReceiver",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2503,
+              "id": 754,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1136:2:12"
+              "src": "1136:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2506,
+              "id": 757,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2505,
+                  "id": 756,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2507,
-                  "src": "1161:7:12",
+                  "scope": 758,
+                  "src": "1161:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -797,10 +797,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2504,
+                    "id": 755,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1161:7:12",
+                    "src": "1161:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -810,10 +810,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1160:9:12"
+              "src": "1160:9:4"
             },
-            "scope": 2518,
-            "src": "1116:54:12",
+            "scope": 769,
+            "src": "1116:54:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -821,7 +821,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2512,
+            "id": 763,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -829,38 +829,38 @@
             "name": "getREP",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2508,
+              "id": 759,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1189:2:12"
+              "src": "1189:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2511,
+              "id": 762,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2510,
+                  "id": 761,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2512,
-                  "src": "1214:6:12",
+                  "scope": 763,
+                  "src": "1214:6:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$3904",
+                    "typeIdentifier": "t_contract$_IERC20_$985",
                     "typeString": "contract IERC20"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2509,
+                    "id": 760,
                     "name": "IERC20",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 3904,
-                    "src": "1214:6:12",
+                    "referencedDeclaration": 985,
+                    "src": "1214:6:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$3904",
+                      "typeIdentifier": "t_contract$_IERC20_$985",
                       "typeString": "contract IERC20"
                     }
                   },
@@ -868,10 +868,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1213:8:12"
+              "src": "1213:8:4"
             },
-            "scope": 2518,
-            "src": "1174:48:12",
+            "scope": 769,
+            "src": "1174:48:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -879,7 +879,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 2517,
+            "id": 768,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -887,38 +887,38 @@
             "name": "getDisputeTokenAddress",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2513,
+              "id": 764,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1257:2:12"
+              "src": "1257:2:4"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2516,
+              "id": 767,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2515,
+                  "id": 766,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2517,
-                  "src": "1282:6:12",
+                  "scope": 768,
+                  "src": "1282:6:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_IERC20_$3904",
+                    "typeIdentifier": "t_contract$_IERC20_$985",
                     "typeString": "contract IERC20"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2514,
+                    "id": 765,
                     "name": "IERC20",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 3904,
-                    "src": "1282:6:12",
+                    "referencedDeclaration": 985,
+                    "src": "1282:6:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IERC20_$3904",
+                      "typeIdentifier": "t_contract$_IERC20_$985",
                       "typeString": "contract IERC20"
                     }
                   },
@@ -926,20 +926,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1281:8:12"
+              "src": "1281:8:4"
             },
-            "scope": 2518,
-            "src": "1226:64:12",
+            "scope": 769,
+            "src": "1226:64:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2519,
-        "src": "592:700:12"
+        "scope": 770,
+        "src": "592:700:4"
       }
     ],
-    "src": "0:1293:12"
+    "src": "0:1293:4"
   },
   "compiler": {
     "name": "solc",
@@ -947,5 +947,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-02T05:47:03.987Z"
+  "updatedAt": "2018-11-04T08:36:42.773Z"
 }
