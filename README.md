@@ -27,6 +27,7 @@ More examples here: https://github.com/burdakovd/augur-dispute-crowdsourcer/blob
 ## Example 1
 
 Alice contributed 100 REP, and offered 10% fee (10 REP on top).
+
 Bob contributed 10 REP, and offered 1% fee (0.1 REP on top).
 
 During dispute, pool managed to get all 110 REP into the dispute round.
@@ -34,12 +35,15 @@ During dispute, pool managed to get all 110 REP into the dispute round.
 Since all REP got in, lowest possible fee is 0%.
 
 Alice can get 100 dispute tokens, and refund of 10 REP.
+
 Bob can get 10 dispute tokens, and refund of 0.1 REP.
 
 ## Example 2
 
 Alice contributed 100 REP, and offered 10% fee (10 REP on top).
+
 Eve contributed 50 REP, and offered 10% fee (5 REP on top).
+
 Bob contributed 10 REP, and offered 8% fee (0.8 REP on top).
 
 During dispute, pool managed to get only 30 REP into the dispute round.
@@ -47,7 +51,9 @@ During dispute, pool managed to get only 30 REP into the dispute round.
 Since not all REP got in, we need to choose lowest possible fee that will ensure people who offered more than that fee, get in. The lowest possible fee is 10%.
 
 Alice can get 20 dispute tokens, and refund of 88 REP. She was charged 10% fee (2 REP) for her dispute tokens.
+
 Eve can get 10 dispute tokens, and refund of 44 REP. She was charged 10% fee (1 REP) for her dispute tokens.
+
 Bob can get 0 dispute tokens, and refund of 10.8 REP. He did not get into the round.
 
 3 REP are collected in fees.
@@ -55,8 +61,11 @@ Bob can get 0 dispute tokens, and refund of 10.8 REP. He did not get into the ro
 ## Example 3
 
 John contributed 100 REP, and offered 20% fee (20 REP on top).
+
 Alice contributed 100 REP, and offered 10% fee (10 REP on top).
+
 Eve contributed 50 REP, and offered 5% fee (2.5 REP on top).
+
 Bob contributed 10 REP, and offered 5% fee (0.5 REP on top).
 
 During dispute, pool managed to get only 200 REP into the dispute round.
@@ -64,8 +73,11 @@ During dispute, pool managed to get only 200 REP into the dispute round.
 Since not all REP got in, we need to choose lowest possible fee that will ensure people who offered more than that fee, get in. The lowest possible fee is 5%.
 
 John can get 100 dispute tokens, and refund of 10 REP. He was charged 10% fee (10 REP) for his dispute tokens.
+
 Alice can get 100 dispute tokens, and refund of 0 REP. She was charged 10% fee (10 REP) for her dispute tokens.
+
 Eve can get 0 dispute tokens, and refund of 52.5 REP. She did not get into the round.
+
 Bob can get 0 dispute tokens, and refund of 10.5 REP. He did not get into the round.
 
 20 REP are collected in fees.
