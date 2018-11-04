@@ -32,6 +32,8 @@ interface ICrowdsourcer {
     uint128 executorAmount
   );
 
+  event Initialized();
+
   // initialization stage
   function initialize() external;
 

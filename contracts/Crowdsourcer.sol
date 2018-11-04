@@ -69,6 +69,7 @@ contract Crowdsourcer is ICrowdsourcer {
       m_disputerParams.payoutNumerators,
       m_disputerParams.invalid
     );
+    emit Initialized();
   }
 
   function contribute(

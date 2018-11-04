@@ -1,14 +1,19 @@
 const DisputerFactory = artifacts.require("DisputerFactory");
 
 contract("DisputerFactory", accounts => {
-  const Manager = accounts[0];
   const Alice = accounts[1];
+  const Bob = accounts[2];
 
   it("can deploy", async () => {
     await DisputerFactory.new();
   });
 
-  // can't really test creation of Disputer contracts, since it will
+  it("will allow anyone to create instances", async () => {
+    const factory = await DisputerFactory.new(Alice, 0, 0);
+    const event1 = await factory.create(Bob, 0, 0, [], false);
+  });
+
+  // can't really test much of Disputer contracts, since it will
   // require real Augur markets
-  // We do test creation of mock Disputer contracts, and most of code is shared
+  // We do extensive tests of mock Disputer contracts, and most code is shared
 });

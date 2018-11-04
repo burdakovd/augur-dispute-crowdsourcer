@@ -26,6 +26,12 @@ contract Disputer is BaseDisputer {
     uint256[] payoutNumerators,
     bool invalid
   ) public {
+    if (address(market) == 0) {
+      // needed for easier instantiation for tests, etc.
+      // this will be a _very_ crappy uninitialized instance of Disputer
+      return;
+    }
+
     baseInit(owner, market, feeWindowId, payoutNumerators, invalid);
 
     Universe universe = market.getUniverse();
