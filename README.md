@@ -6,6 +6,10 @@ Contract to let people crowdsource funds for Augur disputes, and then submit the
 
 UI: https://github.com/burdakovd/augur-dispute-crowdsourcer-ui
 
+# Releases
+
+v0.1: https://etherscan.io/address/0x14610b493f024c3636decbf7acbc201dfda44d47
+
 # General rules
 
 You need of course to understand how Augur dispute system works before using this contract. I won't go into details of it, but I will assume knowledge.
