@@ -8,7 +8,9 @@ UI: https://github.com/burdakovd/augur-dispute-crowdsourcer-ui
 
 # Releases
 
-v0.1: https://etherscan.io/address/0x14610b493f024c3636decbf7acbc201dfda44d47
+v0.1:
+ - mainnet: https://etherscan.io/address/0x14610b493f024c3636decbf7acbc201dfda44d47
+ - rinkeby: https://rinkeby.etherscan.io/address/0x751ee7d9a87585359c671b737dc39cd7ea9f7d56
 
 # General rules
 
