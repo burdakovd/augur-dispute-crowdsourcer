@@ -27,6 +27,7 @@ require("babel-polyfill");
 
 const fs = require("fs");
 const HDWalletProvider = require("truffle-hdwallet-provider-privkey");
+const NonceTrackerSubprovider = require("web3-provider-engine/subproviders/nonce-tracker");
 // const infuraKey = "fj4jll3k.....";
 //
 const mnemonic = () =>
@@ -88,6 +89,21 @@ module.exports = {
         );
       },
       network_id: 4
+    },
+
+    mainnet: {
+      provider: function() {
+        const wallet = new HDWalletProvider(
+          [mnemonic()],
+          "https://mainnet.infura.io/augur"
+        );
+        const nonceTracker = new NonceTrackerSubprovider();
+        wallet.engine._providers.unshift(nonceTracker);
+        nonceTracker.setEngine(wallet.engine);
+        return wallet;
+      },
+      gasPrice: 11000000000,
+      network_id: 1
     },
 
     // Useful for private networks
