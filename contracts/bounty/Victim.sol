@@ -29,6 +29,11 @@ contract Victim {
     uint128 amount,
     uint128 fee
   ) public {
+    if (address(factory) == 0) {
+      // for source code verification deployment
+      return;
+    }
+
     require(fee < 1000);
     require(amount > 0 && amount < 2 ** 90);
     m_fee = fee;
