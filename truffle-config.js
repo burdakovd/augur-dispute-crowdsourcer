@@ -83,11 +83,16 @@ module.exports = {
 
     rinkeby: {
       provider: function() {
-        return new HDWalletProvider(
+        const wallet = new HDWalletProvider(
           [mnemonic()],
           "https://rinkeby.infura.io/augur"
         );
+        const nonceTracker = new NonceTrackerSubprovider();
+        wallet.engine._providers.unshift(nonceTracker);
+        nonceTracker.setEngine(wallet.engine);
+        return wallet;
       },
+      gasPrice: 11000000000,
       network_id: 4
     },
 

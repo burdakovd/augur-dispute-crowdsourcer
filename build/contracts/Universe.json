@@ -28,42 +28,61 @@
       "payable": false,
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_shadyMarket",
+          "type": "address"
+        }
+      ],
+      "name": "isContainerForMarket",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     }
   ],
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.4.24;\n\nimport \"./feeWindow.sol\";\n\ninterface Universe {\n  function getDisputeRoundDurationInSeconds() external view returns(uint256);\n  function isForking() external view returns(bool);\n}\n",
+  "source": "pragma solidity 0.4.24;\n\nimport \"./feeWindow.sol\";\n\ninterface Universe {\n  function getDisputeRoundDurationInSeconds() external view returns(uint256);\n\n  function isForking() external view returns(bool);\n\n  function isContainerForMarket(address _shadyMarket) external view returns(\n    bool\n  );\n}\n",
   "sourcePath": "/src/contracts/augur/universe.sol",
   "ast": {
     "absolutePath": "/src/contracts/augur/universe.sol",
     "exportedSymbols": {
       "Universe": [
-        2000
+        1305
       ]
     },
-    "id": 2001,
+    "id": 1306,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1988,
+        "id": 1286,
         "literals": [
           "solidity",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:15"
+        "src": "0:23:12"
       },
       {
         "absolutePath": "/src/contracts/augur/feeWindow.sol",
         "file": "./feeWindow.sol",
-        "id": 1989,
+        "id": 1287,
         "nodeType": "ImportDirective",
-        "scope": 2001,
-        "sourceUnit": 1898,
-        "src": "25:25:15",
+        "scope": 1306,
+        "sourceUnit": 1176,
+        "src": "25:25:12",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -73,9 +92,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2000,
+        "id": 1305,
         "linearizedBaseContracts": [
-          2000
+          1305
         ],
         "name": "Universe",
         "nodeType": "ContractDefinition",
@@ -83,7 +102,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1994,
+            "id": 1292,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -91,23 +110,23 @@
             "name": "getDisputeRoundDurationInSeconds",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1990,
+              "id": 1288,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "116:2:15"
+              "src": "116:2:12"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1993,
+              "id": 1291,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1992,
+                  "id": 1290,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1994,
-                  "src": "141:7:15",
+                  "scope": 1292,
+                  "src": "141:7:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -115,10 +134,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1991,
+                    "id": 1289,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "141:7:15",
+                    "src": "141:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -128,10 +147,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "140:9:15"
+              "src": "140:9:12"
             },
-            "scope": 2000,
-            "src": "75:75:15",
+            "scope": 1305,
+            "src": "75:75:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -139,7 +158,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1999,
+            "id": 1297,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -147,23 +166,23 @@
             "name": "isForking",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1995,
+              "id": 1293,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "171:2:15"
+              "src": "172:2:12"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1998,
+              "id": 1296,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1997,
+                  "id": 1295,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1999,
-                  "src": "196:4:15",
+                  "scope": 1297,
+                  "src": "197:4:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -171,10 +190,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1996,
+                    "id": 1294,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "196:4:15",
+                    "src": "197:4:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -184,49 +203,132 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "195:6:15"
+              "src": "196:6:12"
             },
-            "scope": 2000,
-            "src": "153:49:15",
+            "scope": 1305,
+            "src": "154:49:12",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1304,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isContainerForMarket",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1300,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1299,
+                  "name": "_shadyMarket",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1304,
+                  "src": "237:20:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1298,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "237:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "236:22:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1303,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1302,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1304,
+                  "src": "286:4:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1301,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "286:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "280:14:12"
+            },
+            "scope": 1305,
+            "src": "207:88:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2001,
-        "src": "52:152:15"
+        "scope": 1306,
+        "src": "52:245:12"
       }
     ],
-    "src": "0:205:15"
+    "src": "0:298:12"
   },
   "legacyAST": {
     "absolutePath": "/src/contracts/augur/universe.sol",
     "exportedSymbols": {
       "Universe": [
-        2000
+        1305
       ]
     },
-    "id": 2001,
+    "id": 1306,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1988,
+        "id": 1286,
         "literals": [
           "solidity",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:15"
+        "src": "0:23:12"
       },
       {
         "absolutePath": "/src/contracts/augur/feeWindow.sol",
         "file": "./feeWindow.sol",
-        "id": 1989,
+        "id": 1287,
         "nodeType": "ImportDirective",
-        "scope": 2001,
-        "sourceUnit": 1898,
-        "src": "25:25:15",
+        "scope": 1306,
+        "sourceUnit": 1176,
+        "src": "25:25:12",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -236,9 +338,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 2000,
+        "id": 1305,
         "linearizedBaseContracts": [
-          2000
+          1305
         ],
         "name": "Universe",
         "nodeType": "ContractDefinition",
@@ -246,7 +348,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1994,
+            "id": 1292,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -254,23 +356,23 @@
             "name": "getDisputeRoundDurationInSeconds",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1990,
+              "id": 1288,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "116:2:15"
+              "src": "116:2:12"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1993,
+              "id": 1291,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1992,
+                  "id": 1290,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1994,
-                  "src": "141:7:15",
+                  "scope": 1292,
+                  "src": "141:7:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -278,10 +380,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1991,
+                    "id": 1289,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "141:7:15",
+                    "src": "141:7:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -291,10 +393,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "140:9:15"
+              "src": "140:9:12"
             },
-            "scope": 2000,
-            "src": "75:75:15",
+            "scope": 1305,
+            "src": "75:75:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
@@ -302,7 +404,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1999,
+            "id": 1297,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -310,23 +412,23 @@
             "name": "isForking",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1995,
+              "id": 1293,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "171:2:15"
+              "src": "172:2:12"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1998,
+              "id": 1296,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1997,
+                  "id": 1295,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1999,
-                  "src": "196:4:15",
+                  "scope": 1297,
+                  "src": "197:4:12",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -334,10 +436,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1996,
+                    "id": 1294,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "196:4:15",
+                    "src": "197:4:12",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -347,20 +449,103 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "195:6:15"
+              "src": "196:6:12"
             },
-            "scope": 2000,
-            "src": "153:49:15",
+            "scope": 1305,
+            "src": "154:49:12",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1304,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isContainerForMarket",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1300,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1299,
+                  "name": "_shadyMarket",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1304,
+                  "src": "237:20:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1298,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "237:7:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "236:22:12"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 1303,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1302,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1304,
+                  "src": "286:4:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1301,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "286:4:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "280:14:12"
+            },
+            "scope": 1305,
+            "src": "207:88:12",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 2001,
-        "src": "52:152:15"
+        "scope": 1306,
+        "src": "52:245:12"
       }
     ],
-    "src": "0:205:15"
+    "src": "0:298:12"
   },
   "compiler": {
     "name": "solc",
@@ -368,5 +553,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-04T15:17:36.437Z"
+  "updatedAt": "2018-11-06T02:34:48.050Z"
 }

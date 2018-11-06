@@ -1,24 +1,15 @@
 {
-  "contractName": "FeeWindow",
+  "contractName": "Faucet",
   "abi": [
     {
-      "constant": true,
-      "inputs": [],
-      "name": "getStartTime",
-      "outputs": [
+      "constant": false,
+      "inputs": [
         {
-          "name": "",
+          "name": "_amount",
           "type": "uint256"
         }
       ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "isOver",
+      "name": "faucet",
       "outputs": [
         {
           "name": "",
@@ -26,7 +17,7 @@
         }
       ],
       "payable": false,
-      "stateMutability": "view",
+      "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
@@ -34,27 +25,27 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity 0.4.24;\n\ninterface FeeWindow {\n  function getStartTime() external view returns(uint256);\n  function isOver() external view returns(bool);\n}\n",
-  "sourcePath": "/src/contracts/augur/feeWindow.sol",
+  "source": "pragma solidity 0.4.24;\n\ninterface Faucet {\n  function faucet(uint256 _amount) external returns(bool);\n}\n",
+  "sourcePath": "/src/contracts/bounty/Faucet.sol",
   "ast": {
-    "absolutePath": "/src/contracts/augur/feeWindow.sol",
+    "absolutePath": "/src/contracts/bounty/Faucet.sol",
     "exportedSymbols": {
-      "FeeWindow": [
-        1175
+      "Faucet": [
+        1333
       ]
     },
-    "id": 1176,
+    "id": 1334,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1164,
+        "id": 1325,
         "literals": [
           "solidity",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:9"
+        "src": "0:23:14"
       },
       {
         "baseContracts": [],
@@ -62,41 +53,34 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1175,
+        "id": 1333,
         "linearizedBaseContracts": [
-          1175
+          1333
         ],
-        "name": "FeeWindow",
+        "name": "Faucet",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
             "documentation": null,
-            "id": 1169,
+            "id": 1332,
             "implemented": false,
             "isConstructor": false,
-            "isDeclaredConst": true,
+            "isDeclaredConst": false,
             "modifiers": [],
-            "name": "getStartTime",
+            "name": "faucet",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1165,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "70:2:9"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 1168,
+              "id": 1328,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1167,
-                  "name": "",
+                  "id": 1327,
+                  "name": "_amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1169,
-                  "src": "95:7:9",
+                  "scope": 1332,
+                  "src": "62:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -104,10 +88,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1166,
+                    "id": 1326,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "95:7:9",
+                    "src": "62:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -117,42 +101,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "94:9:9"
-            },
-            "scope": 1175,
-            "src": "49:55:9",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 1174,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
-            "modifiers": [],
-            "name": "isOver",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 1170,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "122:2:9"
+              "src": "61:17:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1173,
+              "id": 1331,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1172,
+                  "id": 1330,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1174,
-                  "src": "147:4:9",
+                  "scope": 1332,
+                  "src": "96:4:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -160,10 +122,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1171,
+                    "id": 1329,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "147:4:9",
+                    "src": "96:4:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -173,40 +135,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "146:6:9"
+              "src": "95:6:14"
             },
-            "scope": 1175,
-            "src": "107:46:9",
-            "stateMutability": "view",
+            "scope": 1333,
+            "src": "46:56:14",
+            "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1176,
-        "src": "25:130:9"
+        "scope": 1334,
+        "src": "25:79:14"
       }
     ],
-    "src": "0:156:9"
+    "src": "0:105:14"
   },
   "legacyAST": {
-    "absolutePath": "/src/contracts/augur/feeWindow.sol",
+    "absolutePath": "/src/contracts/bounty/Faucet.sol",
     "exportedSymbols": {
-      "FeeWindow": [
-        1175
+      "Faucet": [
+        1333
       ]
     },
-    "id": 1176,
+    "id": 1334,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1164,
+        "id": 1325,
         "literals": [
           "solidity",
           "0.4",
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:9"
+        "src": "0:23:14"
       },
       {
         "baseContracts": [],
@@ -214,41 +176,34 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1175,
+        "id": 1333,
         "linearizedBaseContracts": [
-          1175
+          1333
         ],
-        "name": "FeeWindow",
+        "name": "Faucet",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": null,
             "documentation": null,
-            "id": 1169,
+            "id": 1332,
             "implemented": false,
             "isConstructor": false,
-            "isDeclaredConst": true,
+            "isDeclaredConst": false,
             "modifiers": [],
-            "name": "getStartTime",
+            "name": "faucet",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1165,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "70:2:9"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 1168,
+              "id": 1328,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1167,
-                  "name": "",
+                  "id": 1327,
+                  "name": "_amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1169,
-                  "src": "95:7:9",
+                  "scope": 1332,
+                  "src": "62:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -256,10 +211,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1166,
+                    "id": 1326,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "95:7:9",
+                    "src": "62:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -269,42 +224,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "94:9:9"
-            },
-            "scope": 1175,
-            "src": "49:55:9",
-            "stateMutability": "view",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 1174,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
-            "modifiers": [],
-            "name": "isOver",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 1170,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "122:2:9"
+              "src": "61:17:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 1173,
+              "id": 1331,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1172,
+                  "id": 1330,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1174,
-                  "src": "147:4:9",
+                  "scope": 1332,
+                  "src": "96:4:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -312,10 +245,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1171,
+                    "id": 1329,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "147:4:9",
+                    "src": "96:4:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -325,20 +258,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "146:6:9"
+              "src": "95:6:14"
             },
-            "scope": 1175,
-            "src": "107:46:9",
-            "stateMutability": "view",
+            "scope": 1333,
+            "src": "46:56:14",
+            "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 1176,
-        "src": "25:130:9"
+        "scope": 1334,
+        "src": "25:79:14"
       }
     ],
-    "src": "0:156:9"
+    "src": "0:105:14"
   },
   "compiler": {
     "name": "solc",
@@ -346,5 +279,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-06T02:34:48.048Z"
+  "updatedAt": "2018-11-06T02:34:48.051Z"
 }

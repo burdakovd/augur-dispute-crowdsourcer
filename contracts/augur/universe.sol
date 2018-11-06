@@ -4,5 +4,10 @@ import "./feeWindow.sol";
 
 interface Universe {
   function getDisputeRoundDurationInSeconds() external view returns(uint256);
+
   function isForking() external view returns(bool);
+
+  function isContainerForMarket(address _shadyMarket) external view returns(
+    bool
+  );
 }

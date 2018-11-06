@@ -38,4 +38,8 @@ interface Market {
   function getWinningReportingParticipant() external view returns(
     ReportingParticipant
   );
+
+  function isContainerForReportingParticipant(
+    ReportingParticipant _shadyReportingParticipant
+  ) external view returns(bool);
 }
