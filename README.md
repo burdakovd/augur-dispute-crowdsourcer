@@ -119,3 +119,9 @@ If we compare scenarios between participanting on her own, and in a pool, it is 
  - [First TX](https://etherscan.io/tx/0x602a90e0984603759c2f503d2af1f2524154c9f9e5e408fa57ee04c99694a30b), creates crowdsourcer, 1.23M gas
  - [Subsequent TX](https://etherscan.io/tx/0x41d226c35bdf43b5ff3982f7629047c171544aebcf6ca2babf01b7d4f5c752a1), 344k gas
  - [Last TX](https://etherscan.io/tx/0xd15819ddbcb3885bdeef47dadc8bc88a020b5b019ea72ac84191fcb7f9543907), creates next fee window, cleans stuff up, 3.92M gas
+ - [Failed, sent too late](https://etherscan.io/tx/0xb343fec3bebc54169b8d60f0339e52b552476f766120245ad9f99711d42d1b5e), 42k
+
+## Dispute with pool
+
+ - [Successful dispute transaction, not first contribution](https://etherscan.io/tx/0x8f6db8c42ebf8befcf9edae24d75ee9d5b99ac4aea13e4e232ff99fe25194a8a), 431k gas
+ - [Failed dispute, triggered too soon](https://etherscan.io/tx/0x5fc11a2ff27a14460fb47122570c5aabddc9c6b7e9a67f1256d4f5b0445cb888), 24k gas
