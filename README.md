@@ -112,3 +112,10 @@ Now, consider if she was member of the pool (she would place her contribution wi
 
 If we compare scenarios between participanting on her own, and in a pool, it is evident that participating in the pool is at least not worse, and in many cases is better. This analysis omitted the fact that she will receive only 90% of fees. If we take that into account, she may get slightly worse results by participating in the pool, but only if she is dominant participant of the pool (i.e. contributes more than 90% of pool).
    
+# Gas costs
+
+## Dispute without pool
+
+ - [First TX](https://etherscan.io/tx/0x602a90e0984603759c2f503d2af1f2524154c9f9e5e408fa57ee04c99694a30b), creates crowdsourcer, 1.23M gas
+ - [Subsequent TX](https://etherscan.io/tx/0x41d226c35bdf43b5ff3982f7629047c171544aebcf6ca2babf01b7d4f5c752a1), 344k gas
+ - [Last TX](https://etherscan.io/tx/0xd15819ddbcb3885bdeef47dadc8bc88a020b5b019ea72ac84191fcb7f9543907), creates next fee window, cleans stuff up, 3.92M gas
