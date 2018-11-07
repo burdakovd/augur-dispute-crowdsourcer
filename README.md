@@ -125,3 +125,4 @@ If we compare scenarios between participanting on her own, and in a pool, it is 
 
  - [Successful dispute transaction, not first contribution](https://etherscan.io/tx/0x8f6db8c42ebf8befcf9edae24d75ee9d5b99ac4aea13e4e232ff99fe25194a8a), 431k gas
  - [Failed dispute, triggered too soon](https://etherscan.io/tx/0x5fc11a2ff27a14460fb47122570c5aabddc9c6b7e9a67f1256d4f5b0445cb888), 24k gas
+ - [Successful dispute transaction, first contribution](https://etherscan.io/tx/0xb8372673e2834c7af0067b52bc4d6d07adc928da9ae740784658bc562282bdd4), 1.078M gas
