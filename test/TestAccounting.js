@@ -173,17 +173,13 @@ contract("Accounting", accounts => {
     const instance = await Accounting.new(Manager);
     await instance.contribute(Bob, 9000, 42, { from: Manager });
     await expect(
-      instance
-        .getProjectedFeeNumerator(9000)
-        .then(a => a.map(n => n.toNumber()))
+      instance.getProjectedFee(9000).then(a => a.map(n => n.toNumber()))
     ).resolves.toEqual([0, 0]);
     await expect(
-      instance
-        .getProjectedFeeNumerator(5000)
-        .then(a => a.map(n => n.toNumber()))
+      instance.getProjectedFee(5000).then(a => a.map(n => n.toNumber()))
     ).resolves.toEqual([42, 5000]);
     await expect(
-      instance.getProjectedFeeNumerator(0).then(a => a.map(n => n.toNumber()))
+      instance.getProjectedFee(0).then(a => a.map(n => n.toNumber()))
     ).resolves.toEqual([42, 0]);
   });
 
