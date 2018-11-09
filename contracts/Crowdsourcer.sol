@@ -101,6 +101,8 @@ contract Crowdsourcer is ICrowdsourcer {
     assert(rep.transferFrom(msg.sender, m_disputer, deposited));
     assert(rep.transferFrom(msg.sender, this, depositedFees));
 
+    assertBalancesBeforeDispute();
+
     emit ContributionAccepted(msg.sender, amount, feeNumerator);
   }
 
@@ -117,6 +119,8 @@ contract Crowdsourcer is ICrowdsourcer {
     // actually transfer tokens and revert tx if any problem
     assert(rep.transferFrom(m_disputer, msg.sender, withdrawn));
     assert(rep.transfer(msg.sender, withdrawnFees));
+
+    assertBalancesBeforeDispute();
 
     emit ContributionWithdrawn(msg.sender, withdrawn);
   }
@@ -245,5 +249,11 @@ contract Crowdsourcer is ICrowdsourcer {
 
   function isFinalized() public view requiresInitialization returns(bool) {
     return m_accounting.isFinalized();
+  }
+
+  function assertBalancesBeforeDispute() internal view {
+    IERC20 rep = getREP();
+    assert(rep.balanceOf(m_disputer) >= m_accounting.getTotalContribution());
+    assert(rep.balanceOf(this) >= m_accounting.getTotalFeesOffered());
   }
 }

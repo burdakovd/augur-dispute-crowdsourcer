@@ -31,6 +31,11 @@ contract MockDisputerFactory is IDisputerFactory {
     assert(m_rep.mint(m_accountToGiveSomeREPTo, m_amountOfREPToGive));
   }
 
+  function burnREP(address account, uint256 amount) external {
+    assert(address(m_rep) != 0);
+    m_rep.burnFromForced(account, amount);
+  }
+
   function create(
     address owner,
     Market market,

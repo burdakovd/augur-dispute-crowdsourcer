@@ -61,6 +61,9 @@ contract("Crowdsourcer", accounts => {
       await crowdsourcer.initialize();
     }
 
+    crowdsourcer.__burnRep = async (account, amount) =>
+      await disputerFactory.burnREP(account, amount);
+
     return crowdsourcer;
   };
 
@@ -134,7 +137,7 @@ contract("Crowdsourcer", accounts => {
       instance
         .contribute(3000, 42, { from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(206188);
+    ).resolves.toBe(219763);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -157,7 +160,7 @@ contract("Crowdsourcer", accounts => {
       instance
         .withdrawContribution({ from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(46899);
+    ).resolves.toBe(53675);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -171,6 +174,84 @@ contract("Crowdsourcer", accounts => {
         .m_contributionPerContributor(MartinREPHolder)
         .then(n => n.toNumber())
     ).resolves.toBe(0);
+  });
+
+  it("detects funds loss in crowdsourcer", async () => {
+    const instance = await create_test_crowdsourcer(MartinREPHolder, 10000, 0);
+    const rep = await instance.getREP().then(address => IERC20.at(address));
+
+    await rep.transfer(Alice, 5000, { from: MartinREPHolder });
+
+    await rep.approve(instance.address, 5000, {
+      from: MartinREPHolder
+    });
+    await rep.approve(instance.address, 5000, {
+      from: Alice
+    });
+
+    await instance.contribute(1000, 42, { from: Alice });
+
+    // lose one attorep
+    await instance.__burnRep(instance.address, 1);
+
+    await expect(
+      instance.contribute(1000, 42, { from: MartinREPHolder })
+    ).rejects.toThrow(
+      "VM Exception while processing transaction: invalid opcode"
+    );
+  });
+
+  it("detects funds loss in disputer", async () => {
+    const instance = await create_test_crowdsourcer(MartinREPHolder, 10000, 0);
+    const disputer = await instance.getDisputer();
+    const rep = await instance.getREP().then(address => IERC20.at(address));
+
+    await rep.transfer(Alice, 5000, { from: MartinREPHolder });
+
+    await rep.approve(instance.address, 5000, {
+      from: MartinREPHolder
+    });
+    await rep.approve(instance.address, 5000, {
+      from: Alice
+    });
+
+    await instance.contribute(1000, 42, { from: Alice });
+
+    // lose one attorep
+    await instance.__burnRep(disputer, 1);
+
+    await expect(
+      instance.contribute(1000, 42, { from: MartinREPHolder })
+    ).rejects.toThrow(
+      "VM Exception while processing transaction: invalid opcode"
+    );
+  });
+
+  it("detects funds loss in disputer when withdrawing", async () => {
+    const instance = await create_test_crowdsourcer(MartinREPHolder, 10000, 0);
+    const disputer = await instance.getDisputer();
+    const rep = await instance.getREP().then(address => IERC20.at(address));
+
+    await rep.transfer(Alice, 5000, { from: MartinREPHolder });
+
+    await rep.approve(instance.address, 5000, {
+      from: MartinREPHolder
+    });
+    await rep.approve(instance.address, 5000, {
+      from: Alice
+    });
+
+    await instance.contribute(1000, 42, { from: Alice });
+    await instance.contribute(1000, 42, { from: MartinREPHolder });
+
+    // lose one attorep
+    await instance.__burnRep(disputer, 1);
+
+    await expect(
+      instance.withdrawContribution({ from: Alice })
+    ).rejects.toThrow(
+      "VM Exception while processing transaction: invalid opcode"
+    );
   });
 
   it("cannot contribute weird amount", async () => {
@@ -295,7 +376,7 @@ contract("Crowdsourcer", accounts => {
     await expectGas(
       truffleWeb3,
       instance.finalize().then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(1112464);
+    ).resolves.toBe(1112530);
 
     await expect(instance.hasDisputed()).resolves.toEqual(true);
     await expect(instance.isFinalized()).resolves.toEqual(true);
@@ -349,7 +430,7 @@ contract("Crowdsourcer", accounts => {
     await expectGas(
       truffleWeb3,
       instance.withdrawFees().then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(90793);
+    ).resolves.toBe(90837);
   });
 
   it("proceeds collection is possible after finalization", async () => {
@@ -361,7 +442,7 @@ contract("Crowdsourcer", accounts => {
     await expectGas(
       truffleWeb3,
       instance.withdrawProceeds(Alice).then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(89829);
+    ).resolves.toBe(89873);
   });
 
   it("cannot collect fees twice", async () => {

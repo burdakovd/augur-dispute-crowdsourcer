@@ -1,12 +1,8 @@
 pragma solidity 0.4.24;
 
 import "../CrowdsourcerFactory.sol";
+import "./MockDisputerFactory.sol";
 
-/**
- * Technically we shouldn't need this class, as it is no different from
- * CrowdsourcerFactory, but Truffle migrations don't have support to deploy two
- * instances of the same contract, so for mock version we have this contract.
- */
 contract MockCrowdsourcerFactory is CrowdsourcerFactory {
   constructor(
     IAccountingFactory accountingFactory,
@@ -15,5 +11,9 @@ contract MockCrowdsourcerFactory is CrowdsourcerFactory {
     // solhint-disable-next-line no-empty-blocks
   ) public CrowdsourcerFactory(accountingFactory, disputerFactory, feeCollector) {
 
+  }
+
+  function burnREP(address account, uint256 amount) external {
+    MockDisputerFactory(m_disputerFactory).burnREP(account, amount);
   }
 }
