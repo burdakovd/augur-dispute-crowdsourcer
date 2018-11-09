@@ -134,7 +134,7 @@ contract("Crowdsourcer", accounts => {
       instance
         .contribute(3000, 42, { from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(179801);
+    ).resolves.toBe(206188);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -157,7 +157,7 @@ contract("Crowdsourcer", accounts => {
       instance
         .withdrawContribution({ from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(41213);
+    ).resolves.toBe(46899);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -295,7 +295,7 @@ contract("Crowdsourcer", accounts => {
     await expectGas(
       truffleWeb3,
       instance.finalize().then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(1112401);
+    ).resolves.toBe(1112464);
 
     await expect(instance.hasDisputed()).resolves.toEqual(true);
     await expect(instance.isFinalized()).resolves.toEqual(true);

@@ -12,6 +12,8 @@ contract Accounting is IAccounting {
   uint128 public constant FEE_DENOMINATOR = 1000;
   address public m_owner;
 
+  uint128 private m_totalContribution;
+  uint128 private m_totalFeesOffered;
   uint128[FEE_DENOMINATOR] public m_contributionPerFeeNumerator;
   mapping(address => uint128) public m_feeNumeratorPerContributor;
   mapping(address => uint128) public m_contributionPerContributor;
@@ -70,7 +72,12 @@ contract Accounting is IAccounting {
       amount
     );
 
-    return (amount, safeMulDivExact(amount, feeNumerator, FEE_DENOMINATOR));
+    uint128 feeAmount = safeMulDivExact(amount, feeNumerator, FEE_DENOMINATOR);
+
+    m_totalContribution = safeAdd(m_totalContribution, amount);
+    m_totalFeesOffered = safeAdd(m_totalFeesOffered, feeAmount);
+
+    return (amount, feeAmount);
   }
 
   function withdrawContribution(
@@ -89,7 +96,12 @@ contract Accounting is IAccounting {
       amount
     );
 
-    return (amount, safeMulDivExact(amount, feeNumerator, FEE_DENOMINATOR));
+    uint128 feeAmount = safeMulDivExact(amount, feeNumerator, FEE_DENOMINATOR);
+
+    m_totalContribution = safeSub(m_totalContribution, amount);
+    m_totalFeesOffered = safeSub(m_totalFeesOffered, feeAmount);
+
+    return (amount, feeAmount);
   }
 
   /**
@@ -108,23 +120,11 @@ contract Accounting is IAccounting {
   }
 
   function getTotalContribution() external view returns(uint256) {
-    uint256 total = 0;
-    for (uint128 i = 0; i < FEE_DENOMINATOR; ++i) {
-      total += m_contributionPerFeeNumerator[i];
-    }
-    return total;
+    return m_totalContribution;
   }
 
   function getTotalFeesOffered() external view returns(uint256) {
-    uint256 total = 0;
-    for (uint128 i = 0; i < FEE_DENOMINATOR; ++i) {
-      total += safeMulDivExact(
-        m_contributionPerFeeNumerator[i],
-        i,
-        FEE_DENOMINATOR
-      );
-    }
-    return total;
+    return m_totalFeesOffered;
   }
 
   function getOwner() external view returns(address) {
