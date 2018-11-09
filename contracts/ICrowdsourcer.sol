@@ -3,6 +3,7 @@ pragma solidity 0.4.24;
 import "./IAccounting.sol";
 import "./IDisputer.sol";
 import "./ICrowdsourcerParent.sol";
+import "./augur/market.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 
 /**
@@ -58,6 +59,13 @@ interface ICrowdsourcer {
   function isInitialized() external view returns(bool);
 
   function getParent() external view returns(ICrowdsourcerParent);
+
+  function getDisputerParams() external view returns(
+    Market market,
+    uint256 feeWindowId,
+    uint256[] payoutNumerators,
+    bool invalid
+  );
 
   function getDisputer() external view returns(IDisputer);
 

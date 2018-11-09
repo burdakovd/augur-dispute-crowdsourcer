@@ -51,10 +51,10 @@ contract("Crowdsourcer", accounts => {
       mockCrowdsourcerParent.address,
       accountingFactory.address,
       disputerFactory.address,
-      0,
-      0,
-      [],
-      false
+      0x1234,
+      42,
+      [3, 4, 15, 16, 23, 42],
+      true
     );
 
     if (shouldInitialize) {
@@ -89,6 +89,19 @@ contract("Crowdsourcer", accounts => {
       parent
     ).getContractFeeReceiver();
     expect(feeReceiver).toEqual(GeorgeContractAuthor);
+  });
+
+  it("can read params", async () => {
+    const instance = await create_test_crowdsourcer(MartinREPHolder, 42, 3);
+    const params = await instance
+      .getDisputerParams()
+      .then(([m, f, p, i]) => [m, f.toString(), p.map(n => n.toString()), i]);
+    expect(params).toEqual([
+      "0x0000000000000000000000000000000000001234",
+      "42",
+      ["3", "4", "15", "16", "23", "42"],
+      true
+    ]);
   });
 
   it("has correct initial state", async () => {

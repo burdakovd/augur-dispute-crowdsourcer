@@ -182,6 +182,15 @@ contract Crowdsourcer is ICrowdsourcer {
     return m_parent;
   }
 
+  function getDisputerParams() external view returns(
+    Market market,
+    uint256 feeWindowId,
+    uint256[] payoutNumerators,
+    bool invalid
+  ) {
+    return (m_disputerParams.market, m_disputerParams.feeWindowId, m_disputerParams.payoutNumerators, m_disputerParams.invalid);
+  }
+
   function getDisputer() external view requiresInitialization returns(
     IDisputer
   ) {
