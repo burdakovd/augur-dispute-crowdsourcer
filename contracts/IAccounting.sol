@@ -18,9 +18,10 @@ interface IAccounting {
 
   function getTotalFeesOffered() external view returns(uint256);
 
-  function getProjectedFeeNumerator(
-    uint128 amountDisputed
-  ) external view returns(uint128);
+  function getProjectedFee(uint128 amountDisputed) external view returns(
+    uint128 feeNumerator,
+    uint128 fundsUsedFromBoundaryBucket
+  );
 
   function getOwner() external view returns(address);
 

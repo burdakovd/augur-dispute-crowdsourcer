@@ -202,6 +202,6 @@ contract("CrowdsourcerFactory", accounts => {
       [5000, 5000],
       true
     );
-    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(2429639);
+    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(2442866);
   });
 });
