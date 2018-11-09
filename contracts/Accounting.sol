@@ -107,6 +107,26 @@ contract Accounting is IAccounting {
     );
   }
 
+  function getTotalContribution() external view returns(uint256) {
+    uint256 total = 0;
+    for (uint128 i = 0; i < FEE_DENOMINATOR; ++i) {
+      total += m_contributionPerFeeNumerator[i];
+    }
+    return total;
+  }
+
+  function getTotalFeesOffered() external view returns(uint256) {
+    uint256 total = 0;
+    for (uint128 i = 0; i < FEE_DENOMINATOR; ++i) {
+      total += safeMulDivExact(
+        m_contributionPerFeeNumerator[i],
+        i,
+        FEE_DENOMINATOR
+      );
+    }
+    return total;
+  }
+
   function getOwner() external view returns(address) {
     return m_owner;
   }

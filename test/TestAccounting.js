@@ -115,6 +115,31 @@ contract("Accounting", accounts => {
     expect(contributionFor43.toNumber()).toEqual(3000);
   });
 
+  it("calculates total contribution and fees after contributions", async () => {
+    const instance = await Accounting.new(Manager);
+    await instance.contribute(Bob, 1000, 42, { from: Manager });
+    await instance.contribute(Alice, 3000, 43, { from: Manager });
+    await expect(
+      instance.getTotalContribution().then(s => s.toString())
+    ).resolves.toBe("4000");
+    await expect(
+      instance.getTotalFeesOffered().then(s => s.toString())
+    ).resolves.toBe("171");
+  });
+
+  it("calculates total contribution and fees after contributions and withdrawals", async () => {
+    const instance = await Accounting.new(Manager);
+    await instance.contribute(Bob, 1000, 42, { from: Manager });
+    await instance.contribute(Alice, 3000, 43, { from: Manager });
+    await instance.withdrawContribution(Bob, { from: Manager });
+    await expect(
+      instance.getTotalContribution().then(s => s.toString())
+    ).resolves.toBe("3000");
+    await expect(
+      instance.getTotalFeesOffered().then(s => s.toString())
+    ).resolves.toBe("129");
+  });
+
   it("will refuse to call mutable methods after finalization", async () => {
     const instance = await Accounting.new(Manager);
     await instance.finalize(42, { from: Manager });

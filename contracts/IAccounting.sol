@@ -12,6 +12,10 @@ interface IAccounting {
     uint128 withdrawnFees
   );
 
+  function getTotalContribution() external view returns(uint256);
+
+  function getTotalFeesOffered() external view returns(uint256);
+
   function finalize(uint128 amountDisputed) external;
 
   function getOwner() external view returns(address);
