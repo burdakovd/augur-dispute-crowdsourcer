@@ -169,6 +169,20 @@ contract("Accounting", accounts => {
     ).resolves.toEqual(0);
   });
 
+  it("projected fee", async () => {
+    const instance = await Accounting.new(Manager);
+    await instance.contribute(Bob, 9000, 42, { from: Manager });
+    await expect(
+      instance.getProjectedFeeNumerator(9000).then(n => n.toNumber())
+    ).resolves.toEqual(0);
+    await expect(
+      instance.getProjectedFeeNumerator(5000).then(n => n.toNumber())
+    ).resolves.toEqual(42);
+    await expect(
+      instance.getProjectedFeeNumerator(0).then(n => n.toNumber())
+    ).resolves.toEqual(42);
+  });
+
   it("can contribute and then withdraw and then again contribute with different fee", async () => {
     const instance = await Accounting.new(Manager);
     await instance.contribute(Bob, 9000, 42, { from: Manager });

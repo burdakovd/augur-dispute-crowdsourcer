@@ -127,6 +127,17 @@ contract Accounting is IAccounting {
     return m_totalFeesOffered;
   }
 
+  function getProjectedFeeNumerator(
+    uint128 amountDisputed
+  ) external view returns(uint128) {
+    uint128 boundaryFeeNumerator;
+    uint128 fundsUsedFromBoundaryBucket;
+    (boundaryFeeNumerator, fundsUsedFromBoundaryBucket) = findBoundaryBucketForAmountDisputed(
+      amountDisputed
+    );
+    return boundaryFeeNumerator;
+  }
+
   function getOwner() external view returns(address) {
     return m_owner;
   }
