@@ -150,7 +150,7 @@ contract("Crowdsourcer", accounts => {
       instance
         .contribute(3000, 42, { from: MartinREPHolder })
         .then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(219829);
+    ).resolves.toBe(219851);
 
     await expect(
       rep.balanceOf(MartinREPHolder).then(b => b.toNumber())
@@ -455,7 +455,7 @@ contract("Crowdsourcer", accounts => {
     await expectGas(
       truffleWeb3,
       instance.withdrawProceeds(Alice).then(receipt => receipt.receipt.gasUsed)
-    ).resolves.toBe(89895);
+    ).resolves.toBe(89917);
   });
 
   it("cannot collect fees twice", async () => {
