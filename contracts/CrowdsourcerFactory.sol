@@ -27,6 +27,7 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
 
   address public m_feeCollector;
   mapping(bytes32 => ICrowdsourcer) public m_crowdsourcers;
+  mapping(uint256 => ICrowdsourcer[]) private m_crowdsourcersPerFeeWindow;
 
   constructor(
     IAccountingFactory accountingFactory,
@@ -113,8 +114,50 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
       payoutNumerators,
       invalid
     );
+    m_crowdsourcersPerFeeWindow[feeWindowId].push(created);
     m_crowdsourcers[paramsHash] = created;
     return created;
+  }
+
+  function findCrowdsourcer(
+    uint256 feeWindowId,
+    uint256 startFrom,
+    uint256 minFeesOffered,
+    ICrowdsourcer[] exclude
+  ) public view returns(uint256, ICrowdsourcer) {
+    ICrowdsourcer[] storage crowdsourcers = m_crowdsourcersPerFeeWindow[feeWindowId];
+    uint256 n = crowdsourcers.length;
+    uint256 i;
+
+    for (i = startFrom; i < n; ++i) {
+      ICrowdsourcer candidate = crowdsourcers[i];
+
+      if (!candidate.isInitialized() || candidate.getAccounting(
+
+      ).getTotalFeesOffered() < minFeesOffered) {
+        continue;
+      }
+
+      bool isGood = true;
+      for (uint256 j = 0; j < exclude.length; ++j) {
+        if (candidate == exclude[j]) {
+          isGood = false;
+          break;
+        }
+      }
+
+      if (isGood) {
+        return (i, candidate);
+      }
+    }
+
+    return (i, ICrowdsourcer(0));
+  }
+
+  function getNumCrowdsourcers(uint256 feeWindowId) public view returns(
+    uint256
+  ) {
+    return m_crowdsourcersPerFeeWindow[feeWindowId].length;
   }
 
   function hashParams(
@@ -127,5 +170,4 @@ contract CrowdsourcerFactory is ICrowdsourcerParent {
       abi.encodePacked(market, feeWindowId, payoutNumerators, invalid)
     );
   }
-
 }

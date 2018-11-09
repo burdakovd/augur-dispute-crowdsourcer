@@ -467,8 +467,6 @@ contract("Crowdsourcer", accounts => {
     );
   });
 
-  return;
-
   it("fuzz test of contribute and withdraw", async () => {
     const crowdsourcer = await create_test_crowdsourcer(
       MartinREPHolder,

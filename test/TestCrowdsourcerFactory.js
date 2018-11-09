@@ -6,15 +6,20 @@ const Crowdsourcer = artifacts.require("Crowdsourcer");
 const CrowdsourcerFactory = artifacts.require("CrowdsourcerFactory");
 const AccountingFactory = artifacts.require("AccountingFactory");
 const MockDisputerFactory = artifacts.require("MockDisputerFactory");
+const IERC20 = artifacts.require(
+  "openzeppelin-solidity/contracts/token/ERC20/IERC20"
+);
 
 contract("CrowdsourcerFactory", accounts => {
   const Manager = accounts[0];
   const Alice = accounts[1];
   const Bob = accounts[2];
 
+  const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
+
   it("can deploy", async () => {
     const accountingFactory = await AccountingFactory.new();
-    const disputerFactory = await MockDisputerFactory.new(Alice, 0, 0);
+    const disputerFactory = await MockDisputerFactory.new(Alice, 10000, 0);
     await CrowdsourcerFactory.new(
       accountingFactory.address,
       disputerFactory.address,
@@ -36,6 +41,16 @@ contract("CrowdsourcerFactory", accounts => {
   it("knows fee collector", async () => {
     const factory = await create_test_factory();
     await expect(factory.getContractFeeReceiver()).resolves.toBe(Bob);
+  });
+
+  it("is empty at first", async () => {
+    const factory = await create_test_factory();
+    await expect(
+      factory.getNumCrowdsourcers(1).then(s => s.toString())
+    ).resolves.toEqual("0");
+    await expect(
+      factory.findCrowdsourcer(42, 0, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["0", ZERO_ADDRESS]);
   });
 
   it("can transfer fee collector", async () => {
@@ -176,10 +191,137 @@ contract("CrowdsourcerFactory", accounts => {
     await factory.getInitializedCrowdsourcer(Alice, 0, [], false);
   });
 
+  it("can find crowdsourcer", async () => {
+    const factory = await create_test_factory();
+    await factory.getCrowdsourcer(Alice, 42, [], false);
+    await factory.getInitializedCrowdsourcer(Alice, 42, [], false);
+    const c1 = await factory.maybeGetCrowdsourcer(Alice, 42, [], false);
+    await expect(
+      factory.getNumCrowdsourcers(41).then(s => s.toString())
+    ).resolves.toEqual("0");
+    await expect(
+      factory.getNumCrowdsourcers(42).then(s => s.toString())
+    ).resolves.toEqual("1");
+    await expect(
+      factory.findCrowdsourcer(41, 0, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["0", ZERO_ADDRESS]);
+    await expect(
+      factory.findCrowdsourcer(42, 0, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["0", c1]);
+    await expect(
+      factory.findCrowdsourcer(42, 1, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["1", ZERO_ADDRESS]);
+    await expect(
+      factory.findCrowdsourcer(42, 5, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["5", ZERO_ADDRESS]);
+  });
+
+  it("can find crowdsourcer: filters fees", async () => {
+    const factory = await create_test_factory();
+    await factory.getCrowdsourcer(Alice, 42, [], false);
+    await factory.getInitializedCrowdsourcer(Alice, 42, [], false);
+    const c1 = await factory.maybeGetCrowdsourcer(Alice, 42, [], false);
+    const rep = await Crowdsourcer.at(c1)
+      .getREP()
+      .then(address => IERC20.at(address));
+    await rep.approve(c1, 10000, { from: Alice });
+    await Crowdsourcer.at(c1).contribute(1000, 42, { from: Alice });
+    await expect(
+      factory.findCrowdsourcer(42, 0, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["0", c1]);
+    await expect(
+      factory.findCrowdsourcer(42, 0, 3, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["0", c1]);
+    await expect(
+      factory
+        .findCrowdsourcer(42, 0, 50, [])
+        .then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["1", ZERO_ADDRESS]);
+  });
+
+  it("can find crowdsourcer: filters uninitialized", async () => {
+    const factory = await create_test_factory();
+    await factory.getCrowdsourcer(Alice, 42, [], false);
+    const c1 = await factory.maybeGetCrowdsourcer(Alice, 42, [], false);
+    await expect(
+      factory.getNumCrowdsourcers(42).then(s => s.toString())
+    ).resolves.toEqual("1");
+    await expect(
+      factory.findCrowdsourcer(42, 0, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["1", ZERO_ADDRESS]);
+  });
+
+  it("can find crowdsourcer: can iterate", async () => {
+    const factory = await create_test_factory();
+
+    await factory.getCrowdsourcer(Alice, 0, [], false);
+    await factory.getInitializedCrowdsourcer(Alice, 0, [], false);
+    await factory.maybeGetCrowdsourcer(Alice, 0, [], false);
+
+    await factory.getCrowdsourcer(Alice, 42, [], false);
+    await factory.getInitializedCrowdsourcer(Alice, 42, [], false);
+    const c1 = await factory.maybeGetCrowdsourcer(Alice, 42, [], false);
+
+    await factory.getCrowdsourcer(Bob, 42, [], false);
+    await factory.getInitializedCrowdsourcer(Bob, 42, [], false);
+    const c2 = await factory.maybeGetCrowdsourcer(Bob, 42, [], false);
+
+    await expect(
+      factory.getNumCrowdsourcers(42).then(s => s.toString())
+    ).resolves.toEqual("2");
+
+    await expect(
+      factory.findCrowdsourcer(42, 0, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["0", c1]);
+    await expect(
+      factory.findCrowdsourcer(42, 1, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["1", c2]);
+    await expect(
+      factory.findCrowdsourcer(42, 2, 0, []).then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["2", ZERO_ADDRESS]);
+  });
+
+  it("can find crowdsourcer: can exclude", async () => {
+    const factory = await create_test_factory();
+
+    await factory.getCrowdsourcer(Alice, 0, [], false);
+    await factory.getInitializedCrowdsourcer(Alice, 0, [], false);
+    await factory.maybeGetCrowdsourcer(Alice, 0, [], false);
+
+    await factory.getCrowdsourcer(Alice, 42, [], false);
+    await factory.getInitializedCrowdsourcer(Alice, 42, [], false);
+    const c1 = await factory.maybeGetCrowdsourcer(Alice, 42, [], false);
+
+    await factory.getCrowdsourcer(Bob, 42, [], false);
+    await factory.getInitializedCrowdsourcer(Bob, 42, [], false);
+    const c2 = await factory.maybeGetCrowdsourcer(Bob, 42, [], false);
+
+    await expect(
+      factory.getNumCrowdsourcers(42).then(s => s.toString())
+    ).resolves.toEqual("2");
+
+    await expect(
+      factory
+        .findCrowdsourcer(42, 0, 0, [c1])
+        .then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["1", c2]);
+    await expect(
+      factory
+        .findCrowdsourcer(42, 2, 0, [c1])
+        .then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["2", ZERO_ADDRESS]);
+
+    await expect(
+      factory
+        .findCrowdsourcer(42, 0, 0, [c1, c2])
+        .then(a => a.map(s => s.toString()))
+    ).resolves.toEqual(["2", ZERO_ADDRESS]);
+  });
+
   it("cost of creating simple crowdsourcer", async () => {
     const factory = await create_test_factory();
     const receipt = await factory.getCrowdsourcer(Alice, 0, [5000, 5000], true);
-    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(1986892);
+    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(2027494);
   });
 
   it("cost of creating bigger crowdsourcer", async () => {
@@ -190,7 +332,7 @@ contract("CrowdsourcerFactory", accounts => {
       [1, 2, 3, 4, 5, 6, 7, 8],
       false
     );
-    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(2111718);
+    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(2152320);
   });
 
   it("cost of initializing crowdsourcer", async () => {
@@ -202,6 +344,6 @@ contract("CrowdsourcerFactory", accounts => {
       [5000, 5000],
       true
     );
-    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(2442866);
+    await expectGas(web3, receipt.receipt.gasUsed).resolves.toBe(2442910);
   });
 });
