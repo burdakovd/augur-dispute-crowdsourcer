@@ -5,6 +5,7 @@
 Contract to let people crowdsource funds for Augur disputes, and then submit them in one tx
 
 UI: https://github.com/burdakovd/augur-dispute-crowdsourcer-ui
+
 Executor (can be used to trigger disputes and collect fees automatically): https://github.com/burdakovd/augur-crowdsourcer-basic-executor/
 
 # Releases
@@ -13,6 +14,11 @@ v0.1:
 
 - mainnet: https://etherscan.io/address/0x14610b493f024c3636decbf7acbc201dfda44d47
 - rinkeby: https://rinkeby.etherscan.io/address/0x751ee7d9a87585359c671b737dc39cd7ea9f7d56
+
+v0.1.2:
+
+- mainnet: https://etherscan.io/address/0x240c61c9ac8b87bc70813be9ba069c0b45e83c9a
+- rinkeby: https://rinkeby.etherscan.io/address/0xdf43f34d894a68e8a563c59de0de930e29c73c4d
 
 # General rules
 
