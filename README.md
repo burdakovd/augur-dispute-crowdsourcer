@@ -5,6 +5,7 @@
 Contract to let people crowdsource funds for Augur disputes, and then submit them in one tx
 
 UI: https://github.com/burdakovd/augur-dispute-crowdsourcer-ui
+Executor (can be used to trigger disputes and collect fees automatically): https://github.com/burdakovd/augur-crowdsourcer-basic-executor/
 
 # Releases
 
