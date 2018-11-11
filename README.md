@@ -132,4 +132,4 @@ If we compare scenarios between participanting on her own, and in a pool, it is 
 
 # Verify on etherscan
 
-- `for file in build/contracts/*.json; do echo $file $(cat $file | jq '.networks["4"].address') $(d yarn truffle-flattener $(find contracts -name $(basename $file | sed 's/json/sol/g') ) | nc termbin.com 9999); done | grep -v null`
+- `for file in build/contracts/*.json; do echo $file "https://etherscan.io/verifyContract2?a="$(cat $file | jq -r '.networks["1"].address') $(d yarn truffle-flattener $(find contracts -name $(basename $file | sed 's/json/sol/g') ) | nc termbin.com 9999); done | grep -v null`
