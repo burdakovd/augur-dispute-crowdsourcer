@@ -4,6 +4,12 @@
 
 Contract to let people crowdsource funds for Augur disputes, and then submit them in one tx
 
+Reddit post about release: https://www.reddit.com/r/Augur/comments/9u6pmn/new_disputing_pool_for_augur/
+
+Bounty market: https://www.reddit.com/r/AugurTrader/comments/9v7awy/augurdisputecrowdsourcer_bounty_market_round_2/
+
+
+
 UI: https://github.com/burdakovd/augur-dispute-crowdsourcer-ui
 
 Executor (can be used to trigger disputes and collect fees automatically): https://github.com/burdakovd/augur-crowdsourcer-basic-executor/
